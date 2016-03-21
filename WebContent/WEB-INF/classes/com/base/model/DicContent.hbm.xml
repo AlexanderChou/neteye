@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.base.model.DicContent" table="CT_DICCONTENT"
+		lazy="false">
+		<id name="dicContenId" type="long">
+			<column name="dicContenId" />
+			<generator class="native" />
+		</id>
+		<property name="dicTypeId" column="dicTypeId" type="string" />
+		<property name="dicContentName" column="dicContentName" type="string" />
+		<property name="dicContentDesc" column="dicContentDesc" type="string" />
+		<property name="dicContentOrder" column="dicContentOrder" type="long" />
+	</class>
+</hibernate-mapping>

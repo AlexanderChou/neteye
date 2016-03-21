@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="jFreeChart"  extends="basePackage" namespace="/jfreechart">
+		<result-types>
+			<result-type name="chart"
+				class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+		</result-types>
+
+
+		<!-- Subnet Chart   START -->
+		
+		<action name="genSwitchRunningStateChart" class="com.savi.show.action.SubnetChartAction"
+			method="genSwitchRunningStateChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">250</param>
+			</result>
+		</action>
+		<action name="genInterfaceTrustTypeChart" class="com.savi.show.action.SubnetChartAction"
+			method="genInterfaceTrustTypeChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">230</param>
+			</result>
+		</action>
+		<action name="genInterfaceValidatonStatusChart" class="com.savi.show.action.SubnetChartAction"
+			method="genInterfaceValidatonStatusChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		<action name="genIPBindingTypeStateChart" class="com.savi.show.action.SubnetChartAction"
+			method="genIPBindingTypeStateChart">
+			<result type="chart">
+				<param name="width">205</param>
+				<param name="height">210</param>
+			</result>
+		</action>
+		<action name="genUserNumberChangeChart" class="com.savi.show.action.SubnetChartAction"
+			method="genUserNumberChangeChart">
+			<result type="chart">
+				<param name="width">300</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		<action name="genUserOnlineTimeChart" class="com.savi.show.action.SubnetChartAction"
+			method="genUserOnlineTimeChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		<action name="genIPBindingStateChart" class="com.savi.show.action.SubnetChartAction"
+			method="genIPBindingStateChart">
+			<result type="chart">
+				<param name="width">300</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		
+		<action name="genSwitchUserNumChart" class="com.savi.show.action.SubnetChartAction"
+			method="genSwitchUserNumChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		
+		<action name="genACUserNumChart" class="com.savi.show.action.SubnetChartAction"
+			method="genAcChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		<action name="genACUserNumberChangeChart" class="com.savi.show.action.SubnetChartAction"
+			method="genACUserNumberChangeChart">
+			<result type="chart">
+				<param name="width">300</param>
+				<param name="height">205</param>
+			</result>
+		</action>
+		
+		<!-- 
+	   <action name="genACUserNumChart" class="com.savi.show.action.HuaSanChartAction"
+			method="genAcChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">205</param>
+			</result>
+		</action> -->
+		
+		<!-- Subnet Chart   END -->
+		
+		
+		
+		<!-- Switch Chart   START -->
+		<!-- 
+		<action name="genMaxFilteringNumMeterChart" class="com.show.action.SwitchChartAction"
+			method="genMaxFilteringNumMeterChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">240</param>
+			</result>
+		</action>
+		
+		<action name="genFilteringTableRecordNumChart" class="com.show.action.SwitchChartAction"
+			method="genFilteringTableRecordNumChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">240</param>
+			</result>
+		</action>
+		
+		<action name="genUserNumberMeterChart" class="com.show.action.SwitchChartAction"
+			method="genUserNumberMeterChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">240</param>
+			</result>
+		</action>
+		
+		<action name="genBindingTableRecordNumChart" class="com.show.action.SwitchChartAction"
+			method="genBindingTableRecordNumChart">
+			<result type="chart">
+				<param name="width">200</param>
+				<param name="height">240</param>
+			</result>
+		</action>
+		-->
+		
+		<action name="genSwitchUserNumberChangeChart" class="com.savi.show.action.SwitchChartAction"
+			method="genSwitchUserNumberChangeChart">
+			<result type="chart">
+				<param name="width">300</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		<action name="genSwitchUserOnlineTimeChart" class="com.savi.show.action.SwitchChartAction"
+			method="genSwitchUserOnlineTimeChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		
+		<action name="genPAUserOnlineTimeChart" class="com.savi.show.action.SwitchChartAction"
+			method="genAPUserOnlineTimeChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		<action name="genPAUserOnlineTimeMonthChart" class="com.savi.show.action.SwitchChartAction"
+			method="genAPUserOnlineTimeMonthChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		<action name="genInterfaceUserNumberSortChart" class="com.savi.show.action.SwitchChartAction"
+			method="genInterfaceUserNumberSortChart">
+			<result type="chart">
+				<param name="width">300</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		<action name="genUserOnlineTimeSortChart" class="com.savi.show.action.SwitchChartAction"
+			method="genUserOnlineTimeSortChart">
+			<result type="chart">
+				<param name="width">310</param>
+				<param name="height">200</param>
+			</result>
+		</action>
+		
+		<!-- Switch Chart   END -->
+	</package>
+</struts>

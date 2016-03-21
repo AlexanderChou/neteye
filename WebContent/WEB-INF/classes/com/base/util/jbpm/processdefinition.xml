@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition
+  xmlns=""  name="ticket">
+  
+   <start-state name="start">
+      <transition name="" to="decideEventType"></transition>
+   </start-state>
+  <!--判断时间是来自事件平台还是新近-->
+   <decision name="decideEventType">
+      <handler class="com.ticket.jbpmDecision.EventTypeDecision"/>
+      <transition name="new" to="createEvent"></transition>
+      <transition name="eventmodel" to="ticketFromEvent"></transition>
+   </decision>
+   
+   
+    <task-node name="ticketFromEvent">
+      <task name="ticketFromEventTask">
+            <assignment class="com.ticket.jbpmHandler.AdminHandlerEvnetAssignment">
+            </assignment>
+      </task>
+      
+       <transition name="to create" to="createEvent">
+      <action name="ticketFromEventAction" class="com.ticket.jbpmAction.SetEventToTicketAction"></action>
+      </transition>
+   </task-node>
+   
+   <!-- 创建ticket -->
+   <task-node name="createEvent">
+      <task name="createEventTask">
+            <assignment class="com.ticket.jbpmHandler.CreateEventUserAssignment">
+            </assignment>
+      </task>
+      
+       <transition name="to next" to="undertakerDecide">
+      <action name="accept_action" class="com.ticket.jbpmAction.CreateEventAction"></action>
+      </transition>
+   </task-node>
+   
+   <!--负责人决定不接受  -->
+   <task-node name="undertakerDecide">
+      <task name="decideAcception">
+            <assignment class="com.ticket.jbpmHandler.UnderTakerAssignment">
+            </assignment>
+      </task> 
+      
+      <transition name="underTaker_accept" to="DelegateDecide">
+      <action name="decideAcception" class="com.ticket.jbpmAction.UnderTakerAcceptAction"></action>
+      </transition>
+      <transition name="underTakerDis_accept" to="createEvent">
+      <action name="dis_accept_action" class="com.ticket.jbpmAction.UnderTakerDisAcceptAction"></action>
+      </transition>
+   </task-node>
+   
+   <!-- 决定是否使用代理 -->
+   <task-node name="DelegateDecide">
+      <task name="decideDelegation">
+            <assignment class="com.ticket.jbpmHandler.DelegaterAssignment">
+            </assignment>
+      </task>
+      
+            
+      <transition name="delegate_true" to="delegate">
+      <action name="delegate_accept" class="com.ticket.jbpmAction.UsingDelegationAction"></action>
+      </transition>
+      <transition name="delegate_false" to="doMyself">
+      </transition>
+   </task-node>
+   
+   
+   <!-- 代理 是否接受委托-->
+   <task-node name="delegate">
+      <task name="decideDelegationAcception">
+            <assignment class="com.ticket.jbpmHandler.WhoDelegateAssignment">
+            </assignment>
+      </task>
+       <transition name="agree" to="delegatorDeal">
+        <action name="proxy_done" class="com.ticket.jbpmAction.AcceptDelegationAction"></action>
+      </transition>
+      <transition name="disagree" to="DelegateDecide">
+        <action name="proxy_undone" class="com.ticket.jbpmAction.DisAcceptDelegationAction"></action>
+      </transition>
+   </task-node>
+   
+   <!-- 不使用代理而自己处理 -->
+   <task-node name="doMyself">
+       <task name="mywork">
+            <assignment class="com.ticket.jbpmHandler.UnderTakerAssignment">
+            </assignment>
+       </task>
+      <transition name="me to check" to="check">
+          <action name="dealAction" class="com.ticket.jbpmAction.UnderTakerHandlerEventAction"></action>
+      </transition>
+   </task-node>
+   
+   <!-- 接受委托 并处理-->
+   <task-node name="delegatorDeal">
+      <task name="delegatorwork">
+            <assignment class="com.ticket.jbpmHandler.DelegatingAuditorAssignment">
+            </assignment>
+       </task>
+      <transition name="delegate to check" to="check">
+       <action name="delegatorDeal" class="com.ticket.jbpmAction.DelegatorHandlerEventAction"></action>
+      </transition>
+   </task-node>
+   
+   
+   <!-- 终审-->
+   <task-node name="check">
+      <task name="finalCheck">
+          <assignment class="com.ticket.jbpmHandler.AuditorAssignment"></assignment>
+       </task> 
+      <transition name="success" to="end">
+         <action name="final_success" class="com.ticket.jbpmAction.FinalCheckSuccessAction"></action>
+      </transition>
+      <transition name="failure" to="DelegateDecide">
+          <action name="unpassCheck" class="com.ticket.jbpmAction.FinalCheckFailAction"></action>
+      </transition>
+   </task-node>
+   
+   <end-state name="end"></end-state>
+
+</process-definition>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<c3p0-config>
+	<default-config> 
+     	<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">network</property>
+	</default-config>
+	<named-config name="netEye">
+		<property name="jdbcUrl">jdbc:mysql://211.68.122.38:3306/neteye?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</property>
+	</named-config>
+</c3p0-config>
+
+   

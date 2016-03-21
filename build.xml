@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<project name="WebContent" basedir="." default="build">
+	<property name="appname" value="WebContent"/>
+	<property name="tomcat.home" location="/var/lib/tomcat5"/>
+	
+	<property name="src.dir" value="./src/"/>
+	<property name="WebContent.home" location="./WebContent"/>
+	<property name="dir.name" value="${WebContent.home}/backup/" />
+	<property name="classes.dir" value="${WebContent.home}/WEB-INF/classes/"/>
+	<property name="class.name" value="com.base.util.UpdateApp" />
+	
+	<target name="init">
+       <tstamp/>
+	   <delete dir="${classes.dir}"/>
+       <mkdir dir="${classes.dir}"/>
+    </target>
+	<path id="classpath">
+		  <pathelement location="${classes.dir}" />
+		  <fileset dir="${WebContent.home}/WEB-INF/lib">
+		    <include name="**/*.jar" />
+		  </fileset>
+		  <fileset dir="${tomcat.home}/common/lib">
+		  	 <include name="**/*.jar" />
+		  </fileset>
+    </path>
+	<target name="prepare" depends="init" description="Sets up Web structures">
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java"/>
+				<exclude name="**/CVS"/>
+			</fileset>
+		</copy>
+	</target>
+	<target name="build" depends="prepare" description="Compiles source code">
+			<javac srcdir="${src.dir}" destdir="${classes.dir}" encoding= "UTF-8">
+				<classpath refid="classpath"/>
+				<include name="**/*.java"/>
+			</javac>
+	</target>
+	<target name="jar" depends="build">
+       <jar destfile="${basedir}/package-${DSTAMP}.jar" basedir="${classes.dir}">
+         <manifest>
+           <attribute name="Built-By" value="${user.name}"/>
+           <attribute name="Main-Class" value="com.base.util.UpdateApp"/>
+         </manifest>
+       </jar>
+    </target>
+	<target name="restore" description="restore system's old data">
+		<java classname="${class.name}">
+			<arg value="restore"/>
+			<arg value="${args}"/>  
+			<classpath refid="classpath"/>
+		</java>
+	</target>	
+	<target name="backup" description="backup system's data">
+		<java classname="${class.name}">
+			<arg value="backup"/>
+			<classpath refid="classpath"/>
+		</java>
+	</target>	
+</project>

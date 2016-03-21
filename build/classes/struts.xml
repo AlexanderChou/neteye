@@ -1,0 +1,663 @@
+<!DOCTYPE struts PUBLIC
+	 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	 "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<!-- Global forward -->
+	<!-- 定义一个基本包加上拦截器配置   -->
+	<package name="basePackage" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="params">   
+					<param name="excludeParams">.*\\u0023.*</param>   
+				</interceptor-ref> 
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="userPopedom"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="userPopedom"
+				class="com.user.action.UserInterceptor" />
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		
+		
+		
+	</package>
+	
+	<!--  对 ajax 配置拦截器  -->
+	<package name="jsonPackage" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="params">   
+					<param name="excludeParams">.*\\u0023.*</param>   
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="userPopedom"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="userPopedom"
+				class="com.user.action.UserInterceptor" />
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+	</package>
+	
+	<package name="json-common" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="params">   
+					<param name="excludeParams">.*\\u0023.*</param>   
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<!-- 用户登录 -->
+		<action name="login" class="com.user.action.UserManagerAction" method="login">			
+			<result type="json" />
+		</action>    	   
+	</package>
+	
+	<!-- 为毕军提供接口 -->
+	<package name="integer2" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="params">   
+					<param name="excludeParams">.*\\u0023.*</param>   
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		 <action name="superLogin" class="com.user.action.UserManagerAction"
+			method="superLogin">
+			<result>/WEB-INF/pages/common/frame.jsp</result>
+			<result name="failed">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 躲过拦截器   在这个包里定义的action 不受拦截器的限制 -->
+	<package name="common" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="params">   
+					<param name="excludeParams">.*\\u0023.*</param>   
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<action name="welcome">
+			<result>/WEB-INF/pages/user/login.jsp</result>
+		</action>		
+		<!-- 进入主控页面 -->
+		<action name="mainPage">
+			<result>/WEB-INF/pages/common/frame.jsp</result>
+		</action>		
+		<!-- 用户退出 -->
+		<action name="logout" class="com.user.action.UserManagerAction" method="logout">
+			<result name="welcome" type="redirect">welcome.do</result>
+			<result name="changeUser">/WEB-INF/pages/user/changeUser.jsp</result>
+		</action>
+		<!-- 对 topoFrame.jsp 页面的初始化 -->
+		<action name="topoFrame">
+			<result>/WEB-INF/pages/topo/topoFrame.jsp</result>
+		</action>		
+		<!-- 对 topoEdit_rightMenu.jsp 页面的初始化 -->
+		<action name="topoEdit_rightMenu">
+			<result>/WEB-INF/pages/topo/topoEdit_rightMenu.jsp</result>
+		</action>		
+		<!-- 对 viewFrame.jsp 页面的初始化 -->
+		<action name="viewFrame">
+			<result>/WEB-INF/pages/view/viewFrame.jsp</result>
+		</action>		
+		<!-- 对 viewEdit_rightMenu.jsp 页面的初始化 -->
+		<action name="viewEdit_rightMenu" class="com.topo.action.ToPoHisManagerAction" method="initView">
+			<result name="success">/WEB-INF/pages/view/viewEdit_rightMenu.jsp</result>
+		</action>
+		
+	
+	</package>
+	
+	<package name="global forward" extends="basePackage">
+		<global-results>
+			<!-- 下面定义的结果对所有的Action都有效 -->
+			<result name="exception">
+				/WEB-INF/pages/common/error.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
+			<exception-mapping exception="java.lang.Exception"
+				result="exception" />
+		</global-exception-mappings>
+		<action name="top"  class="com.config.action.initConfigName" method="readsystemname">
+			<result>/WEB-INF/pages/common/top.jsp</result>
+		</action>
+		<action name="bottom">
+			<result>/WEB-INF/pages/common/bottom.jsp</result>
+		</action>
+		<action name="main">
+			<result>/WEB-INF/pages/common/main.jsp</result>
+		</action>
+	</package>
+	<!-- 视图 -->
+	<package name="view" extends="basePackage">
+		<action name="read" class="com.view.action.ReadAction">
+			<result name='SUCCESS'>
+				/WEB-INF/pages/view/reader.jsp
+			</result>
+			<result name='viewList' type="redirectAction">manage.do</result>
+		</action>
+		<action name="deviceClass"
+			class="com.view.action.ViewManageAction">
+			<result>/WEB-INF/pages/config/deviceClass.jsp</result>
+		</action>
+		<action name="manage"
+			class="com.view.action.ViewManageAction">
+			<result>/WEB-INF/pages/view/manager.jsp</result>
+		</action>
+		<action name="edit">
+			<result>/WEB-INF/pages/view/editor.jsp</result>
+		</action>
+		<action name="viewdelete"
+			class="com.view.action.ViewDeleteAction">
+			<result type="redirectAction">
+				<param name="actionName">manage</param>
+			</result>
+		</action>
+		<action name="topoSave" class="com.topo.action.TopoSaveAction" method="topoSave">
+			<result name="success"></result>
+			<result name="input"></result>
+		</action>		
+		<action name="toedit">
+			<result>/WEB-INF/pages/config/deviceList.jsp</result>
+		</action>		
+		<action name="test">
+			<result>/WEB-INF/pages/config/background.jsp</result>
+		</action>		
+		<action name="toport">
+			<result>/WEB-INF/pages/config/portList.jsp</result>
+		</action>		
+		<action name="tolink">
+			<result>/WEB-INF/pages/config/linkList.jsp</result>
+		</action>		
+		<action name="totree">
+			<result>/WEB-INF/pages/view/trees.jsp</result>
+		</action>		
+		<action name="tochosed">
+			<result>/WEB-INF/pages/view/chosedTree.jsp</result>
+		</action>		
+		<action name="tochosing">
+			<result>/WEB-INF/pages/view/chosingTree.jsp</result>
+		</action>		
+		<action name="tochose">
+			<result>/WEB-INF/pages/view/choseTree.jsp</result>
+		</action>
+		<action name="tochoselink">
+			<result>/WEB-INF/pages/view/linkTree.jsp</result>
+		</action>
+		<action name="tochosedlink">
+			<result>/WEB-INF/pages/view/linkedTree.jsp</result>
+		</action>
+		<action name="tonulltree">
+			<result>/WEB-INF/pages/view/nullTree.jsp</result>
+		</action>
+		<action name="devicetype"
+			class="com.view.action.ViewManageAction">
+			<result>/WEB-INF/pages/view/manager.jsp</result>
+		</action>
+		
+		<!-- 对拓扑页面设备的过滤 对重复设备的处理 -->
+		<action name="resultFilter" class="com.topo.action.TopoSaveAction" method="resultFilter">
+			<result name="success">/WEB-INF/pages/topo/resultFilter.jsp</result>
+			<result name="error">/WEB-INF/pages/topo/noDeviceOfTopo.jsp</result>
+		</action>
+        
+		<action name="deleteDeviceType"
+			class="com.view.action.DeviceTypeDeleteAction">
+			<result type="redirectAction">
+				<param name="actionName">deviceClass</param>
+			</result>
+		</action>
+		<action name="forwardType"
+			class="com.config.action.ForwardTypeAction">
+			<result>/WEB-INF/pages/config/type.jsp</result>
+		</action>
+		<action name="toaddview">
+			<result>/WEB-INF/pages/view/addView.jsp</result>
+		</action>
+		<action name="addDevice"
+			class="com.view.action.ViewManageAction">
+			<result>/WEB-INF/pages/config/addDevice.jsp</result>
+		</action>
+		<action name="upload" class="com.view.action.UploadAction">
+			<param name="allowTypes">
+				image/bmp,image/png,image/gif,image/jpeg,image/pjpeg
+			</param>
+			<param name="savePath">/images</param>
+			<result>/WEB-INF/pages/view/fileupload.jsp</result>
+			<result name="input">
+				/WEB-INF/pages/view/fileupload.jsp
+			</result>
+		</action>
+		<action name="nameEdit" class="com.view.action.ReNameAction" method="nameEdit">
+		</action>
+		<action name="nameModify" class="com.view.action.ReNameAction" method="nameModify">
+			<result name="success" type="redirect">/manage.do</result>
+		</action>
+	</package>
+	<!-- 拓扑发现 -->
+	<package name="topo" extends="basePackage">
+		<action name="topoHisList">
+			<result>/WEB-INF/pages/topo/topoHisList.jsp</result>
+		</action>
+		<action name="topoDisplay">
+			<result>/WEB-INF/pages/topo/topoing.jsp</result>
+		</action>
+		<action name="totalinit"
+			class='com.topo.action.ToPoHisManagerAction' method='topoInit'>
+			<result name='success'>/WEB-INF/pages/topo/topoInit.jsp</result>
+		</action>
+		<action name="totaltopodisc"
+			class="com.topo.action.TotalTopoAction">
+			<result>/WEB-INF/pages/topo/start.jsp</result>
+		</action>
+		
+		<action name="subinit"
+			class='com.topo.action.ToPoHisManagerAction' method='topoInit2'>
+			<result name='success'>
+				/WEB-INF/pages/topo/subToInit.jsp
+			</result>
+		</action>
+		<action name="subtopodisc"
+			class="com.topo.action.SubnetTopoAction">
+			<result>/WEB-INF/pages/topo/start.jsp</result>
+		</action>
+		<action name="topoError"
+			class="com.topo.action.TopoErrorAction">
+			<result>/WEB-INF/pages/topo/topoError.jsp</result>
+		</action>
+		<action name="topoEdit" class="com.topo.action.ToPoHisManagerAction" method="switchTopoView">
+			<result name="viewTopo">/WEB-INF/pages/topo/topoEdit.jsp</result>
+			<result name="modifyTopoView">/WEB-INF/pages/topo/topoEdit.jsp</result>
+		</action>
+		<action name="topoChose">
+			<result>/WEB-INF/pages/topo/choseTree.jsp</result>
+		</action>
+		<action name="topochoselink">
+			<result>/WEB-INF/pages/topo/linkTree.jsp</result>
+		</action>
+		<action name="topochosedlink">
+			<result>/WEB-INF/pages/topo/changeLinkTree.jsp</result>
+		</action>
+		<action name="routerOrSwitchInfo" class="com.view.action.GeneratePicAction">
+			<result name='success'>/WEB-INF/pages/view/routerOrSwitchInfo.jsp</result>
+		</action>
+		<action name="linkTotalInfo" class="com.view.action.GeneratePicAction">
+			<result name='success'>/WEB-INF/pages/view/linkTotalInfo.jsp</result>
+		</action>
+		<action name="serverInfo" class="com.view.action.GeneratePicAction">
+			<result name='success'>/WEB-INF/pages/view/serverInfo.jsp</result>
+		</action>
+		<action name="workstationInfo" class="com.view.action.GeneratePicAction">
+			<result name='success'>/WEB-INF/pages/view/workstationInfo.jsp</result>
+		</action>
+	</package>
+	<!-- 流量 -->
+	<package name="flow" extends="basePackage">
+		<action name="fixTimePic"
+			class="com.flow.action.FixTimePicAction">
+			<result name='success'>/WEB-INF/pages/flow/fixTimePic.jsp</result>
+		</action>
+	</package>
+	<!-- 事件 -->
+	<package name="event" extends="basePackage">
+		
+	
+		<action name="viewEventStatus"
+			class="com.event.action.ViewEventStatusAction">
+			<result>/WEB-INF/pages/event/viewEventStatus.jsp</result>
+		</action>
+		<action name="GlobalEventStatus">
+			<result>/WEB-INF/pages/event/GlobalEventStatus.jsp</result>
+		</action>
+		<action name="objEventStatus">
+			<result>/WEB-INF/pages/event/objEventStatus.jsp</result>
+		</action>
+		<action name="EventStatisticQuery">
+			<result>/WEB-INF/pages/event/EventStatisticQuery.jsp</result>
+		</action>
+		<action name="objEventSeq">
+			<result>/WEB-INF/pages/event/objEventSeq.jsp</result>
+		</action>
+		<action name="EventStatistic"
+			class="com.event.action.EventStatisticAction">
+			<result>/WEB-INF/pages/event/EventStatistic.jsp</result>
+		</action>
+		<action name="alarmInfo"
+			class="com.event.action.AlarmInfoAction">
+			<result>/WEB-INF/pages/event/alarmInfo.jsp</result>
+		</action>
+		<action name="delAlarm"
+			class="com.event.action.DeleteAlarmAction">
+			<result type="redirectAction">
+				<param name="actionName">alarmInfo</param>
+			</result>
+		</action>
+		<action name="clearAlarms"
+			class="com.event.action.ClearAlarmsAction">
+			<result type="redirectAction">
+				<param name="actionName">alarmInfo</param>
+			</result>
+		</action>
+		<action name="EmailInfoConfiguration"
+			class ="com.event.action.EmailInfoAction">
+			<result>
+		     /WEB-INF/pages/event/EmailInfoConfiguration.jsp
+			</result>   
+		</action>
+		<action name="emailConf"
+			class ="com.event.action.EmailInfoSaveAction">
+			<result >
+				/WEB-INF/pages/event/successOperation.jsp
+			</result>
+		</action>
+		<action name="MessageInfo"
+			class ="com.event.action.MessageInfoAction">
+			<result>
+		     /WEB-INF/pages/event/MessageInfoConfiguration.jsp
+			</result>   
+		</action>
+		<action name="messageConf"
+			class ="com.event.action.MessageInfoSaveAction">
+			<result >
+				/WEB-INF/pages/event/successOperation.jsp
+			</result>
+		</action>
+		<action name="filterConfig">
+			<result>
+		     /WEB-INF/pages/event/FilterConfig.jsp
+			</result>   
+		</action>
+	</package>
+	<!-- 数据备份与恢复 -->
+	<package name="data" extends="basePackage">	
+		<action name="backUp" class="com.data.action.BackUpAction" method="config">
+			<result name="success">/WEB-INF/pages/data/backUp.jsp</result>
+		</action>
+		<action name="comeBack">
+			<result>/WEB-INF/pages/data/comeBack.jsp</result>
+		</action>	
+		<action name="backupdata">
+			<result>/WEB-INF/pages/data/Savibackup.jsp</result>
+		</action>	
+	</package>
+	<package name="update" extends="basePackage">
+		<action name="autoupdate">
+			<result name="success">/WEB-INF/pages/update/update.jsp</result>
+		</action>	
+	</package>
+	<!-- 报表 -->
+	<package name="report" extends="struts-default">
+		<action name="addReport" class="com.report.action.ReportAdd">
+			<result type="redirect">/configReport.do</result>
+		</action>
+		<action name="configReport" class="com.report.action.ReportConfig">
+			<result>/WEB-INF/jsp/report/ReportConfig.jsp</result>
+		</action>
+		<action name="selfConfigReport" class="com.report.action.ReportSelfConfig">
+			<result>/WEB-INF/pages/report/ReportSelfConfig.jsp</result>
+		</action>
+		<action name="createReport" class="com.report.action.ReportCreate">
+			<result>/WEB-INF/pages/report/ReportCreate.jsp</result>
+		</action>
+		<action name="selfCreateReport" class="com.report.action.ReportSelfCreate">
+			<result>/WEB-INF/pages/report/ReportSelfCreate.jsp</result>
+		</action>
+		<action name="outputReport" class="com.report.action.ReportOutput">
+			<result>/WEB-INF/pages/report/Success.jsp</result>
+		</action>
+		<action name="outputSelfReport" class="com.report.action.ReportSelfOutput">
+			<result>/WEB-INF/pages/report/Success.jsp</result>
+		</action>
+		<action name="htmlReport" class="com.report.action.ReportHtml">
+			<result>/WEB-INF/pages/report/Success.jsp</result>
+		</action>          	
+		<action name="deleteReport" class="com.report.action.ReportDelete">
+			<result>/WEB-INF/pages/report/SuccessDeletes.jsp</result>
+		</action>   
+		<!-- 资产管理 -->	       	
+		<action name="asset" >
+			<result>/WEB-INF/pages/asset/Asset.jsp</result>
+		</action>          	
+		<action name="assetsearch" >
+			<result>/WEB-INF/pages/asset/Asset_search.jsp</result>
+		</action>          	
+		<action name="assetadmin" >
+			<result>/WEB-INF/pages/asset/Asset_admin.jsp</result>
+		</action>   
+		       	
+	</package>
+	<package name="reportAs" extends="struts-default">
+		<default-action-ref name="download"/>
+		<action name="*Action" class="com.report.action.ReportDownload">
+			<param name="inputPath">\file\report\{1}.rtf</param>
+			<result type="stream">
+				<param name="contentType">application/rtf</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">filename="{1}.doc"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+		</action>	    
+	</package> 
+	<!--  NetFlow -->
+	<package name="netflow" extends="basePackage">
+		<action name="overview" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/index.jsp</result>
+		</action>	
+		<action name="displayPort" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/port.jsp</result>
+		</action>	
+		<action name="displayProt" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/prot.jsp</result>
+		</action>	
+		<action name="displayFlow" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/flow.jsp</result>
+		</action>	
+		<action name="protByte" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/protbyte.jsp</result>
+		</action>	
+		<action name="protPkt" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/protpkt.jsp</result>
+		</action>	
+		<action name="netFlowSession" class="com.netflow.action.DispachIPAction">
+			<result name="success">/WEB-INF/pages/netflow/session.jsp</result>
+		</action>
+		<action name="dongtaiyemian" >
+			<result name="success">/WEB-INF/pages/netflow/dongtaichuangkou.jsp</result>
+		</action>	
+		<action name="topNStatistic"  >
+			<result name="success">/WEB-INF/pages/netflow/topN.jsp</result>
+		</action>
+		
+		<action name="trafficMatrix"  >
+			<result name="success">/WEB-INF/pages/netflow/trafficMatrix.jsp</result>
+		</action>             
+		<action name="trafficMatrixInRegion"  >
+			<result name="success">/WEB-INF/pages/netflow/trafficMatrixInRegion.jsp</result>
+		</action>                    
+	</package>
+		<!--User Analysis-->
+	<package name="analysis" extends="basePackage">
+		<action name="userTraffic"  >
+			<result name="success">/WEB-INF/pages/analysis/userTrafficTopN.jsp</result>
+		</action>
+		<action name="userPacket"  >
+			<result name="success">/WEB-INF/pages/analysis/userPacketTopN.jsp</result>
+		</action>
+		<action name="userPort"  >
+			<result name="success">/WEB-INF/pages/analysis/userPortTopN.jsp</result>
+		</action>
+		<action name="userProtocol"  >
+			<result name="success">/WEB-INF/pages/analysis/userProtocolTopN.jsp</result>
+		</action>
+		
+		<action name="historyTraffic"  >
+			<result name="success">/WEB-INF/pages/analysis/historyTrafficTopN.jsp</result>
+		</action>
+		<action name="historyPacket"  >
+			<result name="success">/WEB-INF/pages/analysis/historyPacketTopN.jsp</result>
+		</action>
+		<action name="historyPort"  >
+			<result name="success">/WEB-INF/pages/analysis/historyPortTopN.jsp</result>
+		</action>
+		<action name="historyProtocol"  >
+			<result name="success">/WEB-INF/pages/analysis/historyProtocolTopN.jsp</result>
+		</action>
+		
+		<action name="totalHotsite"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHotsiteTopN.jsp</result>
+		</action>
+		<action name="totalPort"  >
+			<result name="success">/WEB-INF/pages/analysis/totalPortTopN.jsp</result>
+		</action>
+		<action name="totalTtl"  >
+			<result name="success">/WEB-INF/pages/analysis/totalTtlTopN.jsp</result>
+		</action>
+		<action name="totalPktlen"  >
+			<result name="success">/WEB-INF/pages/analysis/totalPktlenTopN.jsp</result>
+		</action>
+		<action name="totalProtocol"  >
+			<result name="success">/WEB-INF/pages/analysis/totalProtocolTopN.jsp</result>
+		</action>
+		
+		<action name="totalHistoryHotsite"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHistoryHotsiteTopN.jsp</result>
+		</action>
+		<action name="totalHistoryPort"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHistoryPortTopN.jsp</result>
+		</action>
+		<action name="totalHistoryTtl"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHistoryTtlTopN.jsp</result>
+		</action>
+		<action name="totalHistoryPktlen"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHistoryPktlenTopN.jsp</result>
+		</action>
+		<action name="totalHistoryProtocol"  >
+			<result name="success">/WEB-INF/pages/analysis/totalHistoryProtocolTopN.jsp</result>
+		</action>
+		
+		<action name="netUnityFlow" class="com.netflow.action.MenuAtion" method="netUnityFlow">
+			<result name="success">/WEB-INF/pages/analysis/netUnityFlow.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>	
+		<action name="netUnityFlowAll" class="com.netflow.action.MenuAtion" method="netUnityFlow">
+			<result name="success">/WEB-INF/pages/analysis/netUnityFlowAll.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>	
+		
+		<action name="routerM"  >
+			<result name="success">/WEB-INF/pages/routerMonitor/topo.jsp</result>
+		</action>
+		<action name="serviceM"  >
+			<result name="success">/WEB-INF/pages/routerMonitor/service.jsp</result>
+		</action>
+		<!-- 对 路由监控 页面的初始化 -->
+		<action name="routerMFrame">
+			<result>/WEB-INF/pages/routerMonitor/routerMFrame.jsp</result>
+		</action>		
+		<action name="routerM_rightMenu">
+			<result name="success">/WEB-INF/pages/routerMonitor/routerM_rightMenu.jsp</result>
+		</action>
+		<!-- 对 服务监控 页面的初始化 -->
+		<action name="serviceFrame">
+			<result>/WEB-INF/pages/routerMonitor/serviceFrame.jsp</result>
+		</action>		
+		<action name="service_rightMenu">
+			<result name="success">/WEB-INF/pages/routerMonitor/service_rightMenu.jsp</result>
+		</action>		
+	</package>
+	<package name="totalIPMoudle" extends="basePackage">
+		<action name="exhibition" >
+			<result name="success">/WEB-INF/pages/view/exhibition.jsp</result>
+		</action>
+		<action name="nodeList" >
+			<result name="success">/WEB-INF/pages/totalIP/NodeList3.jsp</result>
+		</action>
+		<action name="totalIP" >
+			<result name="success">/WEB-INF/pages/totalIP/NodeList2.jsp</result>
+		</action>
+		<action name="nodeIP" class="com.totalIP.action.NodeIPAction">
+			<result name="total">/WEB-INF/pages/totalIP/NodeList3.jsp</result>
+			<result name="success">/WEB-INF/pages/totalIP/nodeIP.jsp</result>
+		</action>
+		<action name="totalNodeHour" class="com.totalIP.action.TotalNodeOneDateManageAction" >
+			<result name="success">/WEB-INF/pages/totalIP/totalNodeOneHour.jsp</result>
+		</action>
+		<action name="totalNodeDay" class="com.totalIP.action.TotalNodeOneDateManageAction" >
+			<result name="success">/WEB-INF/pages/totalIP/totalNodeOneDay.jsp</result>
+		</action>
+		<action name="totalNodeWeek" class="com.totalIP.action.TotalNodeOneDateManageAction" >
+			<result name="success">/WEB-INF/pages/totalIP/totalNodeOneWeek.jsp</result>
+		</action>
+		<action name="totalNodeMonth" class="com.totalIP.action.TotalNodeOneDateManageAction" >
+			<result name="success">/WEB-INF/pages/totalIP/totalNodeOneMonth.jsp</result>
+		</action>
+		<action name="performanceTest" >
+			<result name="success">/WEB-INF/pages/totalIP/performanceTest.jsp</result>
+		</action>
+		<action name="IPv4performanceTask" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv4performance.jsp</result>
+		</action>
+		<action name="IPv4Reachability" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv4reachability.jsp</result>
+		</action>
+		<action name="IPv4Loss" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv4loss.jsp</result>
+		</action>
+		<action name="IPv4Reordering" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv4reordering.jsp</result>
+		</action>
+		<action name="IPv6performanceTask" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv6performance.jsp</result>
+		</action>
+		<action name="IPv6Reachability" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv6reachability.jsp</result>
+		</action>
+		<action name="IPv6Loss" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv6loss.jsp</result>
+		</action>
+		<action name="IPv6Reordering" >
+			<result name="success">/WEB-INF/pages/totalIP/ipv6reordering.jsp</result>
+		</action>
+		<action name="v4v6performanceTask" >
+			<result name="success">/WEB-INF/pages/totalIP/v4v6performance.jsp</result>
+		</action>
+		<action name="v4v6Reachability" >
+			<result name="success">/WEB-INF/pages/totalIP/v4v6reachability.jsp</result>
+		</action>
+		<action name="v4v6Loss" >
+			<result name="success">/WEB-INF/pages/totalIP/v4v6loss.jsp</result>
+		</action>
+		<action name="v4v6Reordering" >
+			<result name="success">/WEB-INF/pages/totalIP/v4v6reordering.jsp</result>
+		</action>
+	</package>
+	<include file="json.xml" />
+	<include file="struts_ticket.xml"/>
+	<include file="struts_savi.xml"/>
+	<include file="struts_config.xml"/>
+	<include file="struts_user.xml"/>
+</struts>

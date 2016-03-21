@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.ResourceGroupPopedom" table="resource_group_popedom" lazy="false">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="resourceId" column="resource_id" type="long"/>
+        <property name="resourceGroupId" column="resource_group_id" type="long"/>
+    </class>
+</hibernate-mapping>

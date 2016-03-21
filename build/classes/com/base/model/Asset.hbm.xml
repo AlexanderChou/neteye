@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class discriminator-value="Asset" name="com.base.model.Asset" table="asset_asset">
+<id column="ID" length="18" name="id" type="long">
+<generator class="native"/>
+</id>
+<property column="devicenumber" length="18" name="deviceNumber" type="string"/>
+<property column="deviceclasses" length="18" name="deviceClasses" type="string"/>
+<property column="department_id" length="18" name="departmentId" type="long"/>
+<property column="devicename" length="18" name="deviceName" type="string"/>
+<property column="deviceconfig" length="100" name="deviceConfig" type="TEXT"/>
+<property column="devicemobel" length="18" name="deviceMobel" type="string"/>
+<property column="purchasemoney" length="16" name="purchaseMoney" type="big_decimal"/>
+<property column="vender" length="30" name="vender" type="string"/>
+<property column="producenumber" length="30" name="produceNumber" type="string"/>
+<property column="purchasedate" length="20" name="purchaseDate" type="string"/>
+<property column="establishdate" length="20" name="establishDate" type="string"/>
+<property column="deviceuses" length="80" name="deviceUses" type="string"/>
+<property column="domainname" length="30" name="domainName" type="string"/>
+<property column="admin_id" length="20" name="adminId" type="long"/>
+<property column="backupadmin_id" length="20" name="backupAdminId" type="long"/>
+<property column="ownadmin_id" length="20" name="ownAdminId" type="long"/>
+<property column="devicelocation" length="50" name="deviceLocation" type="string"/>
+<property column="devicearrange" length="30" name="deviceArrange" type="string"/>
+<property column="devicestatus" length="10" name="deviceStatus" type="string"/>
+<property column="maintainrecord" length="100" name="maintainRecord" type="TEXT"/>
+<property column="discarddate" length="20" name="discardDate" type="string"/>
+<property column="fundsource" length="50" name="fundSource" type="string"/>
+<property column="description" length="100" name="description" type="TEXT"/>
+<property column="ip" length="20" name="IP" type="String"/>
+</class>
+</hibernate-mapping>

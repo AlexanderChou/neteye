@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>   	
+	<package name="manage" extends="basePackage">
+		<action name="portforward" class="com.config.action.PortFAction">
+			<result name="success">/WEB-INF/pages/config/addPortInfo.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="portAdd" class="com.config.action.PortAddAction">
+			<result name="success" type="redirect">/toport.do?deviceId=${deviceId}&amp;style=${style}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="port_*"  method="{1}" class="com.config.action.PortAction">
+			<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+			<result name="view">/WEB-INF/pages/config/port.jsp</result>
+			<result name="delete" type="redirect">/toport.do?deviceId=${deviceId}&amp;style=${style}</result>
+			<result name="update" type="redirect">/toport.do?deviceId=${deviceId}&amp;style=${style}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="portUpdate" class="com.config.action.PortUpdateAction">
+			<result name="success" type="redirect">/toport.do?deviceId=${deviceId}&amp;style=${style}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="link_*"  method="{1}" class="com.config.action.LinkAction">
+			<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+			<result name="view">/WEB-INF/pages/config/linkInfo.jsp</result>
+			<result name="delete" type="redirect">/tolink.do</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="linkUpdate" class="com.config.action.LinkUpdateAction">
+			<result name="success" type="redirect">/tolink.do</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="deviceAdd" class="com.config.action.DeviceAddAction">
+			<result name="router">/WEB-INF/pages/config/addRouterInfo.jsp</result>
+			<result name="switch">/WEB-INF/pages/config/addRouterInfo.jsp</result>
+			<result name="server">/WEB-INF/pages/config/addServerInfo.jsp</result>
+			<result name="success">/WEB-INF/pages/config/addOtherInfo.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="serviceAdd">
+			<result name="success">/WEB-INF/pages/config/addServerInfo.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="allServer" class="com.config.action.AllServerAction" >
+			<result name="success">/WEB-INF/pages/server/allServer.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="deviceDelete" class="com.config.action.DeviceDelAction">
+			<result name="bigIcon" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="smallIcon" type="redirect">/smallIcon.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="success" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}&amp;status=2</result>
+			<result name="server" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="others" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="serverDelete" class="com.config.action.DeviceDelAction">
+			<result name="bigIcon" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="smallIcon" type="redirect">/smallIcon.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="success" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}&amp;status=2</result>
+			<result name="server" type="redirect">/serverList.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="others" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="devicelist"  class="com.config.action.DeviceListAction">
+			<result name="router">/WEB-INF/pages/config/routerList.jsp</result>
+			<result name="switch">/WEB-INF/pages/config/routerList.jsp</result>
+			<result name="server">/WEB-INF/pages/config/serverList.jsp</result>
+			<result name="workstation">/WEB-INF/pages/config/workstationList.jsp</result>
+			<result name="others">/WEB-INF/pages/config/othersList.jsp</result>	
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>	
+		</action>
+		<action name="equip_*"  method="{1}" class="com.config.action.DeviceAction">
+			<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+			<result name="router">/WEB-INF/pages/config/routerInfo.jsp</result>
+			<result name="switch">/WEB-INF/pages/config/routerInfo.jsp</result>
+			<result name="server">/WEB-INF/pages/config/serverInfo.jsp</result>
+			<result name="others">/WEB-INF/pages/config/others.jsp</result>
+			<result name="update" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}&amp;style=${style}</result>
+			<result name="userver" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="uothers" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="deviceUpdateAction"  class="com.config.action.DeviceUpdateAction">
+			<result name="router">/WEB-INF/pages/config/routerInfo.jsp</result>
+			<result name="switch">/WEB-INF/pages/config/routerInfo.jsp</result>
+			<result name="server">/WEB-INF/pages/config/serverInfo.jsp</result>
+			<result name="others">/WEB-INF/pages/config/others.jsp</result>
+			<result name="update" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}&amp;status=${status}</result>
+			<result name="userver" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="uothers" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="router_*"  method="{1}" class="com.config.action.RouterAction">
+			<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+			<result name="view">/WEB-INF/pages/config/router.jsp</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="serverInfo"  class="com.config.action.ServerAction">
+			<result name="success">/WEB-INF/pages/config/server.jsp</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="serviceInfo"  class="com.config.action.ServerAction">
+			<result name="success">/WEB-INF/pages/server/server.jsp</result>
+			<result name="input">/WEB-INF/pages/common/error.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="devicelistaction" class="com.config.action.DeviceListAction">
+			<result name="router">/WEB-INF/pages/config/deviceBigIcon.jsp</result>
+			<result name="smallIcon" type="redirect">/smallIcon.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="success" type="redirect">/devicelist.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="switch">/WEB-INF/pages/config/deviceBigIcon.jsp</result>
+			<result name="server">/WEB-INF/pages/config/serverList.jsp</result>
+			<result name="others">/WEB-INF/pages/config/othersList.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="serverList" class="com.config.action.DeviceListAction">
+			<result name="server">/WEB-INF/pages/server/serverList.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="deviceconf" class="com.config.action.DeviceMonitorAction">
+			<result name="success" type="redirect">/devicelistaction.do?deviceTypeId=${deviceTypeId}</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>		
+		<action name="smallIcon">
+			<result>/WEB-INF/pages/config/deviceSmallIcon.jsp</result>
+		</action>
+		<action name="addDeviceType" class="com.config.action.TypeAddAction">
+			<result name="success">/WEB-INF/pages/config/device.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="deviceTab">
+			<result>/WEB-INF/pages/config/deviceTab.jsp</result>
+		</action>
+		<action name="tochosedevice">
+			<result>/WEB-INF/pages/config/deviceTree.jsp</result>
+		</action>
+		<action name="routerInfo">
+			<result>/WEB-INF/pages/config/device.jsp</result>
+		</action>
+		<action name="initconfig">
+			<result>/WEB-INF/pages/config/initConfig.jsp</result>
+		</action>
+		<action name="pageConfig" class="com.view.action.PageConfigAction" >
+			<result name="success" type="redirect">/manage.do</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+		<action name="spilth" class="com.config.action.SpilthAction">
+			<result>/WEB-INF/pages/config/existList.jsp</result>
+		</action>
+		<action name="serveTimePic" class="com.config.action.SFixTimePicAction">
+			<result>/WEB-INF/pages/config/fixTimePic.jsp</result>
+		</action>
+	</package>
+	<package name="fault" extends="basePackage">
+		<!-- 故障监控显示 -->
+		<action name="faultEventStatus" class="com.fault.action.FaultEventStatusAction">
+			<result>/WEB-INF/pages/fault/faultEventStatus.jsp</result>
+		</action>
+		<action name="FaultEventSatusAll">
+			<result>/WEB-INF/pages/fault/faultEventStatusView.jsp</result>
+		</action>
+		<action name="FaultEventSatusView" class="com.fault.action.FaultEventSatusView" method="getViewList">
+			<result>/WEB-INF/pages/fault/faultEventStatusViewALL.jsp</result>
+		</action>
+		
+		<action name="HuaSanView" class="com.savi.show.action.HuaSanAction" method="getViewList">
+			<result>/WEB-INF/pages/savi/statistic/HuaSanViewALL.jsp</result>
+		</action>
+		
+		<action name="showPADetails" class="com.savi.show.action.HuaSanAction" method="genMeterChart">
+			<result>/WEB-INF/pages/savi/statistic/showPADetails.jsp</result>
+		</action>
+		
+		
+	    <action name="trafficInfo"  class="com.view.action.TrafficAndFaultAction">
+     		<result name="success">/WEB-INF/pages/view/trafficAndFaultInfo.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="active"  class="com.fault.action.StatusAction">
+     		<result name="success">/WEB-INF/pages/fault/active.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="rttLossPic" class="com.fault.action.RttLossAction">
+     		<result name="success">/WEB-INF/pages/fault/rttAndLoss.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="rttPic" class="com.fault.action.RttAction">
+     		<result name="success">/WEB-INF/pages/fault/rtt.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="lossPic" class="com.fault.action.LossAction">
+     		<result name="success">/WEB-INF/pages/fault/loss.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="nodeStatus">
+     		<result>/WEB-INF/pages/fault/statusList.jsp</result>
+     	</action>
+		<action name="currFault">
+			<result>/WEB-INF/pages/fault/currentFault.jsp</result>
+		</action>
+		<action name="historyFault">
+			<result>/WEB-INF/pages/fault/historyFault.jsp</result>
+		</action>		
+     	<action name="ping">
+     		<result>/WEB-INF/pages/fault/ping.jsp</result>
+     	</action>
+     	<action name="traceroute">
+     		<result>/WEB-INF/pages/fault/trace.jsp</result>
+     	</action>
+     	<action name="searchTime">
+     		<result>/WEB-INF/pages/fault/search.jsp</result>
+     	</action>
+     	<action name="searchIp">
+     		<result>/WEB-INF/pages/fault/searchIp.jsp</result>
+     	</action>
+     	<action name="faultEdit" class="com.fault.action.HisFaultAction" method="faultEdit">
+		</action>
+		<action name="FaultStatisticQuery">
+			<result>/WEB-INF/pages/fault/FaultStatisticQuery.jsp</result>
+		</action>
+		<action name="FaultStatistic" class="com.fault.action.FaultStatisticAction">
+			<result>/WEB-INF/pages/fault/FaultStatistic.jsp</result>
+		</action>	
+		<action name="portListAll">
+			<result>/WEB-INF/pages/fault/portListAll.jsp</result>
+		</action>
+	</package>
+	<!-- 流量监控   -->
+	<package name="performance" extends="basePackage">
+		<action name="flowEventStatus" class="com.flow.action.FlowEventStatusAction" method="execute">
+			<result name="success">/WEB-INF/pages/flow/flowlistview.jsp</result>
+			<result name="error">/WEB-INF/pages/common/error.jsp</result>
+		</action>
+	    <action name="allWatch"  class="com.flow.action.AllWatchAction" method="execute">
+     		<result name="success">/WEB-INF/pages/flow/allWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="lenWatch"  class="com.flow.action.OtherWatchAction" method="execute">
+     		<result name="success">/WEB-INF/pages/flow/lenWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="packetWatch"  class="com.flow.action.OtherWatchAction" method="execute">
+     		<result name="success">/WEB-INF/pages/flow/packetWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="bitWatch"  class="com.flow.action.OtherWatchAction" method="execute">
+     		<result name="success">/WEB-INF/pages/flow/bitWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="cpuWatch"  class="com.flow.action.PerformanceAction">
+     		<result name="success">/WEB-INF/pages/flow/cpuWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="tempWatch"  class="com.flow.action.PerformanceAction">
+     		<result name="success">/WEB-INF/pages/flow/tempWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="memWatch"  class="com.flow.action.MemoryAction">
+     		<result name="success">/WEB-INF/pages/flow/memWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="FlowStatisticQuery">
+			<result>/WEB-INF/pages/flow/FlowStatisticQuery.jsp</result>
+		</action>
+     	<action name="flowQueryList" class="com.flow.action.FlowQueryAction">
+			<result name="success">/WEB-INF/pages/flow/FlowStatistic.jsp</result>
+		</action>
+		<action name="FlowStatistic">
+			<result>/WEB-INF/pages/flow/FlowStatistic.jsp</result>
+		</action>
+			<action name="tochoseMonitorInf">
+			<result>/WEB-INF/pages/flow/choseMonitorInfTree.jsp</result>
+		</action>
+     <!-- 性能监控   -->
+     	<action name="performanceAllWatch"  class="com.flow.action.PerformanceAllWatchAction" method="allPerformance">
+     		<result name="success">/WEB-INF/pages/flow/performanceAllWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="performanceOtherWatch"  class="com.flow.action.PerformanceOtherWatchAction">
+     		<result name="success">/WEB-INF/pages/flow/performanceOtherWatch.jsp</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>
+     	<action name="fixTimePerformancePic"
+			class="com.flow.action.PerformanceFixTimePicAction">
+			<result name='success'>/WEB-INF/pages/flow/performanceFixTimePic.jsp</result>
+		</action>
+     <!-- 故障监控   -->
+     </package>
+	 <package name="faultjson" namespace="/faultjson" extends="json-default">
+		<action name="currentFault" class="com.fault.action.CurrFaultAction">
+			<result type="json" />
+		</action>
+		<action name="hisFault" class="com.fault.action.HisFaultAction" method="faultLists">
+			<result type="json" />
+		</action>
+		<action name="seachByTime" class="com.fault.action.SearchTimeAction" method="faultLists">
+			<result type="json" />
+		</action>
+		<action name="seachByIp" class="com.fault.action.SearchIpAction" method="faultLists">
+			<result type="json" />
+		</action>
+		<action name="nodeStatusList" class="com.fault.action.NodeStatusAction" method="nodeLists">
+			<result type="json" />
+		</action>	
+		<action name="smallIcon" class="com.config.action.SmallIconAction">
+			<result type="json" />
+		</action>
+		<action name="toInitConfig" class="com.config.action.InitConfigAction">
+			<result type="json" />
+		</action>
+	</package>
+		<package name="Traffic-Statistic" extends="basePackage">
+	    <action name="trafficStat">
+     		<result name="success">/WEB-INF/pages/traffic/trafficStat.jsp</result>
+     	</action>
+ 		<action name="protocol">
+     		<result name="success">/WEB-INF/pages/traffic/protocol.jsp</result>
+     	</action>
+     	<action name="session">
+     		<result name="success">/WEB-INF/pages/traffic/session.jsp</result>
+     	</action>
+     </package>	
+	<package name="query" extends="basePackage">
+	    <action name="query">
+     		<result name="success">/WEB-INF/pages/query/query.jsp</result>
+     	</action>
+     	<!--  
+     	<action name="querySubmit"  class="com.query.action.QueryAction">
+     		<result name="success" type="redirect">/query.do?</result>
+     		<result name="error">/WEB-INF/pages/common/error.jsp</result>
+     	</action>-->
+     	<action name="query_list">
+     		<result name="success">/WEB-INF/pages/query/queryList.jsp</result>
+     	</action>
+     	<action name="query_result">
+     		<result name="success">/WEB-INF/pages/query/resultList.jsp</result>
+     	</action>
+     	<action name="query_history">
+     		<result name="success">/WEB-INF/pages/query/addServerInfo.jsp</result>
+     	</action>
+     </package>	
+</struts>

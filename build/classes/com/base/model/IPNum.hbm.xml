@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.IPNum" table="total_ip" lazy="false">
+        <id name="id" type="long">
+            <column name="id" />
+             <generator class="native" />
+        </id>
+        <property name="engName" column="engname" type="string"/>
+        <property name="ChineseName" column="ChineseName" type="string"/>
+        <property name="dateStr" column="datestr" type="string"/>
+        <property name="dayNum" column="daylinknum" type="long"/>
+        <property name="monthNum" column="monthlinknum" type="long"/>
+        <property name="totalNum" column="totallinknum" type="long"/>
+    </class>
+</hibernate-mapping>

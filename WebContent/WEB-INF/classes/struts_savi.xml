@@ -1,0 +1,621 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+ 	<include file="struts-jFreeChart.xml" />
+	<!-- 支持国际化的配置-->
+	<constant name="struts.custom.i18n.resources" value="messageResource" />
+
+	
+	<!--  对 ajax 配置拦截器  -->
+	<package name="show"  namespace="/show" extends="jsonPackage">
+		<!-- 定义了一个名为authority的拦截器 
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.UserInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/> --> 
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		<action name="getDeployMode" class="com.savi.show.action.DeployModeAction"
+			method="deployMode">
+			<result type="json" />
+		</action>
+		<!-- Switch Start -->
+		<action name="listShowSwitches" class="com.savi.show.action.SwitchShowAction"
+			method="listShowSwitches">
+			<result type="json" />
+		</action>
+
+		<action name="listSaviTable" class="com.savi.show.action.SwitchShowAction"
+			method="listSaviTable">
+			<result type="json" />
+		</action>
+
+		<action name="listInterfaces" class="com.savi.show.action.SwitchShowAction"
+			method="listInterfaces">
+			<result type="json" />
+		</action>
+				
+		<action name="listShowSwitchcur" class="com.savi.show.action.SwitchShowAction"
+			method="listShowSwitchcur">
+			<result type="json" />
+		</action>
+		
+		<action name="listSwitchUserChangeInfo" class="com.savi.show.action.SwitchShowAction"
+			method="listUserChangeInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="listSwitchBindingTableInfo" class="com.savi.show.action.SwitchShowAction"
+			method="listBindingTableInfo">
+			<result type="json" />
+		</action>
+		
+		
+		
+		<!--  
+		<action name="showSwitchDetails" class="com.show.action.SwitchShowAction"
+			method="genMeterChart">
+			<result name="SUCCESS">/WEB-INF/pages/show/showSwitchDetails.jsp</result>
+		</action>
+		-->
+		<!-- Switch End -->
+
+
+		<!-- Subnet Start -->
+		<action name="listShowSubnets" class="com.savi.show.action.SubnetShowAction"
+			method="listShowSubnets">
+			<result type="json" />
+		</action>
+		
+		<action name="listShowSubnet" class="com.savi.show.action.SubnetShowAction"
+			method="listShowSubnet">
+			<result type="json" />
+		</action>
+		
+		<action name="listHuaSanBindingTableInfo" class="com.savi.show.action.HuaSanAction"
+			method="listHuaSanBindingInfo">
+			<result type="json" />
+		</action>
+		
+		
+		<action name="listHuaSanPABindingTableInfo" class="com.savi.show.action.HuaSanAction"
+			method="listHuaSanPABindingInfo">
+			<result type="json" />
+		</action>
+	
+		
+		
+		<action name="listShowHuaSanSubnet" class="com.savi.show.action.HuaSanAction"
+			method="listShowHuaSanSubnet">
+			<result type="json" />
+		</action>
+		
+	  
+		
+		
+		
+		<action name="listShowSubnetsForCombo" class="com.savi.show.action.SubnetShowAction"
+			method="listShowSubnetsForCombo">
+			<result type="json" />
+		</action>
+		
+		<action name="listSubnetUserChangeInfo" class="com.savi.show.action.SubnetShowAction"
+			method="listUserChangeInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="listHuaSanUserChangeInfo" class="com.savi.show.action.HuaSanAction"
+			method="listUserChangeInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="listHuaSanPAUserChangeInfo" class="com.savi.show.action.HuaSanAction"
+			method="listPAUserChangeInfo">
+			<result type="json" />
+		</action>
+		
+		
+		<action name="listShowPAcur" class="com.savi.show.action.HuaSanAction"
+			method="listApinfo">
+			<result type="json" />
+		</action>
+		
+		
+		
+		
+		
+		<action name="listSubnetBindingTableInfo" class="com.savi.show.action.SubnetShowAction"
+			method="listBindingTableInfo">
+			<result type="json" />
+		</action>
+		
+		
+		<!-- Subnet End -->
+		
+		<!-- Real Time Infomation Start -->
+		<action name="listRealTimeSwitchInterface" class="com.savi.show.action.RealTimeAction"
+			method="listSwitchInterface">
+			<result type="json" />
+		</action>
+		
+		<action name="listRealTimeSwitchBindingTableInfo" class="com.savi.show.action.RealTimeAction"
+			method="listSwitchBindingTableInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="listFiveInfo" class="com.savi.show.action.RealTimeAction" method="listFiveInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="refreshRealTimeSwitchBindingTableInfo" class="com.savi.show.action.RealTimeAction"
+			method="refreshSwitchBindingTableInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="refreshBingdingInfo" class="com.savi.show.action.RealTimeAction" method="refreshBingdingInfo">
+			<result>/WEB-INF/pages/savi/show/refreshSuccess.jsp</result>
+		</action>
+		
+		<action name="wlanOnlineList" class="com.savi.show.action.RealTimeAction"
+			method="wlanOnlineList">
+			<result type="json" />
+		</action>
+		
+		<action name="listRealTimeSwitchBindingTableInfoByType" class="com.savi.show.action.RealTimeAction"
+			method="listSwitchBindingTableInfoByType">
+			<result type="json" />
+		</action>
+		
+		<action name="listRealTimeInterfaceBindingTableInfo" class="com.savi.show.action.RealTimeAction"
+			method="listInterfaceBindingTableInfo">
+			<result type="json" />
+		</action>
+		
+		<action name="listRealTimeInterfaceBindingTableInfoByType" class="com.savi.show.action.RealTimeAction"
+			method="listInterfaceBindingTableInfoByType">
+			<result type="json" />
+		</action>
+		<!-- Real Time Infomation End -->
+		
+		<!-- Search Start -->
+		<action name="searchSubnet" class="com.savi.show.action.SearchAction"
+			method="searchSubnet">
+			<result type="json" />
+		</action>
+		
+		<action name="searchSwitch" class="com.savi.show.action.SearchAction"
+			method="searchSwitch">
+			<result type="json" />
+		</action>
+		
+		<action name="listSearchSwitchSavi" class="com.savi.show.action.SearchAction"
+			method="listSearchSwitchSAVI">
+			<result type="json" />
+		</action>
+		<!-- Search End -->
+		
+		<action name="batchGetSwitch" class="com.savi.show.action.SwitchShowAction"
+			method="batchGetSwitch">
+			<result type="json" />
+		</action>
+		
+		<action name="batchGetSavi" class="com.savi.show.action.SwitchShowAction"
+			method="batchGetSAVI">
+			<result type="json" />
+		</action>
+		
+	</package>
+
+	<package name="super_admin_edit_user"  namespace="/user" extends="jsonPackage">
+		<!-- 定义了一个名为authority的拦截器 
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.SuperAdminInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/>-->  
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		<!-- 添加用户 -->
+		<action name="add" class="com.savi.user.action.AdminAction"
+			method="add">
+			<result type="json" />
+		</action>
+	
+		<!-- 更新用户 -->
+		<action name="update" class="com.savi.user.action.AdminAction"
+			method="updateByAdmin">
+			<result type="json" />
+		</action>
+		
+		<!-- 删除用户 -->
+		<action name="delete" class="com.savi.user.action.AdminAction"
+			method="delete">
+			<result type="json" />
+		</action>
+		
+		<!-- 列出用户 -->
+		<action name="listAdminList" class="com.savi.user.action.AdminAction"
+			method="listAdminList">
+			<result type="json" />
+		</action>
+	</package>
+	
+	
+	
+	<package name="super_admin_jsp"  extends="basePackage">
+	
+		<!-- 定义了一个名为authority的拦截器 
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.SuperAdminInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/>  -->
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		<action name="showUserList">
+			<result>/WEB-INF/pages/savi/user/userList.jsp</result>
+		</action>
+			
+	</package>
+
+	<package name="json-common2"  extends="jsonPackage">	
+		<!-- 用户退出 -->
+		<action name="logout" class="com.savi.user.action.AdminAction"
+			method="logout">
+			<result type="redirect">welcome.do</result>
+		</action>
+		
+		<!-- 用户更新自己的信息 -->
+		<action name="update" class="com.savi.user.action.AdminAction"
+			method="updateByMyself">
+			<result type="json" />
+		</action>
+	</package>
+	<!-- 为校园网提供接口 -->
+	<package name="integer" extends="basePackage">
+		 <action name="login2" class="com.savi.user.action.AdminAction"
+			method="login2">
+			<result>/WEB-INF/pages/savi/mainFrame.jsp</result>
+			<result name="failed">/WEB-INF/pages/savi/common/sessionLost.jsp</result>
+		</action>
+	</package>
+	<package name="user_jsp"  extends="basePackage">
+		<!-- 定义了一个名为authority的拦截器
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.UserInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/>  -->
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		<action name="showUserInfo">
+			<result>/WEB-INF/pages/savi/user/userInfo.jsp</result>
+		</action>
+		
+		<!-- Switch Start -->
+		<action name="showSwitches">
+			<result>/WEB-INF/pages/savi/show/showSwitches.jsp</result>
+		</action>
+		<!-- 
+		<action name="showSwitchDetails">
+			<result>/WEB-INF/pages/show/showSwitchDetails.jsp</result>
+		</action>
+		 -->
+		
+		<action name="showSwitchDetails" class="com.savi.show.action.SwitchShowAction"
+			method="genMeterChart">
+			<result>/WEB-INF/pages/savi/show/showSwitchDetails.jsp</result>
+		</action>
+		
+		
+		
+
+		<action name="showSaviSystemTable">
+			<result>/WEB-INF/pages/savi/show/showSaviSystemTable.jsp</result>
+		</action>
+		
+		<action name="showSwitchUserChangeInfo">
+			<result>/WEB-INF/pages/savi/show/showSwitchUserChangeInfo.jsp</result>
+		</action>
+		
+		<action name="showSwitchBindingTable">
+			<result>/WEB-INF/pages/savi/show/showSwitchBindingTable.jsp</result>
+		</action>	
+		
+		
+		
+		<!-- Switch End -->
+
+		<!-- Subnet Start -->
+		<action name="showSubnets">
+			<result>/WEB-INF/pages/savi/show/showSubnets.jsp</result>
+		</action>
+		
+		<action name="showSubnetDetails">
+			<result>/WEB-INF/pages/savi/show/showSubnetDetails.jsp</result>
+		</action>
+		
+		
+		<action name="huaSanSubnetDetails">
+			<result>/WEB-INF/pages/savi/statistic/showHuaSanDetails.jsp</result>
+		</action>
+		
+		<action name="aplist">
+			<result>/WEB-INF/pages/savi/statistic/PAViewALL.jsp</result>
+		</action>
+		
+		
+		<action name="huaSanSubnetDetails">
+			<result>/WEB-INF/pages/savi/statistic/showHuaSanDetails.jsp</result>
+		</action>
+		
+		
+		<action name="showSubnetBindingTable">
+			<result>/WEB-INF/pages/savi/show/showSubnetBindingTable.jsp</result>
+		</action>
+		
+		<action name="showSubnetUserChangeInfo">
+			<result>/WEB-INF/pages/savi/show/showSubnetUserChangeInfo.jsp</result>
+		</action>
+		
+		
+		<action name="showHuaSanUserChangeInfo">
+			<result>/WEB-INF/pages/savi/show/showHuaSanUserChangeInfo.jsp</result>
+		</action>
+		
+		<action name="showHuaSanPAUserChangeInfo">
+			<result>/WEB-INF/pages/savi/show/showHuaSanPAUserChangeInfo.jsp</result>
+		</action>
+		
+		
+		<action name="showHuaSanbangdingInfo">
+			<result>/WEB-INF/pages/savi/show/showHuaSanBangdingChangeInfo.jsp</result>
+		</action>
+		
+		<action name="showHuaSanPAbangdingInfo">
+			<result>/WEB-INF/pages/savi/show/showHuaSanPABangdingChangeInfo.jsp</result>
+		</action>
+		
+		
+		
+		
+		<!-- Subnet End -->
+		
+		<!-- Real Time Infomation Start -->
+		<action name="showRealTimeSwitchInterface">
+			<result>/WEB-INF/pages/savi/show/showRealTimeSwitchInterface.jsp</result>
+		</action>
+		
+		<action name="showRealTimeSwitchBindingTableInfo">
+			<result>/WEB-INF/pages/savi/show/showRealTimeSwitchBindingTableInfo.jsp</result>
+		</action>
+		<action name="showFiveInfo">
+			<result>/WEB-INF/pages/savi/show/showFiveInfo.jsp</result>
+		</action>
+		
+		<action name="showOnlineInfoList">
+			<result>/WEB-INF/pages/savi/show/showOnlineInfoList.jsp</result>
+		</action>
+		
+		<action name="collectionTaskExcu" class="com.savi.show.action.HuaSanAction" method="collectionTaskExcu">
+			<result>/WEB-INF/pages/savi/show/collectionTaskExcu.jsp</result>
+		</action>
+		
+		<action name="showRealTimeInterfaceBindingTableInfo">
+			<result>/WEB-INF/pages/savi/show/showRealTimeInterfaceBindingTableInfo.jsp</result>
+		</action>
+		<!-- Real Time Infomation End -->
+
+		<!-- Search Start -->	
+		<action name="showSearchResults">
+			<result>/WEB-INF/pages/savi/show/showSearchResults.jsp</result>
+		</action>
+		
+		<action name="showSearchSaviSystemTable">
+			<result>/WEB-INF/pages/savi/show/showSearchSaviSystemTable.jsp</result>
+		</action>
+		<!-- Search End -->
+		
+		<!-- Statistic Start -->
+		<action name="showStatistic">
+			<result>/WEB-INF/pages/savi/statistic/statisticUserInformation.jsp</result>
+		</action>
+		
+		<!-- Statistic end -->
+	</package>
+	
+	<package name="config" namespace="/config" extends="jsonPackage">
+		<!-- 定义了一个名为authority的拦截器  
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.AdminInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/> -->
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		
+		<action name="saveSubnet" class="com.savi.config.action.SubnetConfigAction"
+			method="save">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteSubnet" class="com.savi.config.action.SubnetConfigAction"
+			method="delete">
+			<result type="json" />
+		</action>
+
+		<action name="batchAddSwitchbasicinfo" class="com.savi.config.action.SwitchConfigAction"
+			method="batchAddSwitchbasicinfo">
+			<result type="json" />
+		</action>
+		
+		<action name="batchAddSwitchbasicinfoScript" class="com.savi.config.action.SwitchConfigAction"
+			method="batchAddSwitchbasicinfoScript">
+			<result type="json" />
+		</action>
+		
+		<action name="saveSwitchbasicinfo" class="com.savi.config.action.SwitchConfigAction"
+			method="saveSwitchbasicinfo">
+			<result type="json" />
+		</action>
+		
+		<action name="saveDeviceinfo" class="com.savi.show.action.HuaSanAction"
+			method="saveDeviceinfo">
+			<result type="json" />
+		</action>
+		
+		
+
+		<action name="deleteSwitchbasicinfo" class="com.savi.config.action.SwitchConfigAction"
+			method="deleteSwitchbasicinfo">
+			<result type="json" />
+		</action>
+		
+		<action name="updateSavi" class="com.savi.config.action.SwitchConfigAction"
+			method="updateSAVI">
+			<result type="json" />
+		</action>
+		
+		<action name="batchUpdateSavi" class="com.savi.config.action.SwitchConfigAction"
+			method="batchUpdateSAVI">
+			<result type="json" />
+		</action>
+		
+		<action name="updateInterface" class="com.savi.config.action.InterfaceAction"
+			method="update">
+			<result type="json" />
+		</action>
+		
+		<action name="batchUpdateInterface" class="com.savi.config.action.InterfaceAction"
+			method="batchUpdate">
+			<result type="json" />
+		</action>
+		
+		<action name="updateBindingTable" class="com.savi.config.action.BindingTableAction"
+			method="update">
+			<result type="json" />
+		</action>
+		
+		<action name="deleteBindingTable" class="com.savi.config.action.BindingTableAction"
+			method="delete">
+			<result type="json" />
+		</action>
+	</package>
+	
+	<package name="statistic" namespace="/statistic" extends="jsonPackage">
+		<!-- 定义了一个名为authority的拦截器  
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.UserInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/> -->
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		<action name="listUserInfo" class="com.savi.statistic.action.UserInfoAction"
+			method="listUserInfo">
+			<result type="json" />
+		</action>
+		<action name="getUserInfo" class="com.savi.statistic.action.UserInfoAction"
+			method="getUserInfo">
+			<result type="json" />
+		</action>
+	</package>
+	<package name="admin_jsp" extends="basePackage">
+	
+		<!-- 定义了一个名为authority的拦截器
+		<interceptors> 
+			<interceptor name="authInterceptor" class="com.savi.user.Interceptor.AdminInterceptor"/> 
+			<interceptor-stack name="privateStack"> 
+				<interceptor-ref name="defaultStack"/> 
+				<interceptor-ref name="authInterceptor"/>  
+			</interceptor-stack>  
+		</interceptors> 
+		
+		<default-interceptor-ref name="privateStack"/>  --> 
+		<global-results>
+			<result name="info">/WEB-INF/pages/user/info.jsp</result>
+			<result name="login">/WEB-INF/pages/user/login.jsp</result>
+			<result name="reLogin">/WEB-INF/pages/common/sessionLost.jsp</result>
+		</global-results>
+		
+		<action name="configMenu">
+			<result>/WEB-INF/pages/savi/config/configMenu.jsp</result>
+		</action>
+		
+		<action name="configSubent">
+			<result>/WEB-INF/pages/savi/config/configSubnet.jsp</result>
+		</action>
+		
+		<action name="configSwitch">
+			<result>/WEB-INF/pages/savi/config/configSwitch.jsp</result>
+		</action>
+		
+		<action name="configSavi">
+			<result>/WEB-INF/pages/savi/config/configSavi.jsp</result>
+		</action>
+		
+		<!-- Real Time Infomation Start -->
+		<action name="configRealTimeSwitchInterface">
+			<result>/WEB-INF/pages/savi/config/configRealTimeSwitchInterface.jsp</result>
+		</action>
+		
+		<action name="configRealTimeSwitchBindingTableInfo">
+			<result>/WEB-INF/pages/savi/config/configRealTimeSwitchBindingTableInfo.jsp</result>
+		</action>
+		
+		<action name="configRealTimeInterfaceBindingTableInfo">
+			<result>/WEB-INF/pages/savi/config/configRealTimeInterfaceBindingTableInfo.jsp</result>
+		</action>
+		<!-- Real Time Infomation End -->
+		
+		<action name="gotoUrl">
+			<result>/WEB-INF/pages/savi/gotoUrl.jsp</result>
+		</action>
+	</package>
+	
+</struts>

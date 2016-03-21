@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="systemSet" extends="basePackage">
+		<action name="dicList">
+			<result>/WEB-INF/pages/config/dicList.jsp</result>
+		</action>
+
+		<action name="dicdetailList">
+			<result>/WEB-INF/pages/config/dicDetailList.jsp</result>
+		</action>
+
+		<!-- 新增数据字典 -->
+		<action name="addDicType" class="com.config.action.DicTypeAction"
+			method="addDicType">
+		</action>
+
+		<!-- 查询数据字典 -->
+		<action name="queryDicTypeList" class="com.config.action.DicTypeAction"
+			method="queryDicTypeList">
+		</action>
+
+		<!-- 查询数据字典 -->
+		<action name="queryAllDicType" class="com.config.action.DicTypeAction"
+			method="queryAllDicType">
+		</action>
+
+		<!-- 修改数据字典 -->
+		<action name="updateDicType" class="com.config.action.DicTypeAction"
+			method="updateDicType">
+		</action>
+
+		<!-- 删除是字典 -->
+		<action name="deleteDictype" class="com.config.action.DicTypeAction"
+			method="deleteDictype">
+		</action>
+
+		<!-- 新增数据字典内容 -->
+		<action name="addDicContent" class="com.config.action.DicContentAction"
+			method="addDicContent">
+		</action>
+
+		<!-- 查询数据字典内容 -->
+		<action name="queryDicContentList" class="com.config.action.DicContentAction"
+			method="queryDicContentList">
+		</action>
+
+		<!-- 修改数据字典内容 -->
+		<action name="updateDicContent" class="com.config.action.DicContentAction"
+			method="updateDicContent">
+		</action>
+
+		<!-- 删除数据字典内容 -->
+		<action name="deleteDicContent" class="com.config.action.DicContentAction"
+			method="deleteDicContent">
+		</action>
+
+	</package>
+</struts>

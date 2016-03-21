@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.UserMessage" table="user_message">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="userId" column="user_id" type="long"/>
+        <property name="objId" column="obj_id" type="long"/>
+        <property name="objType" column="objtype" type="string"/>
+        <property name="objStatus" column="objstatus" type="string"/>
+   </class>
+</hibernate-mapping>

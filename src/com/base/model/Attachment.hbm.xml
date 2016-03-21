@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.Attachment" table="ticket_attachment">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="ticket" type="java.lang.Long">
+            <column name="ticket_id" />
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="title" length="200"/>
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="content" length="67200" />
+        </property>
+        <property name="fileName" type="java.lang.String">
+            <column name="file_name" length="200" />
+        </property>
+        <property name="filePath" type="java.lang.String">
+            <column name="file_path" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

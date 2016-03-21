@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<email>  
+  <datas> 
+    <data> 
+      <sendMobile>13811186671</sendMobile>
+      <sendPasswd>70501782</sendPasswd>
+      <receives>
+			<receiveMobile>15210920567</receiveMobile>
+			<receiveMobile>13488795057</receiveMobile>
+	  </receives> 
+    </data> 
+  </datas> 
+</email>

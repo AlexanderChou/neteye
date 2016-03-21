@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.View" table="view">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string"/>
+        <property name="description" type="string"/>
+        <property name="homePage" column="homepage" type="boolean"></property>
+        <property name="userId" column="user_id" type="long"/>
+        <property name="userName" column="username" type="string"></property>
+    </class>
+</hibernate-mapping>

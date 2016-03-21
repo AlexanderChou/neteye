@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.FaultHistory" table="faulthistory">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="beginTime" column="begintime" type="timestamp"/>
+        <property name="faultIp" column="faultip" type="string"/>
+        <property name="deviceName" column="devicename" type="string"/>
+        <property name="persistTime" column="persisttime" type="string"/>
+        <property name="faultReason" column="faultreason" type="string"/>
+        <property name="recoverTime" column="recovertime" type="timestamp"/>
+    </class>
+</hibernate-mapping>

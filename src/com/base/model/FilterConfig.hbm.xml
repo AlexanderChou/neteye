@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+    <class name="com.base.model.FilterConfig" table="filter_config" lazy="true">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="eventmodel" column="eventmodel" type="string"/>
+        <property name="eventtype" column="eventtype" type="string"/>
+        <property name="ip" column="ip" type="string"/>
+    </class>
+</hibernate-mapping>

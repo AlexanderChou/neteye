@@ -1,0 +1,3 @@
+debug=false
+pollingInterval=300
+#webserviceURL=http://[2001:da8:ff3a:c897:f00::1]:8080/localOnlineSoa/localOnlineSoa

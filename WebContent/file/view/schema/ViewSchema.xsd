@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by guoxi (inetboss) -->
+<xs:schema xmlns:to="http://www.inetboss.com/view" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.inetboss.com/view" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="view">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="routers" type="to:routers" minOccurs="0"/>
+				<xs:element name="switches" type="to:switches" minOccurs="0"/>
+				<xs:element name="servers" type="to:servers" minOccurs="0"/>
+				<xs:element name="workstations" type="to:workstations" minOccurs="0"/>
+				<xs:element name="customs" type="to:customs" minOccurs="0"/>
+				<xs:element name="links" type="to:links" minOccurs="0"/>
+				<xs:element name="backGround" type="xs:string"/>
+				<xs:element name="userId" type="xs:int"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="router">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="link">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name"/>
+			<xs:element name="srcId" type="xs:string"/>
+			<xs:element name="destId" type="xs:string"/>
+			<xs:element name="srcInterfaceId" type="xs:string"/>
+			<xs:element name="destInterfaceId" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="routers">
+		<xs:sequence>
+			<xs:element name="router" type="to:router" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="links">
+		<xs:sequence>
+			<xs:element name="link" type="to:link" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="service">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="port" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="services">
+		<xs:sequence>
+			<xs:element name="service" type="to:service" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="server">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+			<xs:element name="services" type="to:services"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="servers">
+		<xs:sequence>
+			<xs:element name="server" type="to:server" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="workstation">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="workstations">
+		<xs:sequence>
+			<xs:element name="workstation" type="to:workstation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custom">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="customs">
+		<xs:sequence>
+			<xs:element name="custom" type="to:custom" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="switch">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="coordinateX" type="xs:string"/>
+			<xs:element name="coordinateY" type="xs:string"/>
+			<xs:element name="picture" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="switches">
+		<xs:sequence>
+			<xs:element name="switch" type="to:switch" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

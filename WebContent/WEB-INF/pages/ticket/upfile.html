@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='StyleSheet' href="css/topoInit.css" type="text/css" />
+<LINK href="css/hig+start.css" type=text/css rel=StyleSheet>
+<link rel="stylesheet" type="text/css" href="css/ext-all.css" />
+<script type="text/javascript" src="js/ext-base.js"></script>
+<script type="text/javascript" src="js/ext-all.js"></script>
+
+<script language="javascript">
+ Ext.onReady(function(){
+ var MsgForm = new Ext.form.FormPanel({
+		baseCls: 'x-plain',
+        labelAlign: 'left',
+    	buttonAlign: 'center',
+    	frame: true,
+    	labelWidth: 65,
+    	defaultType: 'textfield',
+    	fileUpload: true,  
+    	defaults: {
+    		allowBlank: false
+    	},
+        items: [{
+        	xtype:'fieldset',
+        	title:'属性信息',
+        	collapsible:true,
+        	width:320,
+        	autoHeight:true,//使自适应展开排版
+        	defaults:{width:200,height:30},
+        	defaultType:'textfield',
+        	items:[{
+        		id:'fileName',
+        		xtype: 'textfield',   
+		        fieldLabel: '图片上传',
+		        allowBlank:false,
+		        name: 'upload',   
+		        inputType: 'file'//文件类型   
+        	}],
+        	buttons: [{   
+		        text: '上传',   
+		        handler: function() {
+		        
+            		MsgForm.form.doAction('submit',{
+            			url: 'uploadAttach.do',
+     					method: 'post',
+     					params : {
+            				ticketId:'1'
+            			},
+     					waitTitle:"提示",
+     					waitMsg:"<font color='black'>正在发送，请稍后......</font>",
+     					success:function(MsgForm,action){
+     				
+     						Ext.Msg.alert('成功',"文件上传成功");
+     						
+     					},
+     					failure:function(MsgForm,action){
+     					 
+     						Ext.Msg.alert('错误', '文件上传失败');  
+     					}
+     					});
+        			
+        		}
+		    },{
+	            text: '关闭',
+	            handler  : function(){
+	            	win.close();
+	            }
+	        }]
+		    }]
+    });
+    
+   var win = new Ext.Window({
+        title: '更改属性',
+        width: 350,
+        height:180,
+        x:330,
+        y:150,
+        layout: 'fit',
+        plain: true,
+        bodyStyle:'padding:5px;color:black;',
+        buttonAlign:'center',
+        items: MsgForm
+    });
+    win.show();
+ });
+ </script>
+</head>
+<body>
+
+</body>
+</html>

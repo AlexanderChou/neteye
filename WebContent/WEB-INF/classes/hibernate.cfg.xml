@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+    	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://211.68.122.38:3306/neteye?characterEncoding=utf8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">network</property>
+        <!-- SQL dialect -->
+        <property name="dialect">com.base.db.CustomMySQLDialect</property>
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>        
+        <property name="cache.use_second_level_cache">false</property>
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">false</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+        
+        <!--c3p0 config  -->        
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property> 
+        <property name="c3p0.min_size">20</property>
+        <property name="c3p0.max_size">100</property>
+        <property name="c3p0.timeout">160</property>
+        <property name="c3p0.max_statements">50</property>
+        <property name="c3p0.idle_test_period">120</property>
+        <property name="hibernate.c3p0.validate">true</property> 
+        
+        <!-- 配置及视图部分 -->
+        <mapping resource="com/base/model/DeviceType.hbm.xml"/>
+        <mapping resource="com/base/model/Device.hbm.xml"/>
+        <mapping resource="com/base/model/IfInterface.hbm.xml"/>    
+        <mapping resource="com/base/model/Link.hbm.xml"/>
+        <mapping resource="com/base/model/Service.hbm.xml"/>
+        <mapping resource="com/base/model/Trap.hbm.xml"/>
+        <mapping resource="com/base/model/TrafficMeasurement.hbm.xml"/>   
+        <mapping resource="com/base/model/View.hbm.xml"/>   
+        <mapping resource="com/base/model/Image.hbm.xml"/>   
+        <mapping resource="com/base/model/ServiceManage.hbm.xml"/>
+        <mapping resource="com/base/model/DeviceIcon.hbm.xml"/>
+        
+        <!-- 用户权限管理部分 -->  
+        <mapping resource="com/base/model/Department.hbm.xml"/>   
+        <mapping resource="com/base/model/ResourceGroup.hbm.xml"/>   
+        <mapping resource="com/base/model/UserGroup.hbm.xml"/>   
+        <mapping resource="com/base/model/UserPojo.hbm.xml"/>   
+        <mapping resource="com/base/model/Resource.hbm.xml"/>   
+        <mapping resource="com/base/model/UserPopedom.hbm.xml"/>      
+        <mapping resource="com/base/model/Log.hbm.xml"/>
+        <mapping resource="com/base/model/UserGroupPopedom.hbm.xml"/>
+        <mapping resource="com/base/model/ResourceGroupPopedom.hbm.xml"/>
+        
+        <!-- 故障部分 -->
+        <mapping resource="com/base/model/FaultLog.hbm.xml"/>
+        <mapping resource="com/base/model/FaultCurrent.hbm.xml"/>
+        <mapping resource="com/base/model/FaultHistory.hbm.xml"/> 
+        
+        <!-- 事件部分 -->  
+        <mapping resource="com/base/model/EventPojo.hbm.xml"/>
+        <mapping resource="com/base/model/Alarm.hbm.xml"/>
+        <mapping resource="com/base/model/EventStatus.hbm.xml"/>
+        <mapping resource="com/base/model/EventSeq.hbm.xml"/> 
+        <mapping resource="com/base/model/UserMessage.hbm.xml"/>
+        <mapping resource="com/base/model/FilterConfig.hbm.xml"/>
+        
+        <!-- 报表部分 -->  
+        <mapping resource="com/base/model/Report.hbm.xml"/>
+        <mapping resource="com/base/model/Configure.hbm.xml"/>
+        
+        <!-- tickets 部分-->
+        
+        <mapping resource="com/base/model/Ticket.hbm.xml"/>
+        <mapping resource="com/base/model/Priority.hbm.xml"/>
+        <mapping resource="com/base/model/Score.hbm.xml"/>
+        <mapping resource="com/base/model/Category.hbm.xml"/>
+        <mapping resource="com/base/model/Project.hbm.xml"/>
+        <mapping resource="com/base/model/Attachment.hbm.xml"/>
+        
+        <!-- JBPM的配置部分-->
+       	<mapping resource="org/jbpm/graph/action/Script.hbm.xml"/>
+	    <mapping resource="org/jbpm/identity/User.hbm.xml" />
+	    <mapping resource="org/jbpm/identity/Group.hbm.xml"/>
+	    <mapping resource="org/jbpm/identity/Membership.hbm.xml"/>
+	    <mapping resource="org/jbpm/db/hibernate.queries.hbm.xml" />
+	    <mapping resource="org/jbpm/graph/def/ProcessDefinition.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/def/Node.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/def/Transition.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/def/Event.hbm.xml" />
+	    <mapping resource="org/jbpm/graph/def/Action.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/def/SuperState.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/def/ExceptionHandler.hbm.xml"/>
+	    <mapping resource="org/jbpm/instantiation/Delegation.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/StartState.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/EndState.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/ProcessState.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/Decision.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/Fork.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/Join.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/State.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/node/TaskNode.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/def/ContextDefinition.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/def/VariableAccess.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/def/TaskMgmtDefinition.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/def/Swimlane.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/def/Task.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/def/TaskController.hbm.xml"/>
+	    <mapping resource="org/jbpm/module/def/ModuleDefinition.hbm.xml"/>
+	    <mapping resource="org/jbpm/bytes/ByteArray.hbm.xml"/>
+	    <mapping resource="org/jbpm/file/def/FileDefinition.hbm.xml"/>
+	    <mapping resource="org/jbpm/scheduler/def/CreateTimerAction.hbm.xml"/>
+	    <mapping resource="org/jbpm/scheduler/def/CancelTimerAction.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/exe/Comment.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/exe/ProcessInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/exe/Token.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/exe/RuntimeAction.hbm.xml"/>
+	    <mapping resource="org/jbpm/module/exe/ModuleInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/ContextInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/TokenVariableMap.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/VariableInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/ByteArrayInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/DateInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/DoubleInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/HibernateLongInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/HibernateStringInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/LongInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/NullInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/exe/variableinstance/StringInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/msg/Message.hbm.xml"/>
+	    <mapping resource="org/jbpm/msg/db/TextMessage.hbm.xml"/>
+	    <mapping resource="org/jbpm/command/ExecuteActionCommand.hbm.xml"/>
+	    <mapping resource="org/jbpm/command/ExecuteNodeCommand.hbm.xml"/>
+	    <mapping resource="org/jbpm/command/SignalCommand.hbm.xml"/>
+	    <mapping resource="org/jbpm/command/TaskInstanceEndCommand.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/exe/TaskMgmtInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/exe/TaskInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/exe/PooledActor.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/exe/SwimlaneInstance.hbm.xml"/>
+	    <mapping resource="org/jbpm/scheduler/exe/Timer.hbm.xml"/>
+	    <mapping resource="org/jbpm/logging/log/ProcessLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/logging/log/MessageLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/logging/log/CompositeLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/ActionLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/NodeLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/ProcessInstanceCreateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/ProcessInstanceEndLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/ProcessStateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/SignalLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/TokenCreateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/TokenEndLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/graph/log/TransitionLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/VariableLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/VariableCreateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/VariableDeleteLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/VariableUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/ByteArrayUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/DateUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/DoubleUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/HibernateLongUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/HibernateStringUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/LongUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/context/log/variableinstance/StringUpdateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/TaskLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/TaskCreateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/TaskAssignLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/TaskEndLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/SwimlaneLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/SwimlaneCreateLog.hbm.xml"/>
+	    <mapping resource="org/jbpm/taskmgmt/log/SwimlaneAssignLog.hbm.xml"/>
+       <!-- 资产管理 -->  
+       <mapping resource="com/base/model/AssetDepart.hbm.xml"/>
+       <mapping resource="com/base/model/AssetUser.hbm.xml"/>
+       <mapping resource="com/base/model/AssetInfo.hbm.xml"/>
+       <!-- ip地址统计 -->  
+       <mapping resource="com/base/model/NodeReachability.hbm.xml"/>
+       <mapping resource="com/base/model/NodeDelay.hbm.xml"/>
+       <mapping resource="com/base/model/NodeLoss.hbm.xml"/>
+       <mapping resource="com/base/model/NodeReordering.hbm.xml"/>
+       <mapping resource="com/base/model/NodeIPHourNum.hbm.xml"/>
+       <mapping resource="com/base/model/NodeIPDayNum.hbm.xml"/>
+       <mapping resource="com/base/model/NodeIPMonthNum.hbm.xml"/>
+       <mapping resource="com/base/model/NodeIPWeekNum.hbm.xml"/>
+       	<!-- 基础数据 -->
+		<mapping resource="com/base/model/DicType.hbm.xml" />
+		<mapping resource="com/base/model/DicContent.hbm.xml" />
+     </session-factory>
+</hibernate-configuration>

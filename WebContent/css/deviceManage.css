@@ -1,0 +1,15 @@
+
+#singleDevice{
+	position:relative;
+	left:3px;
+	top:3px;
+	width:90px;
+	height:120px;
+	padding-right:3px;
+	margin:2px;
+	text-align:center; 
+	border:1px dashed #C9C4CA;
+	float:left;
+	overflow:hidden;
+}
+}

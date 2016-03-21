@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<records> 
+	<iconWidth>48</iconWidth>
+	<iconHeight>48</iconHeight>
+	<netflowIP>219.243.208.44</netflowIP>
+	
+	<netflowPort>80</netflowPort>
+	<analysisIP>2001:da8:ff3a:c897:f00::1</analysisIP>
+	<analysisPort>8080</analysisPort>
+</records>

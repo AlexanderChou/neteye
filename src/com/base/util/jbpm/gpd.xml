@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-diagram name="ticket" width="655" height="526">
+  <node name="start" x="22" y="42" width="140" height="40">
+    <transition name="">
+      <label x="5" y="-10"/>
+    </transition>
+  </node>
+  <node name="createEvent" x="227" y="41" width="140" height="40">
+    <transition name="to next">
+      <label x="5" y="-10"/>
+    </transition>
+  </node>
+  <node name="undertakerDecide" x="224" y="111" width="140" height="40">
+    <transition name="underTaker_accept">
+      <label x="5" y="-10"/>
+    </transition>
+    <transition name="underTakerDis_accept">
+      <label x="16" y="-7"/>
+      <bendpoint w1="148" h1="-4" w2="140" h2="92"/>
+      <bendpoint w1="147" h1="-70" w2="144" h2="0"/>
+    </transition>
+  </node>
+  <node name="DelegateDecide" x="218" y="177" width="140" height="40">
+    <transition name="delegate_true">
+      <label x="5" y="-10"/>
+    </transition>
+    <transition name="delegate_false">
+      <label x="5" y="-10"/>
+      <bendpoint w1="194" h1="-2" w2="5" h2="-181"/>
+    </transition>
+  </node>
+  <node name="delegate" x="218" y="284" width="140" height="40">
+    <transition name="agree">
+      <label x="5" y="-10"/>
+      <bendpoint w1="-8" h1="48" w2="195" h2="-3"/>
+    </transition>
+    <transition name="disagree">
+      <label x="-1" y="16"/>
+      <bendpoint w1="133" h1="-9" w2="129" h2="100"/>
+      <bendpoint w1="138" h1="-96" w2="147" h2="10"/>
+      <bendpoint w1="103" h1="-98" w2="99" h2="11"/>
+    </transition>
+  </node>
+  <node name="doMyself" x="406" y="395" width="140" height="40">
+    <transition name="me to check">
+      <label x="5" y="-10"/>
+    </transition>
+  </node>
+  <node name="delegatorDeal" x="24" y="334" width="140" height="40">
+    <transition name="delegate to check">
+      <label x="5" y="-10"/>
+      <bendpoint w1="-5" h1="84" w2="-185" h2="13"/>
+    </transition>
+  </node>
+  <node name="check" x="204" y="405" width="140" height="40">
+    <transition name="success">
+      <label x="5" y="-10"/>
+    </transition>
+    <transition name="failure">
+      <label x="5" y="-10"/>
+      <bendpoint w1="-149" h1="0" w2="-170" h2="246"/>
+      <bendpoint w1="-150" h1="-228" w2="-164" h2="0"/>
+    </transition>
+  </node>
+  <node name="end" x="200" y="485" width="140" height="40"/>
+</process-diagram>

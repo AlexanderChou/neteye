@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.EventSeq" table="eventseq">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="string"/>
+        <property name="content" type="string"/>
+        <property name="moduleId" column="moduleid" type="string"/>
+        <property name="moduleType" column="moduletype" type="string"/>
+        <property name="typeValue" column="typevalue" type="string"/>
+        <property name="occurTime" column="occurtime" type="string"/>
+        <property name="receiveTime" column="receivetime" type="string"/>
+        <property name="objId" column="obj_id" type="long"/>
+        <property name="objType" column="objtype" type="string"/>
+        <property name="eventId" column="event_id" type="long"/>
+        <property name="priority" column="priority" type="int"/>
+   </class>
+</hibernate-mapping>

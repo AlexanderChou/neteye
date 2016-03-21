@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.DeviceIcon" table="device_icon" lazy="true">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="manufacture" column="manufacture" type="string"/>
+        <property name="model" column="model" type="string"/>
+        <property name="description" column="description" type="string"/>
+        <property name="iconFile" column="iconFile" type="string"/>
+        
+        <many-to-one name="deviceType" column="device_type_id" cascade="none" not-null="false"></many-to-one>
+    </class>
+</hibernate-mapping>

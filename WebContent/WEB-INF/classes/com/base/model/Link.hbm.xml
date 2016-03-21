@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.Link" table="link">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string"/>
+        <property name="description" type="string"/>
+		<property name="speed" type="double"/>
+ 		<property name="priority" column="priority" type="int"/>
+		<property name="maxSpeed" column="maxspeed" type="double"/>	
+		<property name="upDevice" column="updevice" type="long"/>
+		<property name="downDevice" column="downdevice" type="long"/>	
+		<many-to-one name="upInterface" column="upinterface" class="com.base.model.IfInterface" cascade="save-update" not-null="true"/>
+		<many-to-one name="downInterface" column="downinterface" class="com.base.model.IfInterface" cascade="save-update" not-null="true"/>
+    </class>
+</hibernate-mapping>

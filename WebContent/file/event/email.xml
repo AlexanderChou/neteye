@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<email>  
+  <datas> 
+    <data> 
+      <smtp>sea.net.edu.cn</smtp>
+      <userName>guoxi</userName>  
+      <userPasswd>70501782</userPasswd>  
+      <sendEmail>guoxi@cernet.edu.cn</sendEmail>  
+      <receiveEmails>
+			<receiveEmail>12639602@qq.com</receiveEmail>
+			<receiveEmail>guoxibirdfly@163.com</receiveEmail>
+	  </receiveEmails> 
+    </data> 
+  </datas> 
+</email>

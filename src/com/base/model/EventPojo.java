@@ -1,0 +1,169 @@
+package com.base.model;
+/*
+** Copyright (c) 2008, 2009, 2010
+**      The Regents of the Tsinghua University, PRC.  All rights reserved.
+**
+** Redistribution and use in source and binary forms, with or without  modification, are permitted provided that the following conditions are met:
+** 1. Redistributions of source code must retain the above copyright  notice, this list of conditions and the following disclaimer.
+** 2. Redistributions in binary form must reproduce the above copyright  notice, this list of conditions and the following disclaimer in the  documentation and/or other materials provided with the distribution.
+** 3. All advertising materials mentioning features or use of this software  must display the following acknowledgement:
+**  This product includes software (iNetBoss) developed by Tsinghua University, PRC and its contributors.
+** THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+** ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+** IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+** ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+** FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+** DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+** OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+** HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+** LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+** OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+** SUCH DAMAGE.
+*
+*/
+/**
+ * <p>Title: 事件实体类</p>
+ * <p>Description: 接收其它模块发来的事件，并将其内容存储在该实体</p>
+ * @version 1.0
+ * @author 郭玺
+ * <p>Company: 网络中心</p>
+ * <p>Copyright: Copyright (c) 2009</p>
+ * 注：objId有可能对应device|ifinterface|servicemanage等表的id，由objType值进行区分
+ *    objType的可能值：device|interface|service  以后还可以根据需要进行扩展
+ */
+public class EventPojo extends BaseEntity{
+	private Integer occurNum;
+	private String occurTime;
+	private String receiveTime;
+	private String moduleId;
+	private String moduleType;
+	private String typeValue;
+	private Long objId;
+	private String objName;
+	private String objType;
+	private String objIPv4;
+	private String objIPv6;
+	private Integer priority;
+	private String title;
+	private String content;
+	private String status;
+	
+	public EventPojo() {
+	}
+
+	public EventPojo(Integer occurNum, String time, String receiveTime,
+			String moduleId, String moduleType, String typeValue, 
+			Integer priority, String objType, Long objId, String objName,
+			String objIPv4, String objIPv6, String title, String content,
+			String status) {
+		this.occurNum = occurNum;
+		this.occurTime = time;
+		this.receiveTime = receiveTime;
+		this.moduleId = moduleId;
+		this.moduleType = moduleType;
+		this.typeValue = typeValue;
+		this.priority = priority;
+		this.objType = objType;
+		this.objId = objId;
+		this.objName = objName;
+		this.objIPv4 = objIPv4;
+		this.objIPv6 = objIPv6;
+		this.title = title;
+		this.content = content;
+		this.status = status;
+	}
+	public String getOccurTime() {
+		return occurTime;
+	}
+	public void setOccurTime(String occurTime) {
+		this.occurTime = occurTime;
+	}
+	public String getReceiveTime() {
+		return receiveTime;
+	}
+	public void setReceiveTime(String receiveTime) {
+		this.receiveTime = receiveTime;
+	}
+	public String getModuleType() {
+		return moduleType;
+	}
+	public void setModuleType(String moduleType) {
+		this.moduleType = moduleType;
+	}
+	public String getTypeValue() {
+		return typeValue;
+	}
+	public void setTypeValue(String typeValue) {
+		this.typeValue = typeValue;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Integer getOccurNum() {
+		return occurNum;
+	}
+	public void setOccurNum(Integer occurNum) {
+		this.occurNum = occurNum;
+	}
+	public String getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(String moduleId) {
+		this.moduleId = moduleId;
+	}
+	public Long getObjId() {
+		return objId;
+	}
+	public void setObjId(Long objId) {
+		this.objId = objId;
+	}
+	public String getObjType() {
+		return objType;
+	}
+	public void setObjType(String objType) {
+		this.objType = objType;
+	}
+	public Integer getPriority() {
+		return priority;
+	}
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getObjIPv4() {
+		return objIPv4;
+	}
+
+	public void setObjIPv4(String objIPv4) {
+		this.objIPv4 = objIPv4;
+	}
+
+	public String getObjIPv6() {
+		return objIPv6;
+	}
+
+	public void setObjIPv6(String objIPv6) {
+		this.objIPv6 = objIPv6;
+	}
+
+	public String getObjName() {
+		return objName;
+	}
+	public void setObjName(String objName) {
+		this.objName = objName;
+	}
+}

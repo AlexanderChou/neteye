@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.IfInterface" table="ifinterface">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="chineseName" column="chinesename" type="string"/>
+        <property name="description" type="string"/>
+        <property name="ifindex" type="string"/>
+        <property name="interfaceType" column="interfacetype" type="string"/>
+        <property name="lowerThreshold" column="lowerthreshold" type="int"/>
+        <property name="upperThreshold" column="upperthreshold" type="int"/>
+        <property name="MAC" column="mac" type="string"/>
+        <property name="manageStatus" column="managestatus" type="string"/>
+        <property name="manageStatusIPv6" column="managestatusipv6" type="string"/>
+        <property name="operateStatus" column="operatestatus" type="string"/>
+        <property name="operateStatusIPv6" column="operatestatusipv6" type="string"/>
+        <property name="name" type="string"/>
+        <property name="ipv4" type="string"/>
+        <property name="ipv6" type="string"/>
+        <property name="netmask" type="string"/>
+        <property name="prefix" type="string"/>
+        <property name="speed" type="double"/>
+        <property name="trafficFlag" type="int"/>
+        <property name="maxSpeed" column="maxspeed" type="double"/>
+        <many-to-one name="device" column="device_id" cascade="save-update" not-null="true"></many-to-one>
+   </class>
+</hibernate-mapping>

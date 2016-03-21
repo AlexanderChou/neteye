@@ -1,0 +1,2 @@
+native2ascii.exe -encoding UTF-8 messageResource_zh_CN_src.properties messageResource_zh_CN.properties
+native2ascii.exe -encoding UTF-8 messageResource_zh_CN_src.properties messageResource_zh.properties

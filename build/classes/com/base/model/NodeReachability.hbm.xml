@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.NodeReachability" table="reachability" lazy="false">
+        <id name="id" type="long">
+            <column name="id" />
+             <generator class="native" />
+        </id>
+        <property name="network_type" column="network_type" type="int"/>
+        <property name="region" column="region" type="string"/>
+        <property name="time" column="time" type="string"/>
+        <property name="interruption" column="interruption" type="int"/>
+    </class>
+</hibernate-mapping>

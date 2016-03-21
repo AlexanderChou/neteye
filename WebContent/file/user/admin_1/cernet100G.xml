@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<to:view xmlns:to="http://www.inetboss.com/view" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.inetboss.com/view /file/view/schema/ViewSchema.xsd">  
+  <to:routers> 
+    <to:router> 
+      <to:id>92</to:id>  
+      <to:name>武汉100G</to:name>  
+      <to:coordinateX>854</to:coordinateX>  
+      <to:coordinateY>597</to:coordinateY>  
+      <to:picture>images/green_router.gif</to:picture>  
+      <to:iconId>1</to:iconId>  
+      <to:isChangeIcon>0</to:isChangeIcon>  
+      <to:iconWidth>48</to:iconWidth>  
+      <to:iconHeight>48</to:iconHeight>  
+      <to:subView/> 
+    </to:router>  
+    <to:router> 
+      <to:id>93</to:id>  
+      <to:name>北京100G</to:name>  
+      <to:coordinateX>854</to:coordinateX>  
+      <to:coordinateY>367</to:coordinateY>  
+      <to:picture>images/green_router.gif</to:picture>  
+      <to:iconId>1</to:iconId>  
+      <to:isChangeIcon>0</to:isChangeIcon>  
+      <to:iconWidth>48</to:iconWidth>  
+      <to:iconHeight>48</to:iconHeight>  
+      <to:subView/> 
+    </to:router> 
+  </to:routers>  
+  <to:links> 
+    <to:link> 
+      <to:id>126</to:id>  
+      <to:name>武汉100G_550--北京100G_562</to:name>  
+      <to:srcId>92</to:srcId>  
+      <to:destId>93</to:destId>  
+      <to:srcInterfaceId>4672</to:srcInterfaceId>  
+      <to:destInterfaceId>4793</to:destInterfaceId> 
+    </to:link> 
+  </to:links>  
+  <to:backGround>images/china.jpg</to:backGround> 
+</to:view>

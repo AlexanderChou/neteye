@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+    <class name="com.base.model.AssetInfo" table="asset_info" lazy="true">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="deviceNumber" column="deviceNumber" type="string"/>
+        <property name="deviceClasses" column="deviceClasses" type="string"/>
+        <property name="departmentId" column="departmentId"  type="long" />
+        <property name="deviceName" column="deviceName" type="string"/>
+        <property name="deviceConfig" column="deviceConfig" type="string"/>
+        <property name="deviceModel" column="deviceModel" type="string"/>
+        <property name="purchaseMoney" column="purchaseMoney" type="float"/>
+        <property name="deviceVender" column="deviceVender" type="string"/>
+        <property name="produceNumber" column="produceNumber" type="string"/>
+        <property name="purchaseDate" column="purchaseDate" type="string"/>
+        <property name="deviceUses" column="deviceUses" type="string"/>
+        <property name="domainName" column="domainName" type="string"/>
+        <property name="establishDate" column="establishDate" type="string"/>
+        <property name="adminId" column="adminId" type="long"/>
+        <property name="ownAdminId" column="ownAdminId" type="string"/>
+        <property name="backupAdminId" column="backupAdminId" type="long"/>
+        <property name="deviceLocation" column="deviceLocation" type="string"/>
+        <property name="maintainRecord" column="maintainRecord" type="string"/>
+        <property name="discardDate" column="discardDate" type="string"/>
+        <property name="fundSource" column="fundSource" type="string"/>
+        <property name="description" column="description" type="string"/>
+        <property name="deviceIP" column="deviceIP" type="string"/>
+        <property name="deviceArrange" column="deviceArrange" type="string"/>
+        <property name="deviceStatus" column="deviceStatus" type="string"/>
+    </class>
+</hibernate-mapping>
+
+

@@ -1,0 +1,16 @@
+<chart showValues='0' decimals='0' numberSuffix='%'>
+	<set label='公安部1' value='80' />
+	<set label='公安部2' value='90' />
+	<set label='华北' value='20' />
+	<set label='华中' value='50' />
+	<set label='华南1' value='60' />
+	<set label='华东1' value='10' />
+	<set label='东北1' value='30' />
+	<set label='西北1' value='80' />
+	<set label='西南' value='20' />
+	<set label='东北' value='30' />
+	<set label='华东2' value='40' />
+	<set label='东北2' value='50' />
+	<set label='华南2' value='20' />
+	<set label='西北2' value='60' />
+</chart>

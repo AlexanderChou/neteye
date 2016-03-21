@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <smtp>
+    </smtp>
+    <userName>
+    </userName>
+    <userPassword>
+    </userPassword>
+    <sendUser>
+    </sendUser>
+    <receivers>
+         <reveiveUser>
+         </reveiveUser>
+   </receivers>
+</users>

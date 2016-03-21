@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.NodeIPHourNum" table="totalip_ipnum_hour" lazy="false">
+        <id name="id" type="long">
+            <column name="id" />
+             <generator class="native" />
+        </id>
+        <property name="engName" column="serviced" type="string"/>
+        <property name="chineseName" column="chinesename" type="string"/>
+         <property name="groupName" column="groupname" type="string"/>
+        <property name="hour" column="hour" type="string"/>
+        <property name="IPNum" column="ipnum" type="int"/>
+    </class>
+</hibernate-mapping>

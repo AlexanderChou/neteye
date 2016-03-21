@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.Resource" table="resource" lazy="true">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="url" column="url" type="string"/>
+        <property name="resourceTypeId" column="resource_type_id" type="int"/>
+        <property name="parentsId" column="resource_id" type="long"/>
+        <property name="subSysId" column="subsys_id" type="long"/>
+        <property name="flag" column="flag" type="int"/>
+    </class>
+</hibernate-mapping>

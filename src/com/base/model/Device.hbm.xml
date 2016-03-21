@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.Device" table="device">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="chineseName" column="chinesename" type="string"/>
+        <property name="description" type="string"/>
+        <property name="ifNum" column="ifnum" type="int"/>
+        <property name="label" type="string"/>
+        <property name="location" type="string"/>
+        <property name="loopbackIP" column="loopbackip" type="string"/>
+        <property name="loopbackIPv6" column="loopbackipv6" type="string"/>
+        <property name="model" type="string"/>
+        <property name="name" type="string"/>
+        <property name="productor" type="string"/>
+        <property name="readCommunity" column="readcommunity" type="string"/>
+        <property name="responser" type="string"/>
+        <property name="serial" type="string"/>
+        <property name="snmpVersion" column="snmpversion" type="string"/>
+        <property name="supporter" type="string"/>
+        <property name="systemVersion" column="systemversion" type="string"/>
+        <property name="writeCommunity" column="writecommunity" type="string"/>
+        <property name="trafficIp" type="string"/>
+        <property name="faultFlag" type="int"/>
+        <property name="service" type="string"/>
+        <many-to-one name="deviceType" column="devicetype_id" cascade="save-update"  not-null="true"></many-to-one>
+        <set name="ifinterfaces" cascade="save-update" lazy="false" inverse="true">
+         	<key column="device_id"/>
+         	<one-to-many class="com.base.model.IfInterface"/>
+        </set>
+    </class>
+</hibernate-mapping>

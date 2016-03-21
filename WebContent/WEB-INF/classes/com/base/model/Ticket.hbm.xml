@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.Ticket" table="ticket_ticket" catalog="neteye" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="userByApproverId" type="java.lang.Long">
+            <column name="approver_id" />
+        </property>
+        <property name="project" type="java.lang.Long">
+            <column name="project_id" />
+        </property>
+        <property name="userByUndertakerId" type="java.lang.Long">
+            <column name="undertaker_id" />
+        </property>
+        <property name="category" type="java.lang.Long" >
+            <column name="category_id" />
+        </property>
+        <property name="priority" type="java.lang.Long">
+            <column name="priority_id" />
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="content" length="1000" />
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="title" length="50" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" length="1000" />
+        </property>
+        
+         <property name="status" type="java.lang.Integer">
+            <column name="status" length="20" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="create_time" length="19"  />
+        </property>
+        <property name="commitTime" type="java.util.Date">
+            <column name="commit_time" length="19"  />
+        </property>
+        <property name="commitApproverTime" type="java.util.Date">
+            <column name="commit_approver_time" length="19"  />
+        </property>
+        <property name="receiveApproverTime" type="java.util.Date">
+            <column name="receive_approver_time" length="19"  />
+        </property>
+        <property name="approverPassTime" type="java.util.Date">
+            <column name="approver_pass_time" length="19"  />
+        </property>
+        <property name="closeTime" type="java.util.Date">
+            <column name="close_time" length="19" />
+        </property>
+        <property name="delegateTime" type="java.util.Date">
+            <column name="delegate_time" length="19" />
+        </property>
+        <property name="receiveDelegateTime" type="java.util.Date">
+            <column name="receive_delegate_time" length="19"  />
+        </property>
+        <property name="isdigest" type="java.lang.Byte">
+            <column name="isdigest" />
+        </property>
+        <property name="ccIds" type="java.lang.String">
+            <column name="cc_ids" length="100" />
+        </property>
+        <property name="ccGroupIds" type="java.lang.String">
+            <column name="cc_group_ids" length="100" />
+        </property>
+        <property name="pid" type="java.lang.Long">
+            <column name="pid" />
+        </property>
+       
+    </class>
+</hibernate-mapping>
