@@ -90,4 +90,4 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlsec.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-core-2.3.15.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
-</classpath>
+</classpath> 
