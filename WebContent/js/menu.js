@@ -60,8 +60,9 @@ data['流量监控'] = [{'title':'比特流量图', 'url':"bitWatch.do"},{'title
 data['事件管理'] = [{'title':'事件列表', 'url':"GlobalEventStatus.do"},{'title':'事件统计', 'url':"EventStatisticQuery.do"},{'title':'邮件配置','url':"EmailInfoConfiguration.do"},{'title':'短信配置','url':"MessageInfo.do"},{'title':'事件过滤','url':"filterConfig.do"}];
 data['用户管理'] = [{'title':'资源组管理', 'url':"resourceGroupInfo.do"},{'title':'部门管理', 'url':"department.do"},{'title':'角色管理 ', 'url':"userGroup.do"},{'title':' 用户管理 ', 'url':"user.do"},"null",{'title':'用户个人信息 ', 'url':"initUser.do"},{'title':'切换用户身份 ', 'url':'logout.do?type=changeUser&logId=' + logId},{'title':'用户登录信息 ', 'url':"log.do"}];
 data['SAVI交换机'] = [{'title':'显示','url':"showSubnets.do"},{'title':'管理','url':"configSubent.do"},{'title':'统计','url':"showStatistic.do"},{'title':'五元组信息','url':"showFiveInfo.do"},{'title':'更新绑定信息','url':"show/refreshBingdingInfo.do"}];
-data['无线网SAVI管理'] = [{'title':'H3C管理','url':"HuaSanView.do"},{'title':'五元组信息','url':"showOnlineInfoList.do"},{'title':'更新绑定信息','url':"collectionTaskExcu.do"}];
-//data['资产管理'] = [{'title':'资产统计', 'url':"asset.do"},{'title':'资产查询','url':"assetsearch.do"},{'title':'资产管理配置','url':"assetadmin.do"}];
+data['无线SAVI管理'] = [{'title':'H3C管理','url':"HuaSanView.do"},{'title':'五元组信息','url':"showOnlineInfoList.do"},{'title':'更新绑定信息','url':"collectionTaskExcu.do"}];
+data['二维路由'] = [{'title':'路由器列表', 'url':"routerlist.do"},{'title':'管理路由', 'url':"routermanage.do"},{'title':'拓扑发现', 'url':"topo.do"}];
+//data['资产管理'] = [{'titl e':'资产统计', 'url':"asset.do"},{'title':'资产查询','url':"assetsearch.do"},{'title':'资产管理配置','url':"assetadmin.do"}];
 //data['报表管理'] = [{'title':'报表配置', 'url':"selfConfigReport.do"},{'title':'报表生成','url':"selfCreateReport.do"}];
 //data['ticket管理'] = [{'title':'创建ticket', 'url':"createEvent.do"},{'title':'ticket列表','url':"allTicketList.do"},{'title':'项目管理','url':"projectManage.do"},{'title':'优先级管理','url':"priorityManage.do"},{'title':'类别管理','url':"categoryManage.do"}];
 data['NetFlow监控'] = [{'title':'NetFlow采集 ','url':"dongtaiyemian.do"},{'title':'全网topN ','url':"topNStatistic.do"},{'title':'流量矩阵','url':"trafficMatrix.do"},{'title':'流量矩阵(域间)','url':"trafficMatrixInRegion.do"}];
@@ -69,6 +70,7 @@ data['用户流量行为分析'] = [{'title':'TopN用户流量（1m）','url':"u
 //data['计费管理'] = [{'title':'计费系统', 'url':"#"},{'title':'计费查询', 'url':"http://taurus.serv.edu.cn/dataquery/index.php"}];
 data['null'] = []; //当为null时 此时给 <li> 添加样式 uxp_hdr_menuSeparator
 data['自动升级'] = [];
+
 
 
 /** 创建菜单 */

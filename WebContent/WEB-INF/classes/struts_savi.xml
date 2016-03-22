@@ -616,6 +616,18 @@
 		<action name="gotoUrl">
 			<result>/WEB-INF/pages/savi/gotoUrl.jsp</result>
 		</action>
+		
+		<action name="routerlist">
+			<result>/WEB-INF/pages/savi/config/test.jsp</result>
+		</action>
+		
+		<action name="topo">
+			<result>/WEB-INF/pages/savi/config/test.jsp</result>
+		</action>
+		
+		<action name="routermanage">
+			<result>/WEB-INF/pages/savi/config/test.jsp</result>
+		</action>
 	</package>
 	
 </struts>

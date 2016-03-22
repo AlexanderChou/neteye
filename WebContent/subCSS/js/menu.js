@@ -63,6 +63,7 @@ data['SAVI交换机'] = [{'title':'显示','url':"showSubnets.do"},{'title':'管
 data['用户管理'] = [{'title':'资源组管理', 'url':"resourceGroupInfo.do"},{'title':'部门管理', 'url':"department.do"},{'title':'角色管理 ', 'url':"userGroup.do"},{'title':' 用户管理 ', 'url':"user.do"},"null",{'title':'用户个人信息 ', 'url':"initUser.do"},{'title':'切换用户身份 ', 'url':'logout.do?type=changeUser&logId=' + logId},{'title':'用户登录信息 ', 'url':"log.do"}];
 data['null'] = []; //当为null时 此时给 <li> 添加样式 uxp_hdr_menuSeparator
 data['自动升级'] = [];
+data['二维路由'] = [{'title':'路由器列表', 'url':"routerlist.do"},{'title':'管理路由', 'url':"routermanage.do"},{'title':'拓扑发现', 'url':"topo.do"}];
 
 
 /** 创建菜单 */
