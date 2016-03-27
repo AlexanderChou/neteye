@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.base.model.DicType" table="CT_DICTYPE" lazy="false">
+		<id name="dicTypeId" type="string">
+			<column name="dicTypeId" />
+			<generator class="assigned" />
+		</id>
+		<property name="dicTypeName" column="dicTypeName" type="string" />
+		<property name="dicTypeDesc" column="dicTypeDesc" type="string" />
+	</class>
+</hibernate-mapping>

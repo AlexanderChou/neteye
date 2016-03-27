@@ -1,0 +1,28 @@
+<chart showValues='0' alternateHGridColor='FCB541' alternateHGridAlpha='20' divLineColor='FCB541' divLineAlpha='50' canvasBorderColor='666666' baseFontColor='666666' lineColor='FCB541' numberSuffix='%'>
+	<set label='华北' value='20' />
+	<set label='华中' value='50' />
+	<set label='华南1' value='60' />
+	<set label='华东1' value='10' />
+	<set label='东北1' value='30' />
+	<set label='西北1' value='80' />
+	<set label='西南' value='20' />
+	<set label='东北' value='30' />
+	<set label='华东2' value='40' />
+	<set label='东北2' value='90' />
+	<set label='华南2' value='20' />
+	<set label='西北2' value='60' />
+
+	<styles>
+		<definition>
+			<style name='Anim1' type='animation' param='_xscale' start='0' duration='1' />
+			<style name='Anim2' type='animation' param='_alpha' start='0' duration='0.6' />
+			<style name='DataShadow' type='Shadow' alpha='40'/>
+		</definition>
+		<application>
+			<apply toObject='DIVLINES' styles='Anim1' />
+			<apply toObject='HGRID' styles='Anim2' />
+			<apply toObject='DATALABELS' styles='DataShadow,Anim2' />
+	</application>	
+	</styles>
+
+</chart> 

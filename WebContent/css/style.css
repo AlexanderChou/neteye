@@ -1,0 +1,189 @@
+/*author Evan.bian 2007.05.01*/
+
+
+
+body {
+	margin: 0px;
+	border: none;
+	background-color:#f2f4ff;
+	border-left:1px solid #8bb1e8;
+	SCROLLBAR-FACE-COLOR: #bfd7f2;
+	SCROLLBAR-HIGHLIGHT-COLOR: #e5f0ff;
+	SCROLLBAR-SHADOW-COLOR: #6593cf;
+	SCROLLBAR-3DLIGHT-COLOR: #6593cf;
+	SCROLLBAR-ARROW-COLOR: #6593cf;
+	SCROLLBAR-TRACK-COLOR: #e5f0ff;
+	SCROLLBAR-DARKSHADOW-COLOR: #e5f0ff;
+}
+body,table,th,tr,td {
+	font-size:12px; 
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+a:hover {
+	color: #FF3300;
+	text-decoration: none;
+}
+.inputStyle {
+	border:1px solid #4b81c8;
+	background-color:#FFFFFF;
+	font-size:12px;
+}
+.button {
+	 border:1px solid #2C59AA; 
+	 padding: 2px 2px 0px 2px; 
+	 font-size: 12px; 
+	 height:20px;
+	 filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); 
+}
+.checkbox {
+	height:15px;
+	width:15px;
+}
+.nobreak {
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	display:block;
+	overflow:hidden;
+}
+/*for title div*/
+.title {
+	background-color:#9fc0ea;
+	color:#24559f;
+	height:20px;
+	padding-top:4px;
+	padding-left:4px;
+	font-weight:bold;
+}
+/*for search div*/
+.search,.area {
+	margin:1px; 
+	border:1px solid #aecaf1; 
+	background-color:#d5e4f6;
+	padding:4px;
+}
+.operate {
+	border-bottom:1px solid #8bb1e8; 
+	background-color:#e4edfa;
+	padding:2px 0px;
+}
+.areaDLG {
+	border:1px solid #aecaf1; 
+	background-color:#d5e4f6;
+	padding:2px;
+}
+.areaDrakDLG {
+	background-color:#9fc0ea;
+	padding:2px;
+}
+
+/*for page div*/
+#pagination {
+	margin: 0px 0px 1px 1px; 
+	padding:0px 5px;
+	background-color:#d5e4f6;
+	height:21px;
+}
+.goNumber {
+	border:1px solid #4b81c8;
+	background-color:#FFFFFF;
+	font-size:12px;
+	width:22px;
+}
+/*for EvanGrid div*/
+.resizeDivClass{
+	position:relative;
+  	background-color:white;
+	filter:alpha(Opacity=50);
+	width:3px;
+	height:20px;
+	z-index:1;
+	left:expression(this.parentElement.offsetWidth-3);
+	cursor:col-resize;
+	float:inherit;
+}
+.alignCenter{
+	width:expression(this.parentElement.offsetWidth-7);
+	text-align:center;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	float:inherit;
+}
+.alignLeft{
+	width:expression(this.parentElement.offsetWidth-7);
+	text-align:left;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	float:inherit;
+}
+.alignRight{
+	width:expression(this.parentElement.offsetWidth-7);
+	text-align:right;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	float:inherit;
+}
+#dataTable td{
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	display:block;
+	overflow:hidden;
+	border-right:1px solid #aac7ef;
+	border-bottom:1px solid #aac7ef;
+	padding:2px;
+}
+#dataTable th{
+	height:20px;
+	font-size:12px;
+	font-weight:normal;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	display:block;
+	overflow:hidden;
+	border-right:1px solid #6797dd;
+	border-bottom:1px solid #6797dd;
+	background-image:url(../images/table_title_bg.gif);
+	background-repeat:repeat-x;
+}
+#dataTable table {
+	border-collapse:collapse;
+	border-right:1px solid #aac7ef;
+	border-bottom:1px solid #aac7ef;
+}
+
+button:onmouseout {
+BORDER-RIGHT: #2C59AA 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #2C59AA 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); BORDER-LEFT: #2C59AA 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #2C59AA 1px solid
+}
+button:onmouseover {
+BORDER-RIGHT: #2C59AA 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #2C59AA 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA); BORDER-LEFT: #2C59AA 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #2C59AA 1px solid
+}
+button:onmousedown
+{
+BORDER-RIGHT: #FFE400 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #FFE400 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); BORDER-LEFT: #FFE400 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #FFE400 1px solid
+}
+button:onmouseup {
+BORDER-RIGHT: #2C59AA 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #2C59AA 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); BORDER-LEFT: #2C59AA 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #2C59AA 1px solid
+}
+.btn_mouseout {
+ PADDING-RIGHT: 2px;  PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);  CURSOR: hand; COLOR: black; PADDING-TOP: 2px; 
+}
+.btn_mouseover {
+ PADDING-RIGHT: 2px;  PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#D7E7FA);  CURSOR: hand; COLOR: black; PADDING-TOP: 2px; 
+.btn_mousedown
+{
+ PADDING-RIGHT: 2px;  PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); CURSOR: hand; COLOR: black; PADDING-TOP: 2px; 
+.btn_mouseup {
+ PADDING-RIGHT: 2px;  PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5);  CURSOR: hand; COLOR: black; PADDING-TOP: 2px; 
+ }

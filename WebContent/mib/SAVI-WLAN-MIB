@@ -1,0 +1,624 @@
+SAVI-WLAN-MIB DEFINITIONS ::=BEGIN
+
+IMPORTS
+    MODULE-COMPLIANCE,OBJECT-GROUP
+        FROM SNMPv2-CONF
+    MODULE-IDENTITY, OBJECT-IDENTITY, OBJECT-TYPE, Counter32, Counter64, Unsigned32  
+        FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION,MacAddress,TimeInterval,RowStatus
+        FROM SNMPv2-TC
+    InterfaceIndex	
+        FROM IF-MIB
+    InetVersion,InetAddressType,InetAddress 
+        FROM INET-ADDRESS-MIB
+    ip 
+        FROM IP-MIB
+    NOTIFICATION-TYPE 
+        FROM SNMPv2-SMI
+    ;
+
+saviWlanMIB MODULE-IDENTITY
+    LAST-UPDATED "201409250037Z" --Sep 25,2014
+    ORGANIZATION
+        "IETF SAVI Working Group"
+    CONTACT-INFO
+        "Changqing An
+        
+         Postal:  Network Research Center, Tsinghua University
+         Beijing 100084
+         China
+         
+         Email: acq@tsinghua.edu.cn"
+    DESCRIPTION
+        "The MIB Module for managing SAVI objects in WLAN scenario."
+    ::= {ip 41}
+
+saviWlanObjects OBJECT IDENTIFIER ::= { saviWlanMIB 1 }
+
+
+-- saviWlan parameters 
+
+saviWlanObjectsSystemTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF SaviWlanObjectsSystemEntry   
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The table containing savi system-wide parameters."
+    ::= { saviWlanObjects 1 }
+
+saviWlanObjectsSystemEntry OBJECT-TYPE
+    SYNTAX     SaviWlanObjectsSystemEntry               
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "Each entry  containing savi system-wide parameters for a
+            particular IP version."
+    INDEX { saviWlanObjectsSystemIPVersion  }
+    ::= { saviWlanObjectsSystemTable 1 }
+
+    
+
+SaviWlanObjectsSystemEntry ::=
+    SEQUENCE {
+        saviWlanObjectsSystemIPVersion             InetVersion,
+        saviWlanObjectsSystemMode                  INTEGER,
+        saviWlanObjectsSystemMaxDadDelay           TimeInterval,
+        saviWlanObjectsSystemMaxDadPrepareDelay    TimeInterval
+    }    
+
+saviWlanObjectsSystemIPVersion OBJECT-TYPE
+    SYNTAX     InetVersion
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The IP version "
+    ::= { saviWlanObjectsSystemEntry 1 }
+    
+    
+saviWlanObjectsSystemMode OBJECT-TYPE
+    SYNTAX     INTEGER {
+                 savi-disable(1),
+                 savi-default(2),
+                 savi-dhcp-only(3),
+                 savi-slaac-only(4),
+                 savi-dhcp-slaac-mix(5)
+               }
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "IP Address Assignment Methods. "
+    ::= { saviWlanObjectsSystemEntry 2 }
+    
+saviWlanObjectsSystemMaxDadDelay OBJECT-TYPE
+    SYNTAX     TimeInterval 
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "A constant. When A gratuitous ARP Request or Duplicate 
+            Address Detection Neighbor Solicitation is received 
+            from anchor, the lifetime of the BST(Binding State Table)
+            entry MUST be set to be MAX_ARP_DELAY or MAX_DAD_DELAY 
+            respectively."
+    ::= { saviWlanObjectsSystemEntry 3 }
+
+saviWlanObjectsSystemMaxDadPrepareDelay OBJECT-TYPE
+    SYNTAX     TimeInterval 
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "A constant. When a DHCPv4 DHCPACK or DHCPv6 REPLY message
+            is received, the lifetime of the BST(Binding State Table)
+            entry MUST be set to be MAX_ARP_PREPARE_DELAY or 
+            MAX_DAD_PREPARE_DELAY respectively."
+    ::= { saviWlanObjectsSystemEntry 4 }    
+    
+    
+ 
+ 
+-- Service parameters 
+
+
+saviWlanObjectsServiceTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF SaviWlanObjectsServiceEntry 
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The table containing SAVI running parameters of each Service."
+    ::= { saviWlanObjects 2 }
+
+saviWlanObjectsServiceEntry OBJECT-TYPE
+    SYNTAX     SaviWlanObjectsServiceEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "An entry containing SAVI running parameters of an Service."
+    INDEX { saviWlanObjectsServiceIPVersion, 
+            saviWlanObjectsServiceServiceName }
+    ::= { saviWlanObjectsServiceTable 1 }
+
+    
+
+SaviWlanObjectsServiceEntry ::=
+    SEQUENCE {
+        saviWlanObjectsServiceIPVersion          InetVersion,
+        saviWlanObjectsServiceServiceName        OCTET STRING,
+        saviWlanObjectsServiceValidationStatus   INTEGER,
+        saviWlanObjectsServiceTrustStatus        INTEGER,
+        saviWlanObjectsServiceFilteringNum         Unsigned32
+    }    
+
+saviWlanObjectsServiceIPVersion      OBJECT-TYPE
+    SYNTAX     InetVersion
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The IP version "
+    ::= { saviWlanObjectsServiceEntry 1 }
+
+
+saviWlanObjectsServiceServiceName  OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Service String."
+    ::= { saviWlanObjectsServiceEntry 2 }
+
+saviWlanObjectsServiceValidationStatus OBJECT-TYPE
+    SYNTAX     INTEGER {
+                 enable(1),
+                 disable(2)
+               }
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "The validation status of the interface.  
+            enable(1), check source address.
+            disable(2), don't check source address. 
+            "
+    ::= { saviWlanObjectsServiceEntry 3 }
+
+
+saviWlanObjectsServiceTrustStatus OBJECT-TYPE
+    SYNTAX     INTEGER  {
+    			 no-trust(1),
+                 dhcp-trust(2),
+                 ra-trust(3),
+                 dhcp-ra-trust(4)
+               }
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "The trust status of the interface.  
+           no-trust(1), discard dhcp adv/reply and ra packet,
+           dhcp-trust(2), permit dhcp adv/reply packet and discard ra packet,
+           ra-trust(3), permit ra packet and discard dhcp adv/reply packet,
+           dhcp-ra-trust(4), permit dhcp adv/reply and ra packet.
+           "
+    ::= { saviWlanObjectsServiceEntry 4 }
+    
+saviWlanObjectsServiceFilteringNum OBJECT-TYPE
+    SYNTAX     Unsigned32 
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+           "The max filtering number of the Interface"
+    ::= { saviWlanObjectsServiceEntry 5 }
+
+
+-- Savi Binding Table
+
+saviWlanObjectsBindingTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF SaviWlanObjectsBindingEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Binding State Table containing the state of binding 
+            between source address and anchor."
+    ::= { saviWlanObjects 3 }
+
+saviWlanObjectsBindingEntry OBJECT-TYPE
+    SYNTAX     SaviWlanObjectsBindingEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "An entry containing the state of binding between source 
+            address and anchor. Entries are keyed on the anchor, 
+            binding type, source IP address version, and source IP 
+            address."
+    INDEX { saviWlanObjectsBindingIpAddressType,
+            saviWlanObjectsBindingType,
+            saviWlanObjectsBindingServiceName,
+            saviWlanObjectsBindingIpAddress
+            }
+    ::= { saviWlanObjectsBindingTable 1 }
+
+SaviWlanObjectsBindingEntry ::= 
+    SEQUENCE {
+        saviWlanObjectsBindingIpAddressType  InetAddressType,
+        saviWlanObjectsBindingType           INTEGER,
+        saviWlanObjectsBindingServiceName	 OCTET STRING,
+        saviWlanObjectsBindingIpAddress      InetAddress,
+        saviWlanObjectsBindingMacAddr	       MacAddress,
+        saviWlanObjectsBindingState	         INTEGER,
+        saviWlanObjectsBindingLifetime	     TimeInterval,
+	      saviWlanObjectsBindingRowStatus      RowStatus
+	 }
+
+saviWlanObjectsBindingIpAddressType OBJECT-TYPE
+    SYNTAX     InetAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "IP address type of the  binding source IP"
+    ::= { saviWlanObjectsBindingEntry 1 }
+
+saviWlanObjectsBindingType OBJECT-TYPE
+    SYNTAX     INTEGER {
+                 static(1),          
+                 slaac(2),
+                 dhcp(3) 
+               }
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "IP address assignment methods." 
+    ::= { saviWlanObjectsBindingEntry 2 }
+
+saviWlanObjectsBindingServiceName  OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Service String."
+    ::= { saviWlanObjectsBindingEntry 3 }
+
+    
+saviWlanObjectsBindingIpAddress OBJECT-TYPE
+    SYNTAX     InetAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The binding source IP address"
+    ::= { saviWlanObjectsBindingEntry 4 }
+
+saviWlanObjectsBindingMacAddr OBJECT-TYPE
+    SYNTAX     MacAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+           "The binding source mac address."
+    ::= { saviWlanObjectsBindingEntry 5 }
+
+
+saviWlanObjectsBindingState OBJECT-TYPE
+    SYNTAX     INTEGER  {
+                 start(1),
+    	           live(2),
+    	           detection(3),
+    	           query(4),
+    	           bound(5)
+               }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+           "The state of the binding entry. "
+    ::= { saviWlanObjectsBindingEntry 6 }
+
+saviWlanObjectsBindingLifetime OBJECT-TYPE
+    SYNTAX     TimeInterval
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+           "The remaining lifetime of the entry. 
+           If saviWlanObjectsBindingType=static, a value of 2147483647 
+           represents infinity."
+    ::= { saviWlanObjectsBindingEntry 7 }
+    
+
+saviWlanObjectsBindingRowStatus OBJECT-TYPE
+       SYNTAX     RowStatus
+       MAX-ACCESS read-create
+       STATUS     current
+       DESCRIPTION
+             "The status of this row, by which new entries may be
+              created, or old entries deleted from this table. 
+              An Entry can be created or deleted only when 
+              saviWlanObjectsBindingType=static."
+    ::= { saviWlanObjectsBindingEntry 8 }
+
+
+
+-- Savi Filtering Table
+
+saviWlanObjectsFilteringTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF SaviWlanObjectsFilteringEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Filtering Table is used to filter packets."
+    ::= { saviWlanObjects 4 }
+
+saviWlanObjectsFilteringEntry OBJECT-TYPE
+    SYNTAX     SaviWlanObjectsFilteringEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "An entry containing the filtering parameters. Entries are keyed on the anchor."
+    INDEX { saviWlanObjectsFilteringIpAddressType,
+            saviWlanObjectsFilteringServiceName,
+            saviWlanObjectsFilteringIpAddress }
+    ::= { saviWlanObjectsFilteringTable 1 }
+
+SaviWlanObjectsFilteringEntry ::= 
+    SEQUENCE {
+        saviWlanObjectsFilteringIpAddressType  InetAddressType,
+        saviWlanObjectsFilteringServiceName	   OCTET STRING,
+        saviWlanObjectsFilteringIpAddress      InetAddress,
+        saviWlanObjectsFilteringMacAddr        MacAddress
+	 }
+
+
+saviWlanObjectsFilteringIpAddressType OBJECT-TYPE
+    SYNTAX     InetAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "IP address type of the  filtering source IP"
+    ::= { saviWlanObjectsFilteringEntry 1 }
+
+
+saviWlanObjectsFilteringServiceName  OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Service String."
+    ::= { saviWlanObjectsFilteringEntry 2 }
+
+    
+saviWlanObjectsFilteringIpAddress OBJECT-TYPE
+    SYNTAX     InetAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The filtering source IP address"
+    ::= { saviWlanObjectsFilteringEntry 3 }
+
+saviWlanObjectsFilteringMacAddr OBJECT-TYPE
+    SYNTAX     MacAddress
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+           "The filtering source mac address."
+    ::= { saviWlanObjectsFilteringEntry 4 }
+
+
+--count of fail packet of each Service
+
+
+saviWlanObjectsCountTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF SaviWlanObjectsCountEntry 
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The table containing count of packets droped because of validation failure."
+    ::= { saviWlanObjects 5 }
+
+saviWlanObjectsCountEntry OBJECT-TYPE
+    SYNTAX     SaviWlanObjectsCountEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "An entry containing count of packets droped because of validation failure for each Service."
+    INDEX { saviWlanObjectsCountIPVersion, 
+            saviWlanObjectsCountServiceString }
+    ::= { saviWlanObjectsCountTable 1 }
+
+    
+
+SaviWlanObjectsCountEntry ::=
+    SEQUENCE {
+        saviWlanObjectsCountIPVersion          InetVersion,
+        saviWlanObjectsCountServiceString      OCTET STRING,
+        saviWlanObjectsCountFilterPkts         Counter64
+    }    
+
+saviWlanObjectsCountIPVersion      OBJECT-TYPE
+    SYNTAX     InetVersion
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The IP version "
+    ::= { saviWlanObjectsCountEntry 1 }
+
+
+saviWlanObjectsCountServiceString  OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+           "The Service String."
+    ::= { saviWlanObjectsCountEntry 2 }
+
+
+saviWlanObjectsCountFilterPkts OBJECT-TYPE
+    SYNTAX     Counter64 
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+           "The count of Pkts droped."
+    ::= { saviWlanObjectsCountEntry 3 }
+
+
+--Trap definition
+    
+  
+saviWlanNotifications OBJECT IDENTIFIER ::= { saviWlanMIB  2 }
+     
+ 
+saviWlanObjectsSystemChangeNotification NOTIFICATION-TYPE
+    OBJECTS {
+       saviWlanObjectsSystemIPVersion ,
+        saviWlanObjectsSystemMode,
+        saviWlanObjectsSystemMaxDadDelay,
+        saviWlanObjectsSystemMaxDadPrepareDelay
+           }
+    STATUS      current
+    DESCRIPTION
+        "The notification is sent when SAVI system mode is changed."
+    ::= {  saviWlanNotifications 1 }   
+    
+saviWlanObjectsServiceChangeNotification NOTIFICATION-TYPE
+    OBJECTS {
+        saviWlanObjectsServiceIPVersion,
+        saviWlanObjectsServiceServiceString,
+        saviWlanObjectsServiceValidationStatus,
+        saviWlanObjectsServiceTrustStatus,
+        saviWlanObjectsServiceFilteringNum
+           }
+    STATUS      current
+    DESCRIPTION
+        "The notification is sent when SAVI Service mode is changed."
+    ::= {  saviWlanNotifications 2 }   
+    
+                                  
+saviWlanObjectsBindingChangeNotification NOTIFICATION-TYPE
+    OBJECTS {
+        saviWlanObjectsBindingIpAddressType,
+        saviWlanObjectsBindingType,
+        saviWlanObjectsBindingServiceName,
+        saviWlanObjectsBindingIpAddress,
+        saviWlanObjectsBindingMacAddr,
+        saviWlanObjectsBindingState,
+        saviWlanObjectsBindingLifetime
+	 }      
+	  STATUS      current
+    DESCRIPTION
+        "This notification is sent when a binding entry is created or the state of it is changed."
+    ::= { saviWlanNotifications 3 }                            
+
+saviWlanObjectsBindingDeleteNotification NOTIFICATION-TYPE
+    OBJECTS {
+        saviWlanObjectsBindingIpAddressType,
+        saviWlanObjectsBindingType,
+        saviWlanObjectsBindingServiceName,
+        saviWlanObjectsBindingIpAddress,
+        saviWlanObjectsBindingMacAddr,
+        saviWlanObjectsBindingState,
+        saviWlanObjectsBindingLifetime
+	 }      
+	  STATUS      current
+    DESCRIPTION
+        "This notification is sent when a binding entry is deleted."
+    ::= { saviWlanNotifications 4 }  
+
+
+iWlanObjectsFilteringCreateNotification NOTIFICATION-TYPE
+    OBJECTS {
+        saviWlanObjectsFilteringServiceName,
+        saviWlanObjectsFilteringIpAddressType,
+        saviWlanObjectsFilteringIpAddress,
+        saviWlanObjectsFilteringMacAddr
+	 }      
+	  STATUS      current
+    DESCRIPTION
+        "This notification is sent when a filtering entry is created."
+    ::= { saviWlanNotifications 5 }                            
+
+iWlanObjectsFilteringDeleteNotification NOTIFICATION-TYPE
+    OBJECTS {
+        saviWlanObjectsFilteringServiceName,
+        saviWlanObjectsFilteringIpAddressType,
+        saviWlanObjectsFilteringIpAddress,
+        saviWlanObjectsFilteringMacAddr
+	 }      
+	  STATUS      current
+    DESCRIPTION
+        "This notification is sent when a filtering entry is deleted."
+    ::= { saviWlanNotifications 6 }     
+    
+   
+-- Conformance information    
+saviWlanConformance OBJECT IDENTIFIER ::= { saviWlanMIB 3 }
+saviWlanCompliances OBJECT IDENTIFIER ::= { saviWlanConformance 1 }
+
+-- Compliance statements
+saviWlanCompliance MODULE-COMPLIANCE
+    STATUS current
+    DESCRIPTION 
+           "The compliance statement for entities which implement SAVI."
+
+    MODULE
+    MANDATORY-GROUPS {
+        systemGroup, 
+        serviceGroup,
+        bindingGroup,
+        filteringGroup
+    }
+
+    ::= { saviWlanCompliances 1}
+        
+saviWlanGroups OBJECT IDENTIFIER ::= { saviWlanConformance 2 }
+
+--Units of conformance
+    
+systemGroup OBJECT-GROUP
+    OBJECTS {
+        saviWlanObjectsSystemMode,
+        saviWlanObjectsSystemMaxDadDelay,
+        saviWlanObjectsSystemMaxDadPrepareDelay
+    }
+    STATUS current
+    DESCRIPTION
+           "The system group of objects containing savi system parameter."
+    ::= {saviWlanGroups 1}
+
+   
+serviceGroup OBJECT-GROUP
+    OBJECTS {
+        saviWlanObjectsServiceValidationStatus,
+        saviWlanObjectsServiceTrustStatus,
+        saviWlanObjectsServiceFilteringNum
+    }
+    STATUS current
+    DESCRIPTION
+           "The Service group of objects containing the savi running parameters
+            of each anchor."
+    ::= {saviWlanGroups 2}
+
+bindingGroup OBJECT-GROUP
+    OBJECTS {
+    	  saviWlanObjectsBindingMacAddr,
+        saviWlanObjectsBindingState, 
+        saviWlanObjectsBindingLifetime,
+        saviWlanObjectsBindingRowStatus
+    }
+    STATUS current
+    DESCRIPTION
+           "The binding group of objects containing the binding information 
+            of anchor and soure ip address. "
+    ::= {saviWlanGroups 3}  
+    
+    
+filteringGroup OBJECT-GROUP
+    OBJECTS {
+    saviWlanObjectsFilteringMacAddr 
+    }
+    STATUS current
+    DESCRIPTION
+           "The filtering group of objects containing the filtering information 
+            of anchor and soure ip address. "
+    ::= {saviWlanGroups 4}
+    
+countGroup OBJECT-GROUP
+     OBJECTS {
+		saviWlanObjectsCountFilterPkts    }
+    STATUS current
+    DESCRIPTION
+           "The filtering group of objects containing count of packets droped because of validation failure for each Service. "
+    ::= {saviWlanGroups 5}
+        
+END
+
+

@@ -1,0 +1,14 @@
+<chart palette='4' decimals='0' enableSmartLabels='1' enableRotation='0' bgColor='99CCFF,FFFFFF' bgAlpha='40,100' bgRatio='0,100' bgAngle='360' showBorder='0' startingAngle='70'  numberSuffix='%'>
+            <set label='公安部一所' value='17'  />
+            <set label='公安部二所' value='12' />
+            <set label='部中心' value='18' />
+            <set label='公安大学' value='8' isSliced='1'/>
+            <set label='铁道部' value='10' isSliced='1'/>
+            <set label='民航公安局' value='16' isSliced='1'/>
+            <set label='公安部四所' value='11' />
+            <set label='信访办' value='12' />
+	        <set label='森林公安局' value='8' />
+            <set label='海关总督' value='10' />
+            <set label='交通部' value='19'/>
+            <set label='一所昌平基地' value='15'/>
+</chart>

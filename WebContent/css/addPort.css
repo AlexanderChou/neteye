@@ -1,0 +1,79 @@
+#portTable{
+	background:#F5FAFC;
+	position:absolute;
+	left:100px;
+	top:60px;
+	width:700px;
+	height:470px;
+	visibility:visible;
+	z-index:1;
+	border-top:20px solid #72A2F1;
+	border-left:2px solid #72A2F1;
+	border-right:2px solid #72A2F1;
+	border-bottom:2px solid #72A2F1;
+}
+#header{
+	position:absolute;
+	top:30px;
+	left:345px
+}
+#txt{
+	border:1px solid #72A2F1;
+}
+#des{
+	position:absolute;
+	left:5px;
+	top:3px;
+}
+#ipv4{
+	position:absolute;
+	left:235px;
+	top:3px;
+}
+#ifindex{
+	position:absolute;
+	left:465px;
+	top:3px;
+}
+#ifname{
+	position:absolute;
+	left:5px;
+	top:30px;
+}
+#ipv6{
+	position:absolute;
+	left:235px;
+	top:30px;
+}
+#speed{
+	position:absolute;
+	left:465px;
+	top:30px;
+}
+#text{
+	position:absolute;
+	left:5px;
+	top:60px;
+}
+#portTable p{
+	position:absolute;
+	bottom:60px;
+	left:50px;
+}
+#but{
+	position:absolute;
+	bottom:20px;
+	left:270px;
+	width:60px;
+}
+#but1{
+	position:absolute;
+	bottom:20px;
+	left:330px;
+	width:60px;
+}
+#add{
+	position:absolute;
+	top:30px;
+	left:660px;
+}

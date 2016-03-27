@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>    
+   	<package name="json" namespace="/json" extends="jsonPackage">   
+    
+		<!-- 已选择的链路端口列表 -->		
+   		<action name = "linkPortList" class='com.view.action.ViewShowAction' method="initDevicePortList">
+   			<result type='json' />
+   		</action>
+   	
+   		<!-- 对拓扑名字的检查 -->
+   		<action name = "nameIsHave" class='com.topo.action.ToPoHisManagerAction' method="checkName">
+   			<result type='json' />
+   		</action>
+   		
+   		<!-- 对拓扑名字的检查 拓扑子网发现 -->
+   		<action name = "nameIsHaveSub" class='com.topo.action.ToPoHisManagerAction' method="checkName">
+   			<result type='json' />
+   		</action>
+   		<action name = "topoCheck" class='com.topo.action.TopoCheckAction' method="checkName">
+   			<result type='json' />
+   		</action>
+   		<action name = "addTopoDevice" class='com.topo.action.TopoEditAction' method="addDevice">
+   			<result type='json' />
+   		</action>
+   		<action name="checkHomePage" class="com.view.action.CheckHomePageAction">
+			<result type='json' />
+		</action>
+   		<action name="viewName" class="com.view.action.ViewNameAction">
+			<result type='json' />
+		</action>
+   		<!-- 拓扑历史开始 -->
+   		<action name="topoHisList" class="com.topo.action.ToPoHisManagerAction" method="getToPoHisList">
+		 	<result type="json" />
+		</action>
+   		<action name="topoDetail" class="com.topo.action.ToPoHisManagerAction" method="topoDeviceList">
+		 	<result type="json" />
+		</action>
+   		<action name="topoLinksList" class="com.topo.action.ToPoHisManagerAction" method="potoLink">
+		 	<result type="json" />
+		</action>
+   		<action name="deleteTopoHis" class="com.topo.action.ToPoHisManagerAction" method="deleteTopoHis">
+		 	<result type="json" />
+		</action>
+   		<!-- 拓扑历史结束 -->
+   		<!-- 判断device表中是否有数据 开始-->
+   		<action name="isNew"	class="com.user.action.UserManagerAction" method="isNew">			
+			<result type="json" />
+		 </action> 
+   		<!-- 判断device表中是否有数据 结束-->
+		<action name="viewAction_*" method="{1}" class="com.view.action.ViewJsonAction">
+     		<result type="json"/>
+     	</action>
+		<action name="viewAdd" class="com.view.action.ViewAddJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="routerAdd" class="com.config.action.RouterAddAction">
+     		<result type="json"/>
+     	</action>
+		<action name="checkName" class="com.view.action.CheckNameAction">
+     		<result type="json"/>
+     	</action>
+		<action name="propertyUpdate" class="com.view.action.PropertyUpdateJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="save" class="com.view.action.ViewSaveAction">
+			<result type="json"/>
+        </action>
+        <action name="serverAdd" class="com.config.action.ServerAddAction">
+			<result type="json"/>
+		</action>
+        <!-- 拓扑发现视图的保存 -->
+     	<action name="topoSave" class="com.topo.action.TopoSaveAction" method="topoSave">
+			<result type="json"/>
+        </action>
+     	<action name="hasOSPF" class="com.topo.action.OSPFAction" method="hasOSPF">
+			<result type="json"/>
+        </action>
+     	<action name="configList" class="com.topo.action.OSPFAction" method="getConfig">
+			<result type="json"/>
+        </action>
+     	<action name="cofigOSPF" class="com.topo.action.OSPFAction" method="configOSPF">
+			<result type="json"/>
+        </action>
+     	<action name="secondTopoStart" class="com.topo.action.TopoSecStartAction">
+			<result type="json"/>
+        </action>     
+        
+        <action name="deviceChose" class="com.view.action.DeviceChoseJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="deviceAdd" class="com.view.action.DeviceAddJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="configSave" class="com.config.action.ConfigSaveAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="addDeviceType" class="com.config.action.TypeAddAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="deviceTypeList" class="com.config.action.DeviceTypeJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="addLink" class="com.config.action.LinkAddJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="linkList" class="com.config.action.LinkListJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="linkAdd" class="com.view.action.LinkAddJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="deviceList" class="com.config.action.DeviceListJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="portList" class="com.config.action.PortListJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="portflow" class="com.config.action.PortFlowJsonAction" method="portConfig">
+     		<result type="json"/>
+     	</action>
+        <action name="info_*" method="{1}" class="com.view.action.InfoJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="ViewShowAction_*" method="{1}" class="com.view.action.ViewShowAction">
+			<result type="json"/>
+		</action>
+     	<action name="InfoAction_*" method="{1}" class="com.view.action.InfoAction">
+			<result type="json"/>
+		</action>
+     	<action name="imageList"  class="com.view.action.ImageListJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="viewRename" class="com.view.action.ReNameAction" method="nameLists">
+			<result type="json" />			
+		</action>	
+		<action name="viewList"  class="com.view.action.ViewListJsonAction">
+     		<result type="json"/>
+     	</action>
+		<action name="viewJoin"  class="com.view.action.ViewJoinAction">
+     		<result type="json"/>
+     	</action>
+     	<action name="getcheckidlink"  class="com.view.action.LinkAddForView">
+     		<result type="json"/>
+     	</action>
+			
+     	<!-- 生成任一时段流量图 开始-->
+     	<action name="customTimePic"	class="com.flow.action.CustomTimePicAction">
+     		<result type="json"/>
+		</action>
+     	<action name="generatePhyPic"	class="com.view.action.GeneratePicAction">
+     		<result type="json"/>
+		</action>
+		<action name="flowStatisticList"	class="com.flow.action.FlowStatisticAction">
+     		<result type="json"/>
+		</action>
+		<action name="anyTimePic"	class="com.config.action.AnyTimePicAction">
+     		<result type="json"/>
+		</action>
+		<action name="addMonitorInf"	class="com.flow.action.ViewMonitorAddAction">
+     		<result type="json"/>
+		</action>
+		<!-- 生成任一时段流量图 结束-->
+     	<!-- 事件部分 开始-->
+     	<action name="alarm"	class="com.event.action.EventAlarmAction">
+     		<result type="json"/>
+		</action>
+     	<action name="objEvenList"	class="com.event.action.ObjEventStatusAction">
+     		<result type="json"/>
+		</action>
+     	<action name="GlobalEvenList"	class="com.event.action.GlobalEventStatusAction">
+     		<result type="json"/>
+		</action>
+     	<action name="objSeqList"	class="com.event.action.ObjEventSeqAction">
+     		<result type="json"/>
+		</action>
+     	<action name="outputTicket"	class="com.event.action.OutPutTicketAction">
+     		<result type="json"/>
+		</action>
+     	<action name="deleteEvent"	class="com.event.action.deleteEventAction">
+     		<result type="json"/>
+		</action>
+		<action name="filterConfig"	class="com.event.action.FilterConfigAction" method="listFilterConfig">
+     		<result type="json"/>
+		</action>
+		<action name="addFilterConfig"	class="com.event.action.FilterConfigAction" method="addFilterConfig">
+     		<result type="json"/>
+		</action>
+		<action name="deleteFilterConfig"	class="com.event.action.FilterConfigAction" method="deleteFilterConfig">
+     		<result type="json"/>
+		</action>
+		<action name="submitFilterConfig"	class="com.event.util.JDOMXML" method="submit">
+     		<result type="json"/>
+		</action>
+		<!-- 事件部分 结束-->
+		<action name="checkDeviceName" class="com.config.action.CheckNameAction">
+     		<result type="json"/>
+     	</action>
+     	<!-- 数据管理-->
+     	<action name = "nameExits" class='com.data.action.BackUpAction' method="checkName">
+   			<result type='json' />
+   		</action>
+   		<action name="doBackUp" class="com.data.action.BackUpAction" method="backUp">
+			<result type='json'/>
+		</action>
+		<action name="resume" class="com.data.action.ComeBackAction" method="view">
+			<result type='json'/>
+		</action>
+		<action name="delBackUp" class="com.data.action.ComeBackAction" method="delete">
+			<result type='json'/>
+		</action>
+		<action name = "recover" class='com.data.action.BackUpAction' method="recover">
+   			<result type='json' />
+   		</action>
+   		
+   		<action name = "listbackupfile" class='com.data.action.GetDirFiles' method="getdirfilesall">
+   			<result type='json' />
+   		</action>
+   		<action name = "modifybackupname" class='com.data.action.GetDirFiles' method="reName">
+   			<result type='json' />
+   		</action>
+   		<action name = "delbackupname" class='com.data.action.GetDirFiles' method="delName">
+   			<result type='json' />
+   		</action>
+   		<!--
+   		<action name = "clearHis" class='com.data.action.SaviBackup' method="BackupSavi">
+   			<result type='json' />
+   		</action>
+   		<action name = "savitree" class='com.data.action.SaviBackup' method="LookSavi">
+   			<result type='json' />
+   		</action>
+   		<action name = "listcheckxml" class='com.data.action.SaviBackup' method="showcheckedSavi">
+   			<result type='json' />
+   		</action>
+   		-->
+   		<action name="update" class='com.update.action.UpdateAction'>
+			<result type='json' />
+		</action>	
+		
+		<!-- 故障列表  -->
+		<action name="faultStatisticList" class="com.fault.action.FaultStaticListAction" >
+			<result type="json" />
+		</action>
+		<action name="searchfaulttime" class="com.fault.action.FaultSearchService" method="faultTimeLists">
+			<result type="json" />
+		</action>
+		<action name="searchfaultip" class="com.fault.action.FaultSearchService" method="faultIPLists">
+			<result type="json" />
+		</action>
+		<action name="listDeviceEvent" class="com.fault.action.FaultDeviceList" method="listDeviceEvent">
+			<result type="json" />
+		</action>
+		
+		<action name="Faultlists" class="com.fault.action.FaultEventSatusView" method="getNodesStutas">
+			<result type="json" />
+		</action>
+		
+		<action name="apaclists" class="com.savi.show.action.HuaSanAction" method="getApiStutas">
+			<result type="json" />
+		</action>
+		
+		<action name="routerlist" class="com.tdrouting.action.TdroutingAction" method="getRouterlist">
+			<result type="json" />
+		</action>
+		
+		<action name="paList" class="com.savi.show.action.HuaSanAction" method="getPaList">
+			<result type="json" />
+		</action>
+		
+		
+		<action name="listShowAC" class="com.savi.show.action.HuaSanAction"
+			method="listAC">
+			<result type="json" />
+		</action>
+		
+		
+		<!-- 流量统计 -->
+		<action name="listflowEvent" class="com.flow.action.FlowEventStatusAction">
+			<result type="json" />
+		</action>
+		<action name="listallwatch" class="com.flow.action.flowDeviceList" method="listallwatch" >
+			<result type="json" />
+		</action>
+		
+		<action name="portStat" class="com.traffic.action.TrafficStatAction" method="portStatList">
+			<result type="json" />
+		</action>	
+		<action name="procotolStat" class="com.traffic.action.TrafficStatAction" method="protocolStatList">
+			<result type="json" />
+		</action>
+		<action name="sessionStat" class="com.traffic.action.TrafficStatAction" method="sessionStatList">
+			<result type="json" />
+		</action>	
+		<action name="numlist" class="com.flow.action.NumList">
+			<result type="json" />
+		</action>
+		<!-- 报表管理 -->
+		<action name="getAllSelfTemplates" class="com.report.action.ReportSelfCreate" method="allSelfTemplates">
+			<result type="json" />
+		</action>
+		<action name="getSelfTemplates" class="com.report.action.ReportSelfCreate" method="selfTemplates">
+			<result type="json" />
+		</action>
+		<action name="addSelfReport" class="com.report.action.ReportSelfAdd">
+			<result type="json" />
+		</action>
+		<action name="outputSelfReport" class="com.report.action.ReportSelfOutput">
+			<result type="json" />
+		</action>
+		<action name="deleteReport" class="com.report.action.ReportDelete">
+			<result type="json" />
+		</action>  
+		
+		<!-- 资产管理管理 -->
+		<action name="listAssetDepart"	class="com.asset.action.AssetDepartManageAction" method="listAssetDepart">
+			<result type='json' />
+			</action>
+		<action name="listAssetDepartName"	class="com.asset.action.AssetDepartManageAction" method="listAssetDepartName">
+			<result type='json' />
+			</action>
+			<action name="addAssetDepart"	class="com.asset.action.AssetDepartManageAction" method="addAssetDepart">
+			<result type='json' />
+			</action>
+			<action name="deleteAssetDepart"	class="com.asset.action.AssetDepartManageAction" method="deleteAssetDepart">
+			<result type='json' />
+			</action>
+			<action name="modifyAssetDepart"	class="com.asset.action.AssetDepartManageAction" method="modifyAssetDepart">
+			<result type='json' />
+			</action>
+			<action name="listAssetUser"	class="com.asset.action.AssetUserManageAction" method="listAssetUser">
+			<result type='json' />
+			</action>
+			<action name="listAssetUserName"	class="com.asset.action.AssetUserManageAction" method="listAssetUserName">
+			<result type='json' />
+			</action>
+			<action name="addAssetUser"	class="com.asset.action.AssetUserManageAction" method="addAssetUser">
+			<result type='json' />
+			</action>
+			<action name="deleteAssetUser"	class="com.asset.action.AssetUserManageAction" method="deleteAssetUser">
+			<result type='json' />
+			</action>
+			<action name="modifyAssetUser"	class="com.asset.action.AssetUserManageAction" method="modifyAssetUser">
+			<result type='json' />
+			</action>
+			<action name="listAssetInfoQuery"	class="com.asset.action.AssetInfoManageAction" method="listAssetInfoQuery">
+			<result type='json' />
+			</action>
+			<action name="listAssetInfo"	class="com.asset.action.AssetInfoManageAction" method="listAssetInfo">
+			<result type='json' />
+			</action>
+			<action name="addAssetInfo"	class="com.asset.action.AssetInfoManageAction" method="addAssetInfo">
+			<result type='json' />
+			</action>
+			<action name="deleteAssetInfo"	class="com.asset.action.AssetInfoManageAction" method="deleteAssetInfo">
+			<result type='json' />
+			</action>
+			<action name="modifyAssetInfo"	class="com.asset.action.AssetInfoManageAction" method="modifyAssetInfo">
+			<result type='json' />
+			</action>
+			<action name="assetSumList"	class="com.asset.action.AssetSumList" method="assetSumList">
+			<result type='json' />
+		</action>
+	   <!-- NetFlow管理 -->
+	   <action name="NetFlowXml"	class="com.netflow.action.PeerInfoAction">
+			<result type='json' />
+	   </action>
+	   <action name="TopNstatistic"	class="com.netflow.action.TopNInfoAction" >
+			<result type='json' />
+	   </action>
+	   <action name="getMatrixInfo"	class="com.netflow.action.TrafficeMatrixInfoAction" 
+	   		method="queryTrafficMatrixInfo">
+			<result type='json' />
+	   </action>
+	    <action name="viewHistory"	class="com.netflow.action.TrafficeMatrixInfoAction" 
+	   		method="viewHistory">
+			<result type='json' />
+	   </action>
+	   
+	  <action name="getMatrixInfoInRegion"	class="com.netflow.action.TrafficMatrixWithinRegionAction" 
+	   		method="queryTrafficMatrixInfoInRegion">
+			<result type='json' /> 	
+			
+	   </action>
+	    <action name="viewHistoryRegion" class="com.netflow.action.TrafficMatrixWithinRegionAction" 
+	   		method="viewHistory">
+			<result type='json' /> 	
+	     </action>
+	   <!-- analysis管理 -->  	
+	   <action name="UserTrafficStatistic"	class="com.analysis.action.TopNUserTrafficAction" >
+			<result type='json' />
+	   </action>
+	   <action name="UserPacketStatistic"	class="com.analysis.action.TopNUserPacketAction" >
+			<result type='json' />
+	   </action>
+	   <action name="UserPortStatistic"	class="com.analysis.action.TopNUserPortAction" >
+			<result type='json' />
+	   </action>
+	   <action name="UserProtocolStatistic"	class="com.analysis.action.TopNUserProtocolAction" >
+			<result type='json' />
+	   </action>
+	   
+	   <action name="HistoryTrafficStatistic"	class="com.analysis.action.TopNHistoryTrafficAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryPacketStatistic"	class="com.analysis.action.TopNHistoryPacketAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryPortStatistic"	class="com.analysis.action.TopNHistoryPortAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryProtocolStatistic"	class="com.analysis.action.TopNHistoryProtocolAction" >
+			<result type='json' />
+	   </action>
+			         
+	   <action name="TotalHotsiteStatistic"	class="com.analysis.action.TotalHotsiteAction" >
+			<result type='json' />
+	   </action>
+	   <action name="TotalPortStatistic"	class="com.analysis.action.TotalPortAction" >
+			<result type='json' />
+	   </action>
+	   <action name="TotalProtocolStatistic"	class="com.analysis.action.TotalProtocolAction" >
+			<result type='json' />
+	   </action>
+	   <action name="TotalTtlStatistic"	class="com.analysis.action.TotalTtlAction" >
+			<result type='json' />
+	   </action>
+	   <action name="TotalPktlenStatistic"	class="com.analysis.action.TotalPktlenAction" >
+			<result type='json' />
+	   </action>
+	   
+	   <action name="HistoryHotsite"	class="com.analysis.action.TotalHistoryHotsiteAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryPort"	class="com.analysis.action.TotalHistoryPortAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryProtocol"	class="com.analysis.action.TotalHistoryProtocolAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryTtl"	class="com.analysis.action.TotalHistoryTtlAction" >
+			<result type='json' />
+	   </action>
+	   <action name="HistoryPktlen"	class="com.analysis.action.TotalHistoryPktlenAction" >
+			<result type='json' />
+	   </action>
+	   <!-- 定制修改 -->
+		<action name="updatainitname" class="com.config.action.initConfigName" method="updatasystemname">
+			<result type='json' />
+		</action>
+		<!--For Android -->
+		<action name="getAlarmInfo" class="com.event.action.AlarmInfoAction">
+			<result type='json' />
+		</action>
+		<!-- IP地址统计 -->
+		<action name="nodeHourIP"  method="nodeHourIP" class="com.totalIP.action.NodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="nodeDayIP"  method="nodeDayIP" class="com.totalIP.action.NodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="nodeWeekIP"  method="nodeWeekIP" class="com.totalIP.action.NodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="nodeMonthIP"  method="nodeMonthIP" class="com.totalIP.action.NodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeHourIP"  method="totalNodeHourIP" class="com.totalIP.action.TotalNodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeDayIP"  method="totalNodeDayIP" class="com.totalIP.action.TotalNodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeWeekIP"  method="totalNodeWeekIP" class="com.totalIP.action.TotalNodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeMonthIP"  method="totalNodeMonthIP" class="com.totalIP.action.TotalNodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeAllDateIP"  method="nodeAllDate" class="com.totalIP.action.TotalNodeIPAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeOneHour"  method="totalNodeOneHour" class="com.totalIP.action.TotalNodeOneDateAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeOneDay"  method="totalNodeOneDay" class="com.totalIP.action.TotalNodeOneDateAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeOneWeek"  method="totalNodeOneWeek" class="com.totalIP.action.TotalNodeOneDateAction">
+			<result type='json'/>
+		</action>
+		<action name="totalNodeOneMonth"  method="totalNodeOneMonth" class="com.totalIP.action.TotalNodeOneDateAction">
+			<result type='json'/>
+		</action>
+		<action name="everyNodeTotal12Hour"  method="everyNodeTotal12Hour" class="com.totalIP.action.EveryNodeTotalDateAction">
+			<result type='json'/>
+		</action>
+		<action name="everyNodeTotal7Day"  method="everyNodeTotal7Day" class="com.totalIP.action.EveryNodeTotalDateAction">
+			<result type='json'/>
+		</action>
+		<action name="everyNodeTotal4Week"  method="everyNodeTotal4Week" class="com.totalIP.action.EveryNodeTotalDateAction">
+			<result type='json'/>
+		</action>
+		<action name="everyNodeTotal12Month"  method="everyNodeTotal12Month" class="com.totalIP.action.EveryNodeTotalDateAction">
+			<result type='json'/>
+		</action>
+		<action name="getReachability" class="com.totalIP.action.ReachabilityAction">
+			<result type='json'/>
+		</action>
+		<action name="getv6Reachability" class="com.totalIP.action.Reachabilityv6Action">
+			<result type='json'/>
+		</action>
+		<action name="getv4v6Reachability" class="com.totalIP.action.Reachabilityv4v6Action">
+			<result type='json'/>
+		</action>
+		
+		<!-- 数据字典 -->
+		<action name="dicDetailList" class="com.config.action.DicDetailJsonAction">
+     		<result type="json"/>
+     	</action>
+     	<!-- 性能参数配置 -->
+     	<action name="performanceParaConfig" class="com.config.action.PerformanceParaAction">
+     		<result type="json"/>
+     	</action>
+     	<!-- 生成任一时段性能图 开始-->
+     	<action name="performanceCustomTimePic"	class="com.flow.action.PerformanceCustomTimePicAction">
+     		<result type="json"/>
+		</action>
+		
+		
+		<action name="getallLossXML" class="com.totalIP.action.LossXmlAction" method="alllossxml">
+			<result type='json'/>
+		</action>
+		<action name="getallDelayXML" class="com.totalIP.action.DelayXmlAction" method="alldelayxml">
+			<result type='json'/>
+		</action>
+		<action name="getallReorderingXML" class="com.totalIP.action.ReorderingXmlAction" method="allreorderingxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv6LossXML" class="com.totalIP.action.Lossv6XmlAction" method="alllossxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv6DelayXML" class="com.totalIP.action.Delayv6XmlAction" method="alldelayxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv6ReorderingXML" class="com.totalIP.action.Reorderingv6XmlAction" method="allreorderingxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv4v6LossXML" class="com.totalIP.action.Lossv4v6XmlAction" method="alllossxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv4v6DelayXML" class="com.totalIP.action.Delayv4v6XmlAction" method="alldelayxml">
+			<result type='json'/>
+		</action>
+		<action name="getallv4v6ReorderingXML" class="com.totalIP.action.Reorderingv4v6XmlAction" method="allreorderingxml">
+			<result type='json'/>
+		</action>
+	 </package>
+</struts>

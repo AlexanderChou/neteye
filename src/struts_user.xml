@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts> 
+
+	<package name="userJson" extends="jsonPackage" >
+	
+		<!-- 得到所有的设备类型 -->
+		<action name="listAllDeviceType" class="com.config.action.DeviceIconManagerAction" method="listAllDeviceType">
+			<result type="json" />
+		</action>
+		
+		<!-- 删除图标 -->
+		<action name="deleteDeviceIcon" class="com.config.action.DeviceIconManagerAction" method="deleteDeviceIcon">
+			<result type="json" />
+		</action>
+	
+		<!-- 得到所有图标 -->
+		<action name="getAllDeviceIcons" class="com.config.action.DeviceIconManagerAction" method="listAllDeviceIcons">
+			<result type="json" />
+		</action>
+	
+		<!-- 判断某个拓扑发现文件是否结束 -->
+		<action name="topoDisIsEnd" class="com.topo.action.ToPoHisManagerAction" method="topoDisIsEnd">
+			<result type="json" />
+		</action>	
+	
+		<!-- 首先将以前分区生成的文件删除，然后根据新的阈值重新分区并生成相应的txt文件 -->
+		<action name="changeThreshold" class="com.topo.action.ToPoHisManagerAction" method="changeThreshold">
+			<result type="json" />
+		</action>	
+		
+		<!-- 得到拓扑视图的热区域的 area -->
+		<action name="listHtmlArea" class="com.topo.action.ToPoHisManagerAction" method="listHtmlArea">
+			<result type="json" />
+		</action>	
+		
+		<!-- 应用于拓扑发现 查看视图是否含有多个区间 -->
+		<action name="checkIsMore" class="com.topo.action.ToPoHisManagerAction" method="checkIsMore">
+			<result type="json" />
+		</action>	
+		
+		<!-- 返回区间的各个名字 -->
+		<action name="disNameStrResturn" class="com.topo.action.ToPoHisManagerAction" method="disNameStrResturn">
+			<result type="json" />
+		</action>
+		
+		<!-- 部门列表 -->
+		<action name="listDepartment" class="com.user.action.DepartmentManagerAction" method="listDepartment">
+			<result type="json" />
+		</action>
+		
+		<!-- 以 form 表单的形式提交表单  -->
+		<action name="addDepartmentbyForm" class="com.user.action.DepartmentManagerAction" method="addDepartmentbyForm">
+			<result type="json" />
+		</action>
+		
+		<!-- 部门列表 -->
+		<action name="listAllDepartment" class="com.user.action.DepartmentManagerAction" method="listAllDepartment">
+			<result type="json" />
+		</action>
+		
+		<!-- 部门列表 -->
+		<action name="addUserByForm" class="com.user.action.UserManagerAction" method="addUserByForm">
+			<result type="json" />
+		</action>
+		
+		<!-- 检查部门名字是否存在 -->
+		<action name="checkDepartmentName" class="com.user.action.DepartmentManagerAction" method="checkDepartmentName">
+			<result type="json" />
+		</action>
+		
+		<!-- 检查用户组名字是否存在 -->
+		<action name="checkUserGroupNameIsHave" class="com.user.action.UserGroupManagerAction" method="checkUserGroupNameIsHave">
+			<result type="json" />
+		</action>
+		
+		<!-- 得到用户的用户组列表 -->
+		<action name="getUGSByUser" class="com.user.action.UserManagerAction" method="listUserGroupByUserId">
+			<result type="json" />
+		</action>
+		
+			<!-- 所有资源组列表 -->
+		<action name="allResourceGroup" class="com.user.action.ResourceGroupManagerAction" method="allResourceGroup">
+			<result type="json" />
+		</action>
+		
+		<!-- 列出所有的资源组列表 -->
+		<action name="listAllResourceGroup" class="com.user.action.UserGroupManagerAction" method="listAllResourceGroup">
+			<result type="json" />
+		</action>
+		<!-- 检查资源组名字是否存在 -->
+		<action name="checkesourceGroupName" class="com.user.action.ResourceGroupManagerAction" method="checkResourceGroupNameIsHave">
+			<result type="json" />
+		</action>
+		<!-- 以 form 的形式添加资源组-->
+		<action name="addResourceGroup" class="com.user.action.ResourceGroupManagerAction" method="addResourceGroupByForm">
+			<result type="json" />
+		</action>
+		
+		<!-- 列出有户组所有的资源组列表 -->
+		<action name="listResourceByUserGroup" class="com.user.action.UserGroupManagerAction" method="listResourceByUserGroup">
+			<result type="json" />
+		</action>
+		
+		<!-- 用户组列表 -->
+		<action name="listUserGroup" class="com.user.action.UserGroupManagerAction" method="listUserGroup">
+			<result type="json" />
+		</action>
+		
+		
+		<!-- 以 form 的形式添加用户组-->
+		<action name="addUserGroupByForm" class="com.user.action.UserGroupManagerAction" method="addUserGroupByForm">
+			<result type="json" />
+		</action>
+		
+		<!-- 所有用户组列表 -->
+		<action name="listAllUserGroup" class="com.user.action.UserGroupManagerAction" method="listAllUserGroup">
+			<result type="json" />
+		</action>
+
+		<!-- 用户列表 -->
+		<action name="listUsers" class="com.user.action.UserManagerAction" method="listUsers">
+			<result type="json" />
+		</action>
+
+		<!-- 查看用户登录信息 -->
+		<action name="userLoginInfo" class="com.user.action.LogManagerAction" method="userLoginInfo">
+			<result type="json" />
+		</action>
+		
+		
+		<!-- 切换用户登录身份  -->
+		<action name="changeUser" class="com.user.action.UserManagerAction" method="changeUser">
+			<result type="json" />
+		</action>
+		
+	</package>
+	  	
+	<package name="user" extends="basePackage">
+		<!--系统定制 -->
+		<action name="initConfigName" class="com.config.action.initConfigName" method="readsystemname">
+			<result>/WEB-INF/pages/config/initConfigName.jsp</result>
+		</action>
+		
+	
+		<!-- 图标管理 -->
+		<action name="deviceIconManagerList">
+			<result>/WEB-INF/pages/config/deviceIconList.jsp</result>
+		</action>
+		<!-- 更改图标 -->
+		<action name="alterDeviceIcon" class="com.config.action.DeviceIconManagerAction" method="alterDeviceIcon">
+			<param name="allowTypes">
+				image/bmp,image/png,image/gif,image/jpeg,image/pjpeg
+			</param>
+			<param name="savePath">/images</param>
+			<result>/WEB-INF/pages/view/fileupload.jsp</result>
+			<result name="input">
+				/WEB-INF/pages/view/fileupload.jsp
+			</result>
+		</action>
+		<!-- 添加图标 -->
+		<action name="addDeviceIcon" class="com.config.action.DeviceIconManagerAction" method="addDeviceIcon">
+			<param name="allowTypes">
+				image/bmp,image/png,image/gif,image/jpeg,image/pjpeg
+			</param>
+			<param name="savePath">/images</param>
+			<result>/WEB-INF/pages/view/fileupload.jsp</result>
+			<result name="input">
+				/WEB-INF/pages/view/fileupload.jsp
+			</result>
+		</action>	
+	
+	
+		<!-- 终止某个拓扑发现进程 -->
+		<action name="stopTopoProcess" class="com.topo.action.ToPoHisManagerAction" method="stopTopoProcess">
+			<result name="success" type="redirectAction">manage.do</result>
+		</action>	
+		
+		<!-- 用户有导航栏的初始化 -->
+		<action name="rightMenu">
+			<result>/WEB-INF/pages/user/right_menu.jsp</result>
+		</action>
+		
+		<!-- 打印已选择用户组列表 -->
+		<action name="userGroupTreeNS">
+			<result>/WEB-INF/pages/user/userGroupTreeNoSelect.jsp</result>
+		</action>
+		
+		<!-- 打印已选择用户组列表 -->
+		<action name="userGroupTreeSelect">
+			<result>/WEB-INF/pages/user/userGroupTreeSelect.jsp</result>
+		</action>
+		
+		<!-- 进入日志查看信息页面 -->
+		<action name="log">
+			<result>/WEB-INF/pages/user/log.jsp</result>
+		</action>
+		
+		<!-- 进入部门维护页面 -->
+		<action name="department">
+			<result>/WEB-INF/pages/user/department.jsp</result>
+		</action>
+		
+		<!-- 进入用户组维护页面 -->
+		<action name="userGroup">
+			<result>/WEB-INF/pages/user/userGroup.jsp</result>
+		</action>
+	
+		<!-- 进入用户维护页面 -->
+		<action name="user">
+			<result>/WEB-INF/pages/user/user.jsp</result>
+		</action>
+		
+			<!-- 生成树  -->
+		<action name="toUserChose">
+			<result>/WEB-INF/pages/user/chosedTree.jsp</result>
+		</action>
+		
+		<!-- 部门管理部分 -->	
+		
+		<!-- 删除部门 -->
+		<action name="deleteDepartment" class="com.user.action.DepartmentManagerAction" method="deleteDepartment">
+		</action>
+		
+		<!-- 添加部门页面  -->
+		<action name="addDepartment" class="com.user.action.DepartmentManagerAction" method="addDepartment">
+		</action>
+		<!-- 用户组管理部分 -->
+		
+		<!-- 添加用户组 -->
+		<action name="addUserGroup" class="com.user.action.UserGroupManagerAction" method="addUserGroup">
+		</action>
+		
+		<!-- 删除用户组 -->
+		<action name="deleteUserGroup" class="com.user.action.UserGroupManagerAction" method="deleteUserGroup">
+		</action>
+		
+		<!-- 为用户组添加权限 -->
+		<action name="assignPopedom" class="com.user.action.UserGroupManagerAction" method="assignPopedom">
+		</action>
+		
+		<!-- 用户管理部分 -->
+		
+		<!-- 用户页面初始化 -->
+		<action name="initUser" class="com.user.action.UserManagerAction" method="initUser">
+			<result name="success">/WEB-INF/pages/user/userInfo.jsp</result>
+		</action>
+		
+		<!-- 添加用户 -->
+		<action name="modifyUser" class="com.user.action.UserManagerAction" method="modifyUser">
+		</action>
+		
+		<!-- 编辑用户 -->
+		<action name="editUserInfo" class="com.user.action.UserManagerAction" method="editUserInfo">
+		</action>
+		
+		<!-- 删除用户 -->
+		<action name="deleteUser" class="com.user.action.UserManagerAction" method="deleteUser">
+		</action>
+		
+		<!-- 添加用户权限 -->
+		<action name="addUserPopedom" class="com.user.action.UserManagerAction" method="addUserPopedom">
+		</action>
+		
+		<!-- 批量删除用户登录信息 -->
+		<action name="deleteLogs" class="com.user.action.LogManagerAction" method="deleteLogs">
+		</action>
+		
+		<!-- 资源组信息  -->
+		<action name="resourceGroupInfo">
+			<result>/WEB-INF/pages/user/resourceGroup.jsp</result>
+		</action>
+		
+		<!-- 为资源组添加资源 -->
+		<action name="assignRPopedom" class="com.user.action.ResourceGroupManagerAction" method="assignRPopedom">
+		</action>
+		<!-- 添加资源组页面  -->
+		<action name="addresourceGroup" class="com.user.action.ResourceGroupManagerAction" method="editResourceGroup">
+		</action>
+		<!-- 删除资源组 -->
+		<action name="deleteResourceGroup" class="com.user.action.ResourceGroupManagerAction" method="deleteResourceGroup">
+		</action>
+	</package>
+</struts>
+ 

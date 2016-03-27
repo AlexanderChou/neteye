@@ -1,0 +1,160 @@
+body {
+	margin: 0px;
+	border: none;
+	background-color:#f2f4ff;
+	border-left:1px solid #8bb1e8;
+	SCROLLBAR-FACE-COLOR: #bfd7f2;
+	SCROLLBAR-HIGHLIGHT-COLOR: #e5f0ff;
+	SCROLLBAR-SHADOW-COLOR: #6593cf;
+	SCROLLBAR-3DLIGHT-COLOR: #6593cf;
+	SCROLLBAR-ARROW-COLOR: #6593cf;
+	SCROLLBAR-TRACK-COLOR: #e5f0ff;
+	SCROLLBAR-DARKSHADOW-COLOR: #e5f0ff;
+}
+
+body,table,th,tr,td {
+	font-size:15px;
+}
+
+#topoTable{
+	background:#F5FAFC;
+	position:absolute;
+	width:550px;
+	height:400px;
+	visibility:visible;
+	z-index:1;
+	border-top:20px solid #72A2F1;
+	border-left:2px solid #72A2F1;
+	border-right:2px solid #72A2F1;
+	border-bottom:2px solid #72A2F1;
+	padding-bottom:60px;
+}
+#title{
+	position:absolute;
+	top:-20px;
+	font-weight:bold;
+}
+#title p{
+	position:absolute;
+	top:2px;
+	left:450px;
+	font-weight:900;
+}
+
+#begin{
+	position:absolute;
+	cursor:hand;
+	left:230px;
+	valign:bottom;
+	margin-top:25px;
+}
+
+.blue{color:#0075a9; font-size:12px; font-weight:bold;}
+.red{color:#e60012;font-size:12px; font-weight:bold;}
+.green{color:#339900;font-size:12px; font-weight:bold;}
+
+/* 嵌入页面的主显示区域   */
+
+body {
+	text-align:center;
+}
+
+#bodyDiv {
+	position:relative;
+	top:50%;
+	width:expression(document.body.clientWidth < 1024? 960:1220 );
+	text-align:center;
+}
+
+#menu {
+	position:relative;
+	top:-50%;
+	float:left;
+}
+
+#infoDiv {
+	position:relative;
+	top:-50%;
+	float:left;
+	text-align:left;
+}
+
+/* 导航页面 */
+#menuDiv {
+	padding:0 0 0 0;
+	width:155px;
+	height:expression(document.body.clientHeight - 62);
+}
+
+#top{
+	width:152px;
+	height:26px;
+	background-image: url(/images/switch/h2bg.gif);
+	border-right-width:1px;
+	border-right-color:#99BBE8;
+	border-right-style:solid;
+	background-repeat: repeat-x;
+	margin-left:-3px;
+}
+
+#top h2{
+	width:150px;
+	height:24px;
+	float:left;
+	font-size:12px;
+	text-align:center;
+	line-height:20px;
+	color: #15428B;
+	font-weight: bold;
+	padding-top: 2px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-right-color: #99BBE8;
+	border-left-color: #99BBE8;
+}
+
+#leftMenu{
+	postion:absolute;
+	width:150px;
+	height:100%;
+	background-color:#DAE7F6;
+	float:left;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #99BBE8;
+	border-left-color: #99BBE8;
+	border-bottom-color: solid 1px #99BBE8;
+	padding-bottom:5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #99BBE8;
+}
+
+#leftMenu ul{margin:10px;}
+
+#leftMenu ul li{
+	margin-top:20px;
+	padding:2px 0 0 30px;
+	width:100px !important;
+	width:130px;
+	height:22px;
+	display:block;
+	cursor:pointer;
+	margin-bottom:5px;
+	background-color: #D9E8FB;
+	background-image: url(/images/switch/tabbg01.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	padding-top: 2px;
+	line-height: 20px;
+	text-align:left;
+}
+
+#leftMenu ul li a {
+	color:#000000;
+	text-decoration:none;
+	font-size:85%;
+	background-repeat: repeat-x;
+}

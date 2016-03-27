@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.UserPojo" table="user" lazy="false">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="realName" column="realname" type="string"/>
+        <property name="password" column="password" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="telephone" column="telephone" type="string"/>
+        
+        <many-to-one name="department" column="department_id" cascade="none" not-null="false" lazy="false"></many-to-one>
+    </class>
+</hibernate-mapping>

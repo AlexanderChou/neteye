@@ -1,0 +1,93 @@
+2012-5-14
+恢复事件统计功能
+（1）js/main.js第60行添加{'title':'事件统计', 'url':"EventStatisticQuery.do"}
+（2）pages/event/right_menu.jsp第40行添加<li><a href="EventStatisticQuery.do">事件统计</a></li>
+修改事件统计空指针异常
+（1）com.base.service.EventService.java第428行，将Event改为EventPojo
+2012-5-15
+（1）更改cvs中db的neteye文件，将resource中的resource_group_id去掉，同时更新了默认资源值
+（2）将userGroup.js文件396行的信息由"为该用户选择用户组"改为"为角色分配资源"
+（3）将report_config.js文件的773行的信息由"报表模板已经保存"改为"报表模板保存成功"
+（4）修改struts_ticket.xml文件的208行224行，增加上传和下载doc、excel文件的功能
+（5）修改新建ticket，上传附件后，系统提示"没有权限创建ticket"的bug.注释掉30-34行代码。
+2012-6-6
+修改复选框显示不正常的bug
+（1）为资源组分配资源
+主要是修改resourceGroup.js文件，删除代码：
+,
+listeners:{
+	"checkchange":function(node){
+	     mytoggleChecked(node);
+	}
+}
+及
+setTimeout(function(){
+	mytoggleChecked(root);
+	mytoggleChecked(root);
+}, 1000);
+增加代码：
+tree.on('checkchange', function(node, checked) {        
+	mytoggleChecked(node);
+}, tree);
+
+修改JSONTree.java的代码：
+将public String getChoseResource(boolean isChosed) throws Exception {}
+方法中
+chosedNode.put(rg.getResourceId().toString(),rg.getId());
+改为：
+chosedNode.put(rg.getResourceId().toString(),rg.getResourceGroupId());
+
+（2）添加设备
+删除代码：
+,
+listeners:{
+	"checkchange":function(node){
+	     mytoggleChecked(node);
+	}
+}
+增加代码：
+tree.on('checkchange', function(node, checked) {        
+	mytoggleChecked(node);
+}, tree);
+
+2012-6-13
+增加服务器和主机对ipv6的支持
+（1）添加服务器和删除服务器
+修改addServerInfo.jsp文件的内容,增加ipv6输入框
+修改ServerAddAction.java文件内容：当增加服务器时，自动在interface表中增加一条默认记录，以便编辑视图时，可以与其它节点建立连接，增加代码如下：
+        //同时需要向interface表中增加一条记录，以便能够同其它设备间创建链路
+		IfInterface ifinterface=new IfInterface();
+		
+		if(description!=null && !description.equals("")){
+			ifinterface.setDescription(description);
+		}
+		if(chineseName!=null && !chineseName.equals("")){
+			ifinterface.setChineseName(chineseName);
+		}	
+		ifinterface.setIfindex("1");
+		if(IP!=null && !IP.equals("")){
+			ifinterface.setIpv4(IP);						
+		}										
+		if(IPv6!=null && !IPv6.equals("")){
+				ifinterface.setIpv6(IPv6);							
+		}
+		ifinterface.setMaxSpeed(Double.valueOf("0"));
+		ifinterface.setSpeed(Double.valueOf("0"));
+		ifinterface.setTrafficFlag(1);
+		ifinterface.setDevice(device);
+		new PortService().save(ifinterface);
+修改ServerDAO.java文件内容，当删除服务器节点时，如果该服务器没有开启相应服务，那么就不用再改写server.xml文件内容，增加了一个flag作为是否开启相应服务的标记，以此决定是否改写xml文件
+（2）添加工作站和其它未知设备
+修改addOtherInfo.jsp文件内容，增加ipv6输入框和snmp版本输入框
+修改RouterAddAction.java文件内容：当增加工作站或其它未知设备时，自动在interface表中增加一条默认记录，以便编辑视图时，可以与其它节点建立连接，增加代码主要为设备类型大于3时的段落
+（3）修改editor.jsp中check框选择不正常的bug，修改办法参见2012-6-6
+2012-6-19
+对短信报警部分进行功能完善：
+（1）修改MessageInfoConfiguration.jsp，将发送人手机号和密码置为不可用
+（2）修改EventServer.java的doAction1方法，规定发送内容格式；
+	  修改EventDAO.java的sendMessage方法，对短信请求进行密码验证；
+             修改EventServer.java，增加SendSMSWithXML方法，发送内容采用XML格式；
+2012-6-20
+对视图的链路显示进行了修改，主要是ViewShowAction.java的getChildrenLinks方法，增加对IPv6的支持。
+2012-10-26
+在主监控视图的配置中，去掉与用户关联的信息，即修改PageConfigAction.java文件，若页面允许用户修改，该action方法中直接允许修改

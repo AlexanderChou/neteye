@@ -1,0 +1,219 @@
+body {
+	margin: 0px;
+	border: none;
+	background-color:#f2f4ff;
+	border-left:1px solid #8bb1e8;
+	SCROLLBAR-FACE-COLOR: #D0F0D2;
+	SCROLLBAR-SHADOW-COLOR: #158B23;
+	SCROLLBAR-3DLIGHT-COLOR: #158B23;
+	SCROLLBAR-ARROW-COLOR: #158B23;
+	SCROLLBAR-TRACK-COLOR: #98E89E;
+	SCROLLBAR-DARKSHADOW-COLOR: #98E89E;
+}
+
+body,table,th,tr,td {
+	font-size:15px;
+}
+
+#topoTable{
+	background:#F5FAFC;
+	position:absolute;
+	width:550px;
+	height:400px;
+	visibility:visible;
+	z-index:1;
+	border-top:20px solid #72A2F1;
+	border-left:2px solid #72A2F1;
+	border-right:2px solid #72A2F1;
+	border-bottom:2px solid #72A2F1;
+	padding-bottom:60px;
+}
+#title{
+	position:absolute;
+	top:-20px;
+	font-weight:bold;
+}
+#title p{
+	position:absolute;
+	top:2px;
+	left:450px;
+	font-weight:900;
+}
+
+#begin{
+	position:absolute;
+	cursor:hand;
+	left:230px;
+	valign:bottom;
+	margin-top:25px;
+}
+
+.blue{color:#0075a9; font-size:12px; font-weight:bold;}
+.red{color:#e60012;font-size:12px; font-weight:bold;}
+.green{color:#339900;font-size:12px; font-weight:bold;}
+
+/* 以下是我添加的css样式   */
+
+
+/* 嵌入页面的主显示区域   */
+
+body,html{height: 100%;}
+
+#outer { 
+	margin-left:auto;margin-right:auto;height: 100%; overflow: hidden; position: relative;width: 100%; display: table;width:1000px;
+	#position:relative;
+}
+
+#bodyDiv {
+	width:1000px;
+	display:table-cell;
+    #position:absolute;
+    #top:50%;		
+	vertical-align:middle;
+}
+
+#menu {
+	#position:relative;
+	#top: -50%;
+	position:relative;
+	float:left;
+}
+
+#infoDiv {
+	#position:relative;
+	#top: -50%;
+	position:relative;
+	float:left;
+	text-align:left;
+	margin-left:3px;
+}
+
+#buttonDiv,.buttonDiv{
+	background-color:#D0F0D2;
+	padding: 5px 0px 5px 10px;
+	height:100%;
+}
+
+#buttonDiv input {
+	margin-left:3px;
+}
+
+input[type="button"], input[type="submit"] {
+	BORDER-RIGHT: #002D96 1px solid;
+	PADDING-RIGHT: 2px; 
+	BORDER-TOP: #002D96 1px solid; 
+	PADDING-LEFT: 5px; 
+	FONT-SIZE: 12px; 
+	FILTER:   
+	progid:DXImageTransform.Microsoft.Gradient(GradientType=0,   
+	StartColorStr=#FFFFFF, EndColorStr=#9DBCEA); 
+	BORDER-LEFT: #002D96   
+	1px solid; 
+	CURSOR: hand; COLOR: black; PADDING-TOP: 2px;   
+	BORDER-BOTTOM: #002D96 1px solid;
+	
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+	BORDER-RIGHT: #2C59AA 1px solid; PADDING-RIGHT: 2px; BORDER-TOP:   
+	#2C59AA 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 12px; FILTER:   
+	progid:DXImageTransform.Microsoft.Gradient(GradientType=0,   
+	StartColorStr=#ffffff, EndColorStr=#D7E7FA); BORDER-LEFT: #2C59AA   
+	1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px;   
+	BORDER-BOTTOM: #2C59AA 1px solid 
+}
+
+/* 导航页面  right_menu.jsp */
+#menuDiv, .menuDiv{
+	padding:0 0 0 0;
+	width:150px;
+}
+
+#top{
+	position:relative;
+	z-index:102;
+	width:148px;
+	height:26px;
+	background-image: url("../images/default/panel/white-top-bottom.gif");
+	border-right:1px solid #98E89E;
+	border-left:1px solid #98E89E;
+	
+	background-repeat: repeat-x;
+	margin-left:0px;
+	
+}
+
+#top h2{
+	position:relative;
+	width:150px;
+	height:24px;
+	float:left;
+	font-size:12px;
+	text-align:center;
+	line-height:20px;
+	color: #158B23;
+	font-weight: bold;
+	padding-top: 2px;
+	border-left-color: #98E89E;
+}
+
+#leftMenu{
+	z-index:101;
+	margin-top:-24px;
+	float:left;
+	width:148px;
+	float:left;
+	height:100%;
+	
+	background-color:#D0F0D2;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #98E89E;
+	border-left-color: #98E89E;
+	border-bottom-color: solid 1px #98E89E;
+	padding-bottom:5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #98E89E;
+}
+
+#leftMenu ul{margin:34px 10px 10px 10px;}
+
+#leftMenu ul li{
+	margin-top:20px;
+	padding:2px 0 0 30px;
+	width:100px !important;
+	width:130px;
+	height:22px;
+	display:block;
+	cursor:pointer;
+	margin-bottom:5px;
+	background-color: #D0F0D2;
+	background-image: url(/images/rr/tabbg01.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	padding-top: 2px;
+	line-height: 20px;
+	text-align:left;
+}
+
+#leftMenu ul li a {
+	color:#000000;
+	text-decoration:none;
+	font-size:85%;
+	background-repeat: repeat-x;
+}
+
+/***  其他页面的样式   ****/
+
+/* 用于悬浮的div  */
+
+.bottomDiv {
+	z-index:10000;
+	position:fixed;
+	right:2px;
+	bottom:2px;
+} 
+

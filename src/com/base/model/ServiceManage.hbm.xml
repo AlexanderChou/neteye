@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.base.model.ServiceManage" table="servicemanage">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="serviceType" column="servicetype" type="string"/>
+        <property name="parameters" column="parameters" type="string"/>
+        <property name="port" column="port" type="string"/>
+        <property name="description" column="description" type="string"/>
+        <property name="deviceId" column="device_id" type="long"/>
+   </class>
+</hibernate-mapping>

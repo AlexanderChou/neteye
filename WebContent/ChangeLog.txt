@@ -1,0 +1,129 @@
+ChangeLog
+
+
+20120109 by wzw
+1.修正rrd无法正确解析的时候链路综合信息报错的bug。(src/com/view/util/PicUtil.java：212)
+
+20120301 by wzw
+1.修正节点状态从视图中读取数据改为数据库中读取，避免空视图产生的空指针(/com/fault/action/FaultEventSatusView.java:40)。
+2.修正节点状态视图中设备的名称显示方式优先级为中文名称，英文名称，描述。(/com/fault/dao/FaultListDao.java:200)
+3.修正设备接口读取的列表排序问题。(/com/base/service/PortService.java:311)
+4.修正设备接口页面显示的排序问题。（WebContent/js/port_list.js:42)
+
+20120302 by wzw
+1.修正流量汇总图中显示名称方式有的优先级改为中文名称，英文名称，描述。（src/com/flow/dao/FlowListViewDao.java：52)
+
+20120305 by wzw
+1.修正视图管理视图选项的div大小有100/80调整至120/120.太小导致部分名称无法显示完整（WebContent/css/view.css：67-68）
+
+20120416 by wzw
+1.修正手动添加设备时，ipv6地址无法通过检验。(/neteye-web-v3/WebContent/WEB-INF/pages/config/addRouterInfo.jsp:234)
+2.修正手动添加设备时，添加的snmp版本无法保存。（/neteye-web-v3/src/com/config/action/RouterAddAction.java：207）
+
+20120417 by wzw
+1.修改视图模块，点击为显示下级子视图。（/neteye-web-v3/WebContent/js/view_show.js：557）
+2.修改视图模块，右键显示设备详细信息。（/neteye-web-v3/WebContent/WEB-INF/pages/view/reader.jsp：85/258）
+
+20120418 by wzw
+1.添加流量监控对ipv6的支持（/neteye-web-v3/src/com/config/util/GrowConfig.java：150/222)
+2.修改更新设备信息时，无法清空ipv4地址（/neteye-web-v3/src/com/config/action/DeviceUpdateAction.java：71/76)
+
+20120420 by wzw
+1.添加流量图为ipv6地址时的转换。（/neteye-web-v3/src/com/flow/dao/FlowListViewDao.java：85）
+
+20120424 by wzw
+1.修正系统多余输出。（/neteye-web-v3/src/com/user/action/UserManagerAction.java:132）
+
+20120425 by wzw 
+1.修改接口阈值下限无法设置为0（/neteye-web-v3/src/com/config/action/PortUpdateAction.java:72)
+2.修改接口阈值下拉菜单以及相关校验。（/neteye-web-v3/WebContent/WEB-INF/pages/config/port.jsp：100/209)
+3.修改接口信息对纯ip6地址的识别。（/neteye-web-v3/WebContent/WEB-INF/pages/config/port.jsp:45)
+4.添加阈值为空时的默认数值，下限0上限100（/neteye-web-v3/WebContent/WEB-INF/pages/config/port.jsp：40）
+
+20120426 by wzw
+1.修改接口页面的校验问题（/neteye-web-v3/WebContent/WEB-INF/pages/config/port.jsp：207）
+
+20120427 by wzw
+1.去除添加设备的community的掩码。（/neteye-web-v3/WebContent/WEB-INF/pages/config/addRouterInfo.jsp：105）
+2.添加设备列表中直接更新设备信息的功能。（/neteye-web-v3/WebContent/js/device_list.js：65）
+3.修改更新设备时的问题。（/neteye-web-v3/src/com/config/action/ConfigSaveAction.java：70）
+
+20120508 by wzw
+1.添加设备接口模块中的校验。（/neteye-web-v3/WebContent/WEB-INF/pages/config/port.jsp：149）
+
+20120509 by wzw
+1.去除更新设备功能。涉及设备id以及端口id对应，导致视图等模块的无法使用。（/neteye-web-v3/WebContent/js/device_list.js：65）
+2.添加设备的CPU和内存信息的IPV6支持。（/neteye-web-v3/src/com/view/util/GeneratePic.java：205）
+3.修正纯IPV6环境无法生成CPU与内存图片。（/neteye-web-v3/src/com/view/util/PicUtil.java:43)
+
+20120510 by wzw
+1.添加设备的RRT信息和loss信息的IPV6支持。（/neteye-web-v3/src/com/view/util/GeneratePic.java：51）
+2.添加链路信息对纯IPV6的支持。（/neteye-web-v3/src/com/view/action/GeneratePicAction.java：40）
+3.添加链路信息对纯IPV6的显示支持。（/neteye-web-v3/WebContent/js/link_info.js：56）
+
+20120511 by wzw
+1。添加服务监控图图片纯ipv6地址的对接。（/neteye-web-v3/WebContent/js/servefixTime.js：45）
+
+20120514 by wzw
+1.修正视图关联的null为“取消关联”（/neteye-web-v3/WebContent/js/view_join.js：4
+                                /neteye-web-v3/src/com/view/action/ViewListJsonAction.java：42）
+2.修正故障统计显示错误。（/neteye-web-v3/WebContent/WEB-INF/pages/fault/FaultStatisticQuery.jsp：230）
+3.添加事件过滤的删除功能。（/neteye-web-v3/src/json.xml：186  
+                          /neteye-web-v3/WebContent/js/filter_config.js：191
+                          /neteye-web-v3/src/com/event/action/FilterConfigAction.java：47
+                          /neteye-web-v3/src/com/event/dao/FilterConfigDao.java：45）
+4.修正流量监控图的选择项（/neteye-web-v3/WebContent/WEB-INF/pages/flow/allWatch.jsp：60
+                         /neteye-web-v3/WebContent/WEB-INF/pages/flow/bitWatch.jsp：60
+                         /neteye-web-v3/WebContent/WEB-INF/pages/flow/lenWatch.jsp：60
+                         /neteye-web-v3/WebContent/WEB-INF/pages/flow/packetWatch.jsp：60
+                         /neteye-web-v3/WebContent/WEB-INF/pages/flow/flowlistview.jsp：60
+                         /neteye-web-v3/src/com/flow/action/AllWatchAction.java：55
+                         /neteye-web-v3/src/com/flow/action/FlowEventStatusAction.java：55
+                         /neteye-web-v3/src/com/flow/action/OtherWatchAction.java:80
+20120515 by wzw
+1.添加由设备ID得到子视图的方法（/neteye-web-v3/src/com/view/util/JdomXML.java：124）
+2.默认显示设备的子视图。（/neteye-web-v3/src/com/view/action/ViewListJsonAction.java:69
+                         /neteye-web-v3/WebContent/js/view_join.js:89)
+
+20120516 by wzw
+1.修正流量监控图代码(/neteye-web-v3/src/com/flow/action/flowDeviceList.java:49
+2.添加了添加设备时，自动添加已经存在的链路（/neteye-web-v3/src/com/view/action/LinkAddForView.java
+                                         /neteye-web-v3/WebContent/WEB-INF/pages/view/editor.jsp：953
+                                         /neteye-web-v3/src/com/view/action/DeviceChoseJsonAction.java:292
+                                         
+20120517 by wzw
+1.添加个别页面对firefox的支持。视图模块(/neteye-web-v3/WebContent/js/view_manager.js
+                                      /neteye-web-v3/WebContent/WEB-INF/pages/view/manager.jsp：72)
+                                                            设备类型模块(/neteye-web-v3/WebContent/js/view_manager.js)
+                                                            设备添加模块（/neteye-web-v3/WebContent/js/deviceManage.js
+                                                            设备添加时的检验/neteye-web-v3/WebContent/WEB-INF/pages/config/addRouterInfo.jsp：232                              
+                                                            视图编辑页面/neteye-web-v3/WebContent/WEB-INF/pages/view/editor.jsp：217）
+                                                            
+20120518 by wzw
+1.修改事件过滤的提交xml地址，与后台对接（/neteye-web-v3/src/com/event/util/JDOMXML.java：84）
+2.优化节点状态显示（/neteye-web-v3/WebContent/js/statusList.js：122）
+3.添加故障模块ipv4与ipv6的节点的显示区别（/neteye-web-v3/WebContent/js/currFault.js：52
+                                        /neteye-web-v3/WebContent/js/historyFault.js：170）  
+                                        
+20120521 by wzw
+1.解决中文视图名称在传参时的格式问题，Ie出错，firefox没问题。现在均可。（/neteye-web-v3/WebContent/js/flowlistview.js：20）
+
+20120523 by wzw
+1.修正设备ip为空的时候节点状态无法正常显示（/neteye-web-v3/src/com/fault/dao/FaultListDao.java：178）
+
+20120530 by wzw
+1.修改DATA函数在firefox出错的问题。（/neteye-web-v3/WebContent/WEB-INF/pages/fault/FaultStatisticQuery.jsp：36）
+
+20120606  by wzw
+1.添加节点信息对交换机的信息的显示。/neteye-web-v3/src/com/fault/action/FaultEventSatusView.java：59
+
+20120612 by wzw
+1.添加节点信息对纯V6的支持（/neteye-web-v3/src/com/fault/dao/FaultListDao.java：178）
+2.添加关联子视图时。提交空视图，导致报错。（/neteye-web-v3/WebContent/js/view_join.js：43）
+3.添加了历史信息的显示。在流量视图内。暂时关闭。（/neteye-web-v3/src/com/flow/action/NumList.java）
+
+20120613 by wzw
+1.修改添加新设备的时候。子视图为空。（/neteye-web-v3/WebContent/WEB-INF/pages/view/editor.jsp：817）
+
+20120620 by wzw
+1.优化流量汇总算法。（/neteye-web-v3/src/com/flow/action/flowDeviceList.java）

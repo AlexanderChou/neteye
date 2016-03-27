@@ -1,0 +1,58 @@
+body {
+	background-image: url("../images/newChina.jpg");
+	background-repeat: no-repeat;
+	background-position-x: left;
+}
+
+#routerInfo {
+	position: absolute;
+}
+
+#linkInfo {
+	position: absolute;
+	z-index: 2;
+}
+
+#linkCanvas {
+	position:absolute;
+	z-index: 0;
+}
+
+#pbar {
+	position:absolute;
+}
+
+#bigMap {
+	position:absolute;
+	z-index: 1;
+}
+
+#smallMap {
+	position:absolute;
+	left: 200px;
+	top: 20px;
+	z-index: 1;
+}
+
+#legend {
+	position:absolute;
+	left:120px;
+	top: 700px;
+}
+
+html, body {
+    font:normal 12px verdana;
+    margin:0;
+    padding:0;
+    border:0 none;
+    height:100%;
+}
+p {
+    margin:5px;
+}
+.settings {
+    background-image:url("../images/folder_wrench.png");
+}
+.nav {
+    background-image:url("../images/folder_go.png");
+}
