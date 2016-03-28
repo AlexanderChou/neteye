@@ -102,11 +102,11 @@
 	<SCRIPT type="text/javascript">
 	var submitView="1";
 	Ext.onReady(function(){
-		var reader = new Ext.data.JsonReader( {
+		var reader = new Ext.data.JsonReader( { 
 		
-		root : "acApLists",
+		root : "routers",
 		totalProperty : 'count',
-		fields : ['id', 'name', 'filtercount', 'nodecount','aplist' ]
+		fields : ['id', 'name', 'netconfuser', 'netconfipv4','netconfport' ]
 	});
 
 	var proxy = new Ext.data.HttpProxy( {
@@ -130,9 +130,9 @@
 		[
 			{header : "id",dataIndex : 'id',sortable : false,width:50	},
 				 {header : "设备名",dataIndex : 'name',sortable : false,width:90,renderer: stuasnodes},
-	             {header: "过滤报文数",dataIndex : 'filtercount',sortable : true,width:110}, 
-	             {header : "用户数",dataIndex : 'nodecount',sortable : false,width:100	},
-	             {id:"apid",	header : "AP",dataIndex : 'aplist',sortable : false,renderer: listfaults}
+	             {header: "用户名",dataIndex : 'netconfuser',sortable : true,width:110}, 
+	             {header : "ipv4",dataIndex : 'netconfipv4',sortable : false,width:100	},
+	             {id:"apid",	header : "端口",dataIndex : 'netconfport',sortable : false,renderer: listfaults}
 		]);
 	   
 		var grid = new Ext.grid.GridPanel( {
@@ -148,31 +148,17 @@
 	   
 	 tbar : [ '->','-','->', {
 			id : "basic",
-			text : "添加AC",
-			handler:addOrUpdateSubnet
+			text : "添加设备",
+			handler:addRouter
 			}
-		     ,
-			'->','-','->',
-			{
-				id : "basic",
-				text : "AP列表",
-				handler: function(){
-					document.location.href = 'aplist.do';
-				}
-				}
-	
 		],
 		autoScroll : true,
 		renderTo : 'girdshow'
 	
 	});
 		
-		function addOrUpdateSubnet(){
+		function addRouter(){
 			
-			var snmpStore=new Ext.data.SimpleStore({
-				fields:['version','value'],
-				data:[['1','1'],['2c','2c'],['3','3']]
-			});
 			var subnetStore = new Ext.data.JsonStore({
 				url: 'show/listShowSubnetsForCombo.do',
 				root : 'subnetListForCombo',
@@ -223,7 +209,7 @@
 				width:230
 			});	
 			var addSubnet = new Ext.FormPanel( {
-				labelWidth : 113,
+				labelWidth : 90,
 				frame : true,
 				title : '',
 				bodyStyle : 'padding:5px 5px 0',
@@ -235,46 +221,31 @@
 				defaultType : 'textfield',
 				items : [ 
 							{
-								fieldLabel : '名称',
-								name : 'deviceinfo.name',
+								fieldLabel : '设备名',
+								name : 'router.name',
 								blankText:emptyTipText,
 								allowBlank:false
 							}, {
-								name:"deviceinfo.equipmentType",
-								fieldLabel : equipmentTypeText,
+								fieldLabel : '用户名',
+								name:"router.netconfuser",
 								allowBlank : true
-							},snmpComboBox, {
+							}, {
+								fieldLabel : '用户密码',
+								name : 'router.netconfpasswd',
+								inputType:"password",
+								blankText:emptyTipText,
+								allowBlank:false
+							}, {
 								fieldLabel : 'ipv4',
-								name : 'deviceinfo.ipv4address',
+								name : 'router.netconfipv4',
 								blankText:emptyTipText,
 								allowBlank:false
 							}, {
-								fieldLabel : 'ipv6',
-								name : 'deviceinfo.ipv6address',
-								blankText:emptyTipText,
+								fieldLabel : '端口',
+								name : 'router.netconfport',
+								blankText:"830",
 								allowBlank:false
-							}, {
-								name:"deviceinfo.readCommunity",
-								fieldLabel : readCommunityText,
-								allowBlank : true
-							}, {
-								name:"deviceinfo.writeCommunity",
-								fieldLabel : writeCommunityText,
-								allowBlank : true
-							}, {
-								name:"deviceinfo.authKey",
-								fieldLabel : authKeyText,
-								allowBlank : true
-							}, {
-								name:"deviceinfo.privateKey",
-								fieldLabel : privateKeyText,
-								allowBlank : true
-							}, 
-							new Ext.form.TextArea({
-								name:"deviceinfo.description",
-								fieldLabel : descriptionText,
-								allowBlank : true
-							})
+							}
 					],
 				buttons : [ {
 							text : '提交',
@@ -301,12 +272,12 @@
 				}]
 			});
 			var addSubnetWin = new Ext.Window( {
-				width : 440,
-				height : 320,
+				width : 350,
+				height : 230,
 				layout : 'fit',
 				plain : true,
 				frame : true,
-				title : '添加AC',
+				title : '添加路由器',
 				bodyStyle : 'padding:5px 5px 0',
 				buttonAlign : 'center',
 				items : [addSubnet]
@@ -331,12 +302,6 @@
 		var routerstutas ="images/yellow_color.gif";
 		var GlobalViewList = val;
 		for(var i = 0; i < GlobalViewList.length; i++ ){
-			/***
-		html += ' <div id="view1">'+
-		       		'<img src='+routerstutas+' width="20" height="20">'+
-		            '<a>'+GlobalViewList[i].usernum+'</a>'+
-								        '</div>'
-***/
 			if(loop == 0){
 				html += '<tr>';
 			}
@@ -392,7 +357,7 @@
 		var ttid = ttps.get("id");
 		var ttname = ttps.get("name");
 		// document.location.href ="portListAll.do?deviceId="+ttid
-		window.open('huaSanSubnetDetails.do?subnetId=' + ttid,"_blank");
+		window.open('huaSanSubnetDetails.do?subnetId=' + ttname,"_blank");
 		 
 	}
 		

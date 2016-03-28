@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import com.tdrouting.action.BaseAction;
 import com.tdrouting.dao.TdroutingDao;
+import com.tdrouting.dto.Router;
 
 
 //By Alex. 2016/3/25 
@@ -21,20 +22,24 @@ import com.tdrouting.dao.TdroutingDao;
 public class TdroutingAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private int count;
+	private List<Router> routers;
 	
+	@SuppressWarnings("unused")
 	public String getRouterlist() throws Exception
 	{
 		TdroutingDao router = new TdroutingDao();
-		System.out.println("Before test.");
-		List routerlist = router.getRouterlist();
-		System.out.println("After test.");
-		System.out.println(routerlist.size());
+		routers = router.getRouterlist();
+		count = routers.size();
 		return SUCCESS;
 	}
 	
 	public int getCount()
 	{
-		count = 11;
-		return count;
+		return this.count;
+	}
+	
+	public List<Router> getRouters()
+	{
+		return this.routers;
 	}
 }

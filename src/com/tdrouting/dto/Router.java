@@ -1,17 +1,8 @@
 package com.tdrouting.dto;
 
-import net.sf.jasperreports.engine.util.Java14BigDecimalHandler;
-
-import org.apache.commons.beanutils.converters.IntegerArrayConverter;
-import org.apache.commons.beanutils.converters.StringConverter;
-//import org.apache.naming.java.javaURLContextFactory;
-import org.apache.xpath.operations.String;
 
 public class Router implements java.io.Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private Integer id;
 	private String name;
 	private Integer type;
@@ -23,9 +14,8 @@ public class Router implements java.io.Serializable {
 	public Router()
 	{}
 	
-	public Router(Integer _id, String _name, Integer _type, String _netconfuser, String _netconfpasswd, String _netconfipv4, Integer _netconfport)
+	public Router(String _name, Integer _type, String _netconfuser, String _netconfpasswd, String _netconfipv4, Integer _netconfport)
 	{
-		this.id = _id;
 		this.name = _name;
 		this.type = _type;
 		this.netconfuser = _netconfuser;
@@ -71,36 +61,36 @@ public class Router implements java.io.Serializable {
 	
 	public Integer getId()
 	{
-		return id;
+		return this.id;
 	}
 	
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 	
 	public Integer getType()
 	{
-		return type;
+		return this.type;
 	}
 	
 	public String getNetconfuser()
 	{
-		return netconfuser;
+		return this.netconfuser;
 	}
 	
 	public String getNetconfpasswd()
 	{
-		return netconfpasswd;
+		return this.netconfpasswd;
 	}
 	
 	public String getNetconfipv4()
 	{
-		return netconfipv4;
+		return this.netconfipv4;
 	}
 	
 	public Integer getNetconfport()
 	{
-		return netconfport;
+		return this.netconfport;
 	}
 }

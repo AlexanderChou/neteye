@@ -33,12 +33,12 @@ public class TdroutingDao {
 	public List<Router> getRouterlist(){
 		Session session = hibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction transaction = session.beginTransaction();
-		System.out.println("From tdroutingDao.");
-		String sqlString = "select name from router";
-		Query query = session.createQuery(sqlString);
-		List list = query.list();
-		System.out.println(list);
+		List<Router> routerlist = session.createCriteria(Router.class).list();
+		/*Query query = session.createQuery(sqlString);
+		List<Object[]> list = query.list();
+		Object object[] = list.get(0);
+		System.out.println(object[0] + ", " + object[1]);*/
 		transaction.commit();
-		return list;
+		return routerlist;
 	}
 }
