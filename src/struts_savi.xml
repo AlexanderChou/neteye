@@ -373,13 +373,7 @@
 		
 		<action name="aplist">
 			<result>/WEB-INF/pages/savi/statistic/PAViewALL.jsp</result>
-		</action>
-		
-		
-		<action name="huaSanSubnetDetails">
-			<result>/WEB-INF/pages/savi/statistic/showHuaSanDetails.jsp</result>
-		</action>
-		
+		</action>	
 		
 		<action name="showSubnetBindingTable">
 			<result>/WEB-INF/pages/savi/show/showSubnetBindingTable.jsp</result>
@@ -625,6 +619,9 @@
 			<result>/WEB-INF/pages/tdrouting/networktopo.jsp</result>
 		</action>
 		
+		<action name="routerDetails">
+			<result>/WEB-INF/pages/tdrouting/routerDetails.jsp</result>
+		</action>
 	</package>
 	
 </struts>

@@ -266,6 +266,10 @@
 			<result type="json" />
 		</action>
 		
+		<action name="interfaces" class="com.tdrouting.action.InterfaceAction" method="getInterfaces">
+			<result type="json" />
+		</action>
+		
 		<action name="paList" class="com.savi.show.action.HuaSanAction" method="getPaList">
 			<result type="json" />
 		</action>

@@ -128,10 +128,10 @@
 	//store.setDefaultSort('name','ASC');   
 	   	var bindingTableColm = new Ext.grid.ColumnModel( 
 		[
-			{header : "id",dataIndex : 'id',sortable : false,width:50	},
-				 {header : "设备名",dataIndex : 'name',sortable : false,width:90,renderer: stuasnodes},
-	             {header: "用户名",dataIndex : 'netconfuser',sortable : true,width:110}, 
-	             {header : "ipv4",dataIndex : 'netconfipv4',sortable : false,width:100	},
+			{header : "id",dataIndex : 'id',sortable : false,width:80	},
+				 {header : "设备名",dataIndex : 'name',sortable : false,width:150,renderer: stuasnodes},
+	             {header: "用户名",dataIndex : 'netconfuser',sortable : true,width:150}, 
+	             {header : "ipv4",dataIndex : 'netconfipv4',sortable : false,width:200	},
 	             {id:"apid",	header : "端口",dataIndex : 'netconfport',sortable : false,renderer: listfaults}
 		]);
 	   
@@ -272,8 +272,8 @@
 				}]
 			});
 			var addSubnetWin = new Ext.Window( {
-				width : 350,
-				height : 230,
+				width : 400,
+				height : 250,
 				layout : 'fit',
 				plain : true,
 				frame : true,
@@ -357,7 +357,7 @@
 		var ttid = ttps.get("id");
 		var ttname = ttps.get("name");
 		// document.location.href ="portListAll.do?deviceId="+ttid
-		window.open('huaSanSubnetDetails.do?subnetId=' + ttname,"_blank");
+		window.open('routerDetails.do?routername=' + ttname,"_blank");
 		 
 	}
 		

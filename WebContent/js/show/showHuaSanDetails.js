@@ -36,7 +36,7 @@ function orderById(values){
 Ext.onReady( function() {
 	var query = QueryString();
 	subnetId = query.subnetId;
-	
+	console.log("I want " + subnetId);
 	//获取子网的基本信息
 	Ext.Ajax.request({
 		url : 'json/listShowAC.do?acId='+subnetId,

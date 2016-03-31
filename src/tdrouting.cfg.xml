@@ -57,7 +57,7 @@
      	
 
 		<mapping resource="com/tdrouting/dto/Router.hbm.xml" />
-		<!--mapping resource="com/savi/base/model/Apinfo.hbm.xml" />  -->
+		<mapping resource="com/tdrouting/dto/Interface.hbm.xml" />
      </session-factory>
 
 </hibernate-configuration>
