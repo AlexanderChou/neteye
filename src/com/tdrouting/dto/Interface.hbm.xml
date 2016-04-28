@@ -8,13 +8,16 @@
     <class name="com.tdrouting.dto.Interface" table="interface" catalog="netconf" select-before-update='true'>
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <property name="name" type="java.lang.String">
             <column name="name" />
         </property>
         <property name="ipv6" type="java.lang.String">
             <column name="ipv6" />
+        </property>
+        <property name="ipv4" type="java.lang.String">
+            <column name="ipv4" />
         </property>
         <property name="routername" type="java.lang.String">
             <column name="routername" />

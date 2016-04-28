@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="json-ticket" extends="jsonPackage">
+		<!-- 配置ticket_项目管理-->
+		<action name="listProjects"
+			class='com.ticket.action.ProjectManageAction'
+			method="listProjects">
+			<result type='json' />
+		</action>
+		<action name="addProject"
+			class='com.ticket.action.ProjectManageAction' method="addProject">
+			<result type='json' />
+		</action>
+		<action name="deleteProject"
+			class='com.ticket.action.ProjectManageAction'
+			method="deleteProject">
+			<result type='json' />
+		</action>
+		<action name="modifyProject"
+			class='com.ticket.action.ProjectManageAction'
+			method="modifyProject">
+			<result type='json' />
+		</action>
+		<!-- 配置ticket_优先级管理-->
+		<action name="listPriorities"
+			class='com.ticket.action.PriorityManageAction'
+			method="listPriorities">
+			<result type='json' />
+		</action>
+		<action name="addPriority"
+			class='com.ticket.action.PriorityManageAction'
+			method="addPriority">
+			<result type='json' />
+		</action>
+		<action name="deletePriority"
+			class='com.ticket.action.PriorityManageAction'
+			method="deletePriority">
+			<result type='json' />
+		</action>
+		<action name="modifyPriority"
+			class='com.ticket.action.PriorityManageAction'
+			method="modifyPriority">
+			<result type='json' />
+		</action>
+		<!-- 配置ticket_分类管理-->
+		<action name="listCategories"
+			class='com.ticket.action.CategoryManageAction'
+			method="listCategories">
+			<result type='json' />
+		</action>
+		<action name="addCategory"
+			class='com.ticket.action.CategoryManageAction'
+			method="addCategory">
+			<result type='json' />
+		</action>
+		<action name="deleteCategory"
+			class='com.ticket.action.CategoryManageAction'
+			method="deleteCategory">
+			<result type='json' />
+		</action>
+		<action name="modifyCategory"
+			class='com.ticket.action.CategoryManageAction'
+			method="modifyCategory">
+			<result type='json' />
+		</action>
+		<!-- 配置ticket的视图部分-->
+		<action name="projectList"
+			class='com.ticket.action.TicketShowAction'
+			method="getProjectListAction">
+			<result type='json' />
+		</action>
+		<action name="priorityList"
+			class='com.ticket.action.TicketShowAction'
+			method="getPriorityListAction">
+			<result type='json' />
+		</action>
+		<action name="categoryList"
+			class='com.ticket.action.TicketShowAction'
+			method="getCategoryListAction">
+			<result type='json' />
+		</action>
+		<action name="underTakerList"
+			class='com.ticket.action.TicketShowAction'
+			method="getUnderTakerListAction">
+			<result type='json' />
+		</action>
+		<action name="copyUserList"
+			class='com.ticket.action.TicketShowAction'
+			method="getCopyUserListAction">
+			<result type='json' />
+		</action>
+        
+		<action name="auditorList"
+			class='com.ticket.action.TicketShowAction'
+			method="getAuditorListAction">
+			<result type='json' />
+		</action>
+		
+		
+		<action name="groupUserList"
+			class='com.ticket.action.TicketShowAction'
+			method="getGroupListAction">
+			<result type='json' />
+		</action>
+		
+		<action name="attachList"
+			class='com.ticket.action.TicketShowAction'
+			method="getAttachListAction">
+			<result type='json' />
+		</action>
+		
+		<action name="submitInCreating"
+			class="com.ticket.action.EventSubAction">
+			<result type='json'></result>
+		</action>
+		<action name="myTicketList"
+			class="com.ticket.action.UnderTakerViewMyEventAction">
+			<result type='json'></result>
+		</action>
+
+		<action name="accept"
+			class="com.ticket.action.UnderTakerAcceptEventAction">
+
+			<result type='json'></result>
+		</action>
+
+		<action name="noAccept"
+			class="com.ticket.action.UnderTakerDisAcceptEventAction">
+			<result type='json'></result>
+
+		</action>
+
+		<action name="submitInAccepting"
+			class="com.ticket.action.UnderTakerDealEventAction">
+			<result type='json'></result>
+		</action>
+
+		<action name="pass"
+			class="com.ticket.action.AuditionPassAction">
+			<result type='json'></result>
+
+		</action>
+
+		<action name="reCreateEvent"
+			class="com.ticket.action.EventReSubAction">
+			<result type='json'></result>
+
+		</action>
+
+		<action name="delegation"
+			class="com.ticket.action.UsingDelegatinAction">
+			<result type='json'></result>
+
+		</action>
+
+		<action name="acceptDelegate"
+			class="com.ticket.action.AcceptDelegationAction">
+			<result type='json'></result>
+
+		</action>
+
+		<action name="noAcceptDelegate"
+			class="com.ticket.action.DisAcceptDelegationAction">
+			<result type='json'></result>
+
+		</action>
+
+      <action name="admin_submitEvent" 
+				class="com.ticket.action.SubTicketFromEventAction">
+			<result type='json'></result>
+			</action>
+			
+		<action name="delete" 
+				class="com.ticket.action.AdminDeleteTicketAction">
+			<result type='json'></result>
+				</action>
+			  <action name="editorTicket" 
+				class="com.ticket.action.EditorEventAction">
+			<result type='json'></result>
+				</action>
+		<action name="delegatorDeal"
+			class="com.ticket.action.DelegatorDealEventAction">
+			<result type='json'></result>
+
+		</action>
+         <action name="resetTicket" 
+				class="com.ticket.action.EventReSubAction">
+			<result type='json'></result>
+		</action>
+        
+		<action name="noPass"
+			class="com.ticket.action.AuditionUnpassAction">
+			<result type='json'></result>
+
+		</action>
+    
+
+	</package>
+
+	<package name="ticket" extends="basePackage">
+		<action name="uploadAttach"
+			class="com.ticket.action.UploadAttachAction">
+			<param name="allowedTypes">
+				image/bmp,image/png,image/gif,image/jpeg,image/pjpeg,application/msword,text/plain,application/zip,application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+			</param>
+			<param name="savePath">/file/ticket/ticketAttach</param>
+
+			<result name="success">
+				/WEB-INF/pages/view/fileupload.jsp
+			</result>
+			<result name="input">
+				/WEB-INF/pages/view/fileupload.jsp
+			</result>
+		</action>
+
+		<action name="downloadAttach"
+			class="com.ticket.action.DownloadAttachMentAction">
+			<result name="success" type="stream">
+				<param name="contentType">
+					image/bmp,image/png,image/gif,image/jpeg,image/pjpeg,application/msword,text/plain,application/zip,application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+				</param>
+				<param name="contentDisposition">
+					attachment;filename="${fileName}"
+				</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+
+		<action name="createEvent">
+			<result name="success">
+				/WEB-INF/pages/ticket/createticket.jsp
+			</result>
+		</action>
+
+		<action name="allTicketList">
+			<result name="success">/WEB-INF/pages/ticket/ticketlist.jsp</result>
+		</action>
+		
+		<action name="projectManage">
+			<result name="success">/WEB-INF/pages/ticket/projectManager.jsp</result>
+		</action>
+		
+        <action name="priorityManage">
+			<result name="success">/WEB-INF/pages/ticket/priorityManager.jsp</result>
+		</action>
+		
+		<action name="categoryManage">
+			<result name="success">/WEB-INF/pages/ticket/categoryManager.jsp</result>
+		</action>
+
+	</package>
+</struts>

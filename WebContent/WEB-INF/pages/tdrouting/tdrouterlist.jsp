@@ -106,7 +106,7 @@
 		
 		root : "routers",
 		totalProperty : 'count',
-		fields : ['id', 'name', 'netconfuser', 'netconfipv4','netconfport' ]
+		fields : ['id', 'name', 'netconfuser', 'netconfipv4','netconfport','netconfstatus']
 	});
 
 	var proxy = new Ext.data.HttpProxy( {
@@ -128,11 +128,12 @@
 	//store.setDefaultSort('name','ASC');   
 	   	var bindingTableColm = new Ext.grid.ColumnModel( 
 		[
-			{header : "id",dataIndex : 'id',sortable : false,width:80	},
-				 {header : "设备名",dataIndex : 'name',sortable : false,width:150,renderer: stuasnodes},
-	             {header: "用户名",dataIndex : 'netconfuser',sortable : true,width:150}, 
-	             {header : "ipv4",dataIndex : 'netconfipv4',sortable : false,width:200	},
-	             {id:"apid",	header : "端口",dataIndex : 'netconfport',sortable : false,renderer: listfaults}
+			{header : "id",dataIndex : 'id',sortable : false,width:100},
+			 {header : "设备名",dataIndex : 'name',sortable : false,width:180,renderer: stuasnodes},
+             {header: "用户名",dataIndex : 'netconfuser',sortable : true,width:180}, 
+             {header : "ipv4",dataIndex : 'netconfipv4',sortable : false,width:180},
+             {id:"apid", header : "端口",dataIndex : 'netconfport',sortable:false, width:180},
+             {header : "连接状态",dataIndex : 'netconfstatus',sortable : false,width:180	}
 		]);
 	   
 		var grid = new Ext.grid.GridPanel( {
@@ -143,7 +144,7 @@
 		autoHeight: true,
 		
 		width : 1000,
-		autoExpandColumn: 'apid',
+		//autoExpandColumn: 'apid',
 		cm :bindingTableColm,
 	   
 	 tbar : [ '->','-','->', {
@@ -223,27 +224,26 @@
 							{
 								fieldLabel : '设备名',
 								name : 'router.name',
-								blankText:emptyTipText,
+								blankText:'',
 								allowBlank:false
 							}, {
 								fieldLabel : '用户名',
 								name:"router.netconfuser",
-								allowBlank : true
+								emptyText:'请输入设备用户名', 
+								allowBlank : false
 							}, {
 								fieldLabel : '用户密码',
 								name : 'router.netconfpasswd',
 								inputType:"password",
-								blankText:emptyTipText,
 								allowBlank:false
 							}, {
 								fieldLabel : 'ipv4',
 								name : 'router.netconfipv4',
-								blankText:emptyTipText,
 								allowBlank:false
 							}, {
 								fieldLabel : '端口',
 								name : 'router.netconfport',
-								blankText:"830",
+								inputType:"number",
 								allowBlank:false
 							}
 					],
@@ -251,7 +251,7 @@
 							text : '提交',
 							handler : function() {
 								addSubnet.getForm().submit({
-									url:"config/saveDeviceinfo.do",
+									url:"config/addRouter.do",
 									waitMsg: waitMsgText,
 									success:function(form, action){
 										addSubnetWin.close();

@@ -99,7 +99,6 @@ public class CollectionFactory {
 						}
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Constants.pollingInterval=300;
 					Constants.debug=2;
 					e.printStackTrace();
@@ -107,14 +106,11 @@ public class CollectionFactory {
 	        }else{
 	        	Constants.debug=2;
 	        	Constants.pollingInterval=300;
-	        }
-		
+	        }	
 		//SwitchBasicInfoDao switchBasicInfoDao=new SwitchBasicInfoDao();
 		//Switchbasicinfo switchBasicInfo=switchBasicInfoDao.getSwitchBasicInfo(new Long(1089));
 		//CollectionFactory.resgisterForPoll(switchBasicInfo);
 		CollectionTask collectionTask=new CollectionTask(new Long(1094),new Long(0));
 		collectionTask.run();
-	}
-	
-	
+	}	
 }

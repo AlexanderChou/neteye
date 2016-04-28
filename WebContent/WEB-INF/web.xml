@@ -41,6 +41,12 @@
 		<load-on-startup>2</load-on-startup>
 	</servlet>	 -->
 	
+	<servlet>
+		<servlet-name>MyListener</servlet-name>
+		<servlet-class>com.tdrouting.util.MyServlet</servlet-class>
+		<load-on-startup>9</load-on-startup><!-- 数字越小，启动的优先级越高，必须大于0 -->
+	</servlet>
+	
   	<servlet>
 		<servlet-name>ImageServlet</servlet-name>
 		<servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>

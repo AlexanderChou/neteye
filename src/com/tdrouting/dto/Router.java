@@ -1,8 +1,13 @@
 package com.tdrouting.dto;
 
+import org.apache.struts2.json.annotations.JSON;
 
 public class Router implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Integer type;
@@ -10,11 +15,12 @@ public class Router implements java.io.Serializable {
 	private String netconfpasswd;
 	private String netconfipv4;
 	private Integer netconfport;
+	private String netconfstatus;
 	
 	public Router()
 	{}
 	
-	public Router(String _name, Integer _type, String _netconfuser, String _netconfpasswd, String _netconfipv4, Integer _netconfport)
+	public Router(String _name, Integer _type, String _netconfuser, String _netconfpasswd, String _netconfipv4, Integer _netconfport, String _status)
 	{
 		this.name = _name;
 		this.type = _type;
@@ -22,6 +28,7 @@ public class Router implements java.io.Serializable {
 		this.netconfpasswd = _netconfpasswd;
 		this.netconfipv4 = _netconfipv4;
 		this.netconfport = _netconfport;
+		this.netconfstatus = _status;
 	}
 	public void setId(Integer _id)
 	{
@@ -59,6 +66,11 @@ public class Router implements java.io.Serializable {
 		this.netconfport = _netconfport;
 	}
 	
+	public void setNetconfstatus(String _status)
+	{
+		this.netconfstatus = _status;
+	}
+	
 	public Integer getId()
 	{
 		return this.id;
@@ -79,6 +91,7 @@ public class Router implements java.io.Serializable {
 		return this.netconfuser;
 	}
 	
+	@JSON(serialize = false)
 	public String getNetconfpasswd()
 	{
 		return this.netconfpasswd;
@@ -92,5 +105,10 @@ public class Router implements java.io.Serializable {
 	public Integer getNetconfport()
 	{
 		return this.netconfport;
+	}
+	
+	public String getNetconfstatus()
+	{
+		return this.netconfstatus;
 	}
 }

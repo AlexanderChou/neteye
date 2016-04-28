@@ -64,7 +64,7 @@
 	
 	<STYLE type="text/css">
 		#viewname {
-		width:800px;
+		width:1000px;
 			text-align:left;
 			float:left;
 			
@@ -129,7 +129,7 @@
 		
 		root : "interfacelist",
 		totalProperty : 'count',
-		fields : ['id', 'name', 'ipv6', 'routername']
+		fields : ['id', 'name', 'ipv6', 'ipv4', 'routername']
 	});
 
 	var proxy = new Ext.data.HttpProxy( {
@@ -154,6 +154,7 @@
 			{header : "id",dataIndex : 'id',sortable : false,width:200	},
 				 {header : "接口名",dataIndex : 'name',sortable : false,width:200},
 	             {header: "ipv6",dataIndex : 'ipv6',sortable : true,width:200}, 
+	             {header: "ipv4",dataIndex : 'ipv4',sortable : true,width:200}, 
 	             {header : "所属路由器",dataIndex : 'routername',sortable : false,width:200}
 		]);
 	   
