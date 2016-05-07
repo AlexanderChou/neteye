@@ -618,6 +618,18 @@
 			<result>/WEB-INF/pages/tdrouting/tdrouterlist.jsp</result>
 		</action>
 		
+		<action name="mySaviTotalView">
+			<result>/WEB-INF/pages/mysavi/totalView.jsp</result>
+		</action>
+		
+		<action name="saviInfo">
+			<result>/WEB-INF/pages/mysavi/saviInfo.jsp</result>
+		</action>
+		
+		<action name="switchList">
+			<result>/WEB-INF/pages/mysavi/switchList.jsp</result>
+		</action>
+		
 		<action name="networktopo">
 			<result>/WEB-INF/pages/tdrouting/networktopo.jsp</result>
 		</action>

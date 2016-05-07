@@ -7,7 +7,7 @@
     <meta HTTP-EQUIV="refresh" Content="300">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>路由器详细信息</title>
-	 <link rel='StyleSheet' href="css/topoInit.css" type="text/css" />
+	<link rel='StyleSheet' href="css/topoInit.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/ext-all.css"/>
 	<script type="text/javascript" src="js/ext-base.js"></script>
 	<script type="text/javascript" src="js/ext-all.js"></script>

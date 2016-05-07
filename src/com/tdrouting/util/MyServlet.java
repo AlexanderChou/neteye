@@ -31,7 +31,7 @@ public class MyServlet extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-    	CollectionTask.beginTask();
+    	//CollectionTask.beginTask();
 		if (str == null && myThread == null) {
 			//CollectionTask.beginTask();
 			//myThread = new MyThread();
