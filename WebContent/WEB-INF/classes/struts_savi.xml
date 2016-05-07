@@ -619,7 +619,7 @@
 		</action>
 		
 		<action name="mySaviTotalView">
-			<result>/WEB-INF/pages/mysavi/totalView.jsp</result>
+			<result>/WEB-INF/pages/mysavi/switchList.jsp</result>
 		</action>
 		
 		<action name="saviInfo">
