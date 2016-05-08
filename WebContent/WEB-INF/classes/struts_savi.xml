@@ -645,6 +645,30 @@
 		<action name="tdroutingCost">
 			<result>/WEB-INF/pages/tdrouting/routingcost.jsp</result>
 		</action>
+		
+		<action name="saviSend">
+			<result>/WEB-INF/pages/mysavi/saviSend.jsp</result>
+		</action>
+		
+		<action name="saviFcfs">
+			<result>/WEB-INF/pages/mysavi/saviFcfs.jsp</result>
+		</action>
+		
+		<action name="saviDhcpv4">
+			<result>/WEB-INF/pages/mysavi/saviDhcpv4.jsp</result>
+		</action>
+		
+		<action name="saviDhcpv6">
+			<result>/WEB-INF/pages/mysavi/saviDhcpv6.jsp</result>
+		</action>
+		
+		<action name="bindingTable">
+			<result>/WEB-INF/pages/mysavi/bindingTable.jsp</result>
+		</action>
+		
+		<action name="switchPortList">
+			<result>/WEB-INF/pages/mysavi/switchPort.jsp</result>
+		</action>
 	</package>
 	
 </struts>

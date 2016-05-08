@@ -266,6 +266,14 @@
 			<result type="json" />
 		</action>
 		
+		<action name="saviSwitch" class="com.mysavi.action.SaviSwitchAction" method="getSaviSwitch">
+			<result type="json" />
+		</action>
+		
+		<action name="saviInfo" class="com.mysavi.action.SaviInfoAction" method="getSaviInfo">
+			<result type="json" />
+		</action>
+		
 		<action name="ipv6routing" class="com.tdrouting.action.Ipv6routingAction" method="getIpv6routing">
 			<result type="json" />
 		</action>

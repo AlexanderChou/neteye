@@ -25,7 +25,6 @@ import com.tdrouting.util.RegisterRouter;
 
 
 //By Alex. 2016/3/25 
-@SuppressWarnings("serial")
 public class TdroutingAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private int count;

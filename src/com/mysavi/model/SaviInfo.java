@@ -24,7 +24,7 @@ public class SaviInfo  implements java.io.Serializable{
 	public Boolean getSaviManual() {
 		return saviManual;
 	}
-	
+
 	public Boolean getSaviFcfs() {
 		return saviFcfs;
 	}
@@ -33,12 +33,16 @@ public class SaviInfo  implements java.io.Serializable{
 		return saviSend;
 	}
 	
-	public Boolean getSaviFcfsv4() {
+	public Boolean getSaviDhcpv4() {
 		return saviDhcpv4;
 	}
-	
-	public Boolean getSaviFcfsv6() {
+
+	public Boolean getSaviDhcpv6() {
 		return saviDhcpv6;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public void setSaviManual(Boolean flag) {

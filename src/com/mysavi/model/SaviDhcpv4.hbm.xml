@@ -23,7 +23,7 @@
             <column name="maxLeasequeryDelay" />
         </property>
         <property name="datasnoopingInterval" type="java.lang.Integer">
-            <column name="maxLeasequeryDelay" />
+            <column name="datasnoopingInterval" />
         </property>
         <property name="offlinkDelay" type="java.lang.Integer">
             <column name="offlinkDelay" />
